@@ -1,0 +1,24 @@
+# Local scratch work
+/scratch/
+
+# Operating-system metadata
+.DS_Store
+
+# Editor and IDE metadata
+.vscode/
+.idea/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Wolfram Language / Mathematica artifacts
+*.nb.bak
+*.cdf
+*.mx
+*.wxf
+
+# Build output
+build/
+dist/

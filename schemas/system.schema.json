@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-binary-gibbs-energy-library.org/schemas/system.schema.json",
+  "title": "Open Binary Gibbs Energy Library - System Metadata",
+  "description": "Schema for system-level metadata shared by the phase models of a binary system.",
+  "type": "object",
+  "required": ["schemaVersion", "systemIdentifier", "systemName", "components", "phaseModels"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "systemIdentifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)+$"
+    },
+    "systemName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "components": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["identifier", "formula", "name"],
+        "properties": {
+          "identifier": {"type": "string", "minLength": 1},
+          "formula": {"type": "string", "minLength": 1},
+          "name": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "phaseModels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["phaseIdentifier", "file"],
+        "properties": {
+          "phaseIdentifier": {"type": "string", "minLength": 1},
+          "file": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

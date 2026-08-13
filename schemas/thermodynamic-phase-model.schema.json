@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-binary-gibbs-energy-library.org/schemas/thermodynamic-phase-model.schema.json",
+  "title": "Open Binary Gibbs Energy Library - Thermodynamic Phase Model",
+  "description": "Canonical schema for a single phase Gibbs-energy model within a binary system. The schema is intentionally general enough to support multiple composition coordinates, phase names, and structured temperature-dependent model terms.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "systemIdentifier",
+    "phase",
+    "components",
+    "compositionVariables",
+    "temperatureRange",
+    "gibbsEnergyModel",
+    "references",
+    "representations"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "description": "Version of the OBGEL data schema used by this file."
+    },
+    "systemIdentifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)+$",
+      "description": "Stable repository identifier for the binary system, for example cu-ag or na-cl-h2o when a future non-alloy extension is appropriate."
+    },
+    "phase": {
+      "$ref": "#/$defs/phaseIdentity"
+    },
+    "components": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "compositionVariables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/compositionVariable"
+      }
+    },
+    "temperatureRange": {
+      "$ref": "#/$defs/temperatureRange"
+    },
+    "gibbsEnergyModel": {
+      "$ref": "#/$defs/gibbsEnergyModel"
+    },
+    "references": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "representations": {
+      "$ref": "#/$defs/representations"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Short scientific or provenance note specific to this phase model."
+    }
+  },
+  "$defs": {
+    "phaseIdentity": {
+      "type": "object",
+      "required": ["identifier", "displayName", "displayNameStatus"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "Stable machine-readable phase identifier, independent of the current display name."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Default human-facing phase name supplied to applications unless the user overrides it."
+        },
+        "displayNameStatus": {
+          "type": "string",
+          "enum": ["literature", "standard", "bestGuessPlaceholder"],
+          "description": "How confidently the display name can be treated as an established name for the phase."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional descriptive phase classification, such as FCC substitutional solution."
+        }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": ["identifier", "formula", "name"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "formula": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "compositionVariable": {
+      "type": "object",
+      "required": ["name", "quantity", "role"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Symbolic variable name used by the reference implementation."
+        },
+        "quantity": {
+          "type": "string",
+          "enum": ["moleFraction", "massFraction", "molality", "siteFraction", "amount", "custom"]
+        },
+        "component": {
+          "type": "string",
+          "description": "Component associated with the coordinate when the coordinate has a direct component interpretation."
+        },
+        "units": {
+          "type": "string",
+          "description": "Units used when quantity is not dimensionless."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["independent", "dependent"]
+        },
+        "definition": {
+          "type": "string",
+          "description": "Textual mathematical definition, used to remove ambiguity for specialized coordinates."
+        }
+      },
+      "additionalProperties": false
+    },
+    "temperatureRange": {
+      "type": "object",
+      "required": ["minimum", "maximum", "units", "rangeBasis"],
+      "properties": {
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "units": {
+          "type": "string",
+          "const": "K"
+        },
+        "rangeBasis": {
+          "type": "string",
+          "enum": ["assessment", "recommendedUse", "phaseStableRegion", "other"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "gibbsEnergyModel": {
+      "type": "object",
+      "required": ["quantity", "modelType", "units", "expression"],
+      "properties": {
+        "quantity": {
+          "type": "string",
+          "enum": ["molarGibbsFreeEnergyOfMixing", "molarGibbsFreeEnergy", "custom"]
+        },
+        "modelType": {
+          "type": "string",
+          "enum": ["idealPlusRedlichKister", "customStructuredModel"]
+        },
+        "units": {
+          "type": "string",
+          "const": "J/mol"
+        },
+        "expression": {
+          "$ref": "#/$defs/expressionModel"
+        }
+      },
+      "additionalProperties": false
+    },
+    "expressionModel": {
+      "type": "object",
+      "required": ["idealMixingTerm", "redlichKisterTerms"],
+      "properties": {
+        "idealMixingTerm": {
+          "type": "object",
+          "required": ["included", "gasConstant"],
+          "properties": {
+            "included": {
+              "type": "boolean"
+            },
+            "gasConstant": {
+              "type": "object",
+              "required": ["value", "units"],
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "units": {
+                  "type": "string",
+                  "const": "J/(mol K)"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "redlichKisterTerms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/redlichKisterTerm"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "redlichKisterTerm": {
+      "type": "object",
+      "required": ["order", "temperatureDependence"],
+      "properties": {
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "temperatureDependence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/temperatureBasisTerm"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "temperatureBasisTerm": {
+      "type": "object",
+      "required": ["basis", "coefficient"],
+      "properties": {
+        "basis": {
+          "type": "string",
+          "enum": ["constant", "temperature", "temperatureLogTemperature"]
+        },
+        "coefficient": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reference": {
+      "type": "object",
+      "required": ["identifier", "citation"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "doi": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["originalAssessment", "secondarySource", "validationSource", "other"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "representations": {
+      "type": "object",
+      "required": ["tex", "pdf"],
+      "properties": {
+        "tex": {
+          "$ref": "#/$defs/generatedArtifact"
+        },
+        "pdf": {
+          "$ref": "#/$defs/generatedArtifact"
+        }
+      },
+      "additionalProperties": false
+    },
+    "generatedArtifact": {
+      "type": "object",
+      "required": ["path", "generated", "sourceOfTruth"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generated": {
+          "type": "boolean",
+          "const": true
+        },
+        "sourceOfTruth": {
+          "type": "string",
+          "const": "gibbsEnergyModel"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
