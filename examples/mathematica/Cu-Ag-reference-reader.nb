@@ -1,0 +1,1500 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     61520,       1490]
+NotebookOptionsPosition[     51940,       1334]
+NotebookOutlinePosition[     52774,       1360]
+CellTagsIndexPosition[     52731,       1357]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Open Binary Gibbs Energy Library: Cu-Ag Reference Reader", "Title",ExpressionUUID->"575d349e-7dd0-4bf1-94d1-dd8dcc935751"],
+
+Cell["\<\
+Development exemplar \[LongDash] this notebook is intended to demonstrate the \
+current OBGEL JSON reader and will evolve with the schema and reference \
+implementation.\
+\>", "Subtitle",ExpressionUUID->"42729dc2-ce3c-4156-a941-e56500cba972"],
+
+Cell[CellGroupData[{
+
+Cell["Purpose", "Section",ExpressionUUID->"66fde51d-82f2-47df-8320-5c80a299872c"],
+
+Cell["\<\
+This notebook demonstrates how the canonical OBGEL JSON representation is \
+interpreted into symbolic Wolfram Language expressions. It uses the Cu-Ag FCC \
+A1 phase as the first complete exemplar. The notebook is executable against \
+the current repository data and is also intended to explain the construction \
+of the thermodynamic model to future developers and teachers.\
+\>", "Text",ExpressionUUID->"3f562b68-80df-4c26-a8d6-82c97d95060b"],
+
+Cell[TextData[{
+ "The main idea is simple: start with a useful Gibbs-energy function, then \
+show how the JSON data are assembled into the expression. The thermodynamic \
+structure is\n\n    ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["G", "TI"], "m"], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "reference"], "+", "\[CapitalDelta]", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "ideal"], "+", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "empirical"]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "G_{\\mbox{m}} = G_{\\mbox{reference}} + \\Delta G_{\\mbox{ideal}}+ \
+G_{\\mbox{empirical}}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "a618e7dd-ada2-489b-b7e6-9d9554c3a9f4"],
+ "\n\nFor the present Cu-Ag model, the empirical contribution is represented \
+by a Redlich-Kister expansion. A future reader may expose a broader \
+empiricalMixingContribution interface; this notebook deliberately uses only \
+infrastructure that exists in the current repository."
+}], "Text",
+ CellChangeTimes->{{3.9956894773245983`*^9, 3.995689478968616*^9}, 
+   3.995689558381181*^9},ExpressionUUID->"799bfe49-a393-4831-97d4-\
+4511ea10d5c1"],
+
+Cell["\<\
+The helper functions in this notebook are stored as initialization cells so \
+that the examples can be evaluated from a fresh kernel.  If you accepted \
+\[OpenCurlyDoubleQuote]Evaluate Initialization Cells\[CloseCurlyDoubleQuote], \
+then everything should work.
+
+The notebook has been tested from a fresh Wolfram Language kernel with its \
+initialization cells evaluated before the examples.\
+\>", "Subsection",
+ CellChangeTimes->{{3.995714587903492*^9, 3.995714626077239*^9}, {
+  3.995714897440207*^9, 
+  3.995714899142482*^9}},ExpressionUUID->"e1c232cc-5fe2-4236-8213-\
+0039f2ca133f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Setup and data loading", "Section",ExpressionUUID->"1989ce1a-5c54-4706-b515-3f28f483c1ca"],
+
+Cell["\<\
+Run this section first. The path is derived from the notebook location so \
+that the exemplar can live inside the repository without hard-coded \
+user-specific paths.\
+\>", "Text",ExpressionUUID->"1b706a57-f70f-4256-9bba-b0df2bd5d0c1"],
+
+Cell[CellGroupData[{
+
+Cell["Library Location:", "Subsubsection",
+ CellChangeTimes->{{3.995709495838766*^9, 
+  3.995709505506329*^9}},ExpressionUUID->"92941de8-2bb4-45be-b26b-\
+b6ebae27407c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"obglLibrary", " ", "=", " ", 
+    RowBox[{"ParentDirectory", "[", 
+     RowBox[{"ParentDirectory", "[", 
+      RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"DirectoryQ", "[", "obglLibrary", "]"}], ",", "\n", 
+    RowBox[{"$OBGELBaseDirectory", " ", "=", " ", "obglLibrary"}], ",", "\n", 
+    
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<OBGEL directory not found: \>\"", ",", " ", "obglLibrary"}],
+      "]"}]}], "\n", "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.9957076695741673`*^9, 3.995707735326346*^9}, {
+  3.995708796244068*^9, 3.995708824256914*^9}, {3.995708867027491*^9, 
+  3.995708947446023*^9}, {3.995708999263404*^9, 3.9957091318073387`*^9}, {
+  3.995709175000348*^9, 3.995709196618342*^9}, {3.995709510045192*^9, 
+  3.9957095114836893`*^9}, {3.99571231473661*^9, 3.9957123536515493`*^9}, {
+  3.995712402542109*^9, 3.995712404053648*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"c6a84b17-6def-492c-b919-f61b6ec9b29e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["What\[CloseCurlyQuote]s in the box?", "Subsubsection",
+ CellChangeTimes->{{3.995712882631662*^9, 3.995712888182085*^9}, {
+  3.995714537963335*^9, 
+  3.995714538901308*^9}},ExpressionUUID->"538467f8-68fa-4cc8-9387-\
+ae7b9b8ebb35"],
+
+Cell["Optional: Explore the repository structure", "Text",
+ CellChangeTimes->{
+  3.995714541406715*^9},ExpressionUUID->"d7278e16-05ba-4c73-b433-\
+9272b6689db6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ResourceFunction", "[", "\"\<ExploreDirectory\>\"", "]"}], "[", 
+  RowBox[{"obglLibrary", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.995712770653833*^9, 3.995712770660872*^9}, 
+   3.9957128200991*^9, {3.99571285615184*^9, 3.9957128658169394`*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"9e13cd75-6366-4327-b837-71d8b408a0a6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Loading Data", "Subsubsection",
+ CellChangeTimes->{{3.995709520346314*^9, 3.99570952432126*^9}, 
+   3.995709849121995*^9},ExpressionUUID->"47b755e4-fe16-4d1b-9860-\
+85be43a3d8d8"],
+
+Cell[BoxData[
+ RowBox[{"With", "[", "\n", 
+  RowBox[{
+   RowBox[{"{", "\n", 
+    RowBox[{
+     RowBox[{"fccJSON", " ", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "$OBGELBaseDirectory", ",", " ", "\"\<data\>\"", ",", 
+         " ", "\"\<cu-ag\>\"", ",", " ", "\"\<phases\>\"", ",", 
+         " ", "\"\<fcc-a1.json\>\""}], "}"}], "]"}]}], ",", "\n", 
+     RowBox[{"liquidJSON", " ", "=", " ", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "$OBGELBaseDirectory", ",", " ", "\"\<data\>\"", ",", 
+         " ", "\"\<cu-ag\>\"", ",", " ", "\"\<phases\>\"", ",", 
+         " ", "\"\<liquid.json\>\""}], "}"}], "]"}]}]}], "\n", "}"}], ",", 
+   "\n", 
+   RowBox[{"Which", "[", "\n", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"FileExistsQ", "[", "fccJSON", "]"}], " ", "&&", " ", 
+      RowBox[{"FileExistsQ", "[", "liquidJSON", "]"}]}], ",", "\n", 
+     RowBox[{
+      RowBox[{"jsonDataFCC", " ", "=", " ", 
+       RowBox[{"Import", "[", 
+        RowBox[{"fccJSON", ",", " ", "\"\<RawJSON\>\""}], "]"}]}], ";", "\n", 
+      
+      RowBox[{"jsonDataLiq", " ", "=", " ", 
+       RowBox[{"Import", "[", 
+        RowBox[{"liquidJSON", ",", " ", "\"\<RawJSON\>\""}], "]"}]}], ";"}], ",",
+      "\n", "True", ",", "\n", 
+     RowBox[{
+      RowBox[{
+      "StringTemplate", "[", "\"\<Data files not found:\\n `1`\\n`2`\>\"", 
+       "]"}], "[", 
+      RowBox[{"fccJSON", ",", "liquidJSON"}], "]"}]}], "\n", "]"}]}], "\n", 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.9957076695741673`*^9, 3.995707735326346*^9}, {
+  3.995709226547183*^9, 3.995709484478265*^9}, {3.995712380963073*^9, 
+  3.995712389569223*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"bfed5ab9-8dc7-4601-ad03-bade00571fde"],
+
+Cell["\<\
+The composition variable is declared by the phase model rather than inferred \
+from list ordering. For the Cu-Ag FCC phase, the independent variable is xCu, \
+the mole fraction of Cu.  If the next command returns xCu and Cu, all the \
+data has loaded as it should\
+\>", "Text",
+ CellChangeTimes->{{3.995709537790963*^9, 3.995709597028041*^9}, {
+  3.99571498002507*^9, 
+  3.99571498431805*^9}},ExpressionUUID->"ee33af72-946a-42c9-9b24-\
+ba7d1c9b67a8"],
+
+Cell[BoxData[{
+ RowBox[{"compositionVariable", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"jsonDataFCC", "[", "\"\<compositionVariables\>\"", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "[", "\"\<name\>\"", "]"}]}], "\n", 
+ RowBox[{"compositionComponent", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"jsonDataFCC", "[", "\"\<compositionVariables\>\"", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "[", "\"\<component\>\"", 
+   "]"}]}]}], "Code",
+ CellChangeTimes->{{3.995707753823201*^9, 3.995707755349182*^9}, {
+  3.995709572206534*^9, 3.995709572529806*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"1c5fd6a2-2bf7-4f09-9899-a50590a14c7a"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Demonstrative Usage examples", "Section",
+ CellChangeTimes->{{3.995689612974862*^9, 3.995689620991308*^9}, 
+   3.995709614821723*^9, 3.995711797486261*^9, {3.995711838698722*^9, 
+   3.9957118398543577`*^9}},ExpressionUUID->"9549e40d-0c73-430a-8ee9-\
+1093a85e848a"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Canonical Example",
+  FontWeight->"Bold"],
+ "\nThe interactive example below demonstrates the principal result of this \
+notebook. Everything that follows explains how the symbolic Gibbs free-energy \
+function is constructed from the canonical OBGEL representation."
+}], "Subsection",
+ CellFrame->True,
+ CellChangeTimes->{
+  3.995716882485882*^9, {3.99571758052914*^9, 
+   3.9957175922642603`*^9}},ExpressionUUID->"59db78ce-dc7a-41dd-b972-\
+d881d5e63d5b"],
+
+Cell["\<\
+The following examples show the main object constructed by this notebook: a \
+symbolic molar Gibbs free-energy function that can be plotted, \
+differentiated, and passed directly to phase-equilibrium calculations.
+
+ An experienced user can immediately take this Gibbs-energy function into a \
+common-tangent or phase-diagram calculation. A teacher can use the same \
+expression directly in a classroom demonstration.
+
+The data must be loaded as described in the proceeding section. If the \
+following command doesn\[CloseCurlyQuote]t work, then the library failed to \
+load properly\[LongDash]that is likely due to the library sitting at the \
+wrong place in the directory tree.\
+\>", "Text",
+ CellChangeTimes->{{3.9956897169533567`*^9, 3.995689744437652*^9}, {
+  3.995708704974625*^9, 3.99570878678514*^9}, {3.995714685538917*^9, 
+  3.995714688546364*^9}},ExpressionUUID->"461b4a43-4e0b-40bc-90a2-\
+d19deff7286d"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+1) Compare the Temperature Dependencies of the Molar Free Energies of Mixing \
+for the FCC-A1 and Liquid phases.  Explore the Behavior Near the Eutectic \
+Point.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.9957109377578278`*^9, 3.9957109726461983`*^9}, {
+  3.995713133731491*^9, 3.9957131918798113`*^9}, {3.995716943523587*^9, 
+  3.995716944347704*^9}, {3.995717002593006*^9, 
+  3.99571702662599*^9}},ExpressionUUID->"11baa126-6382-4c04-939b-\
+cb20f4cdeca7"],
+
+Cell["\<\
+This illustrates the two molar free energies of mixing for Liquid and FCC-A1 \
+in the Cu-Ag system.
+
+These phase Gibbs-energy curves are the objects from which phase-equilibrium \
+constructions such as common tangents can be made. The Eutectic Point is near \
+ 1053K.\
+\>", "Text",
+ CellChangeTimes->{{3.995710843479369*^9, 3.995710926452533*^9}, {
+  3.995711385375534*^9, 3.995711387055491*^9}, {3.995714751101688*^9, 
+  3.9957147624174147`*^9}},ExpressionUUID->"e0070561-ec7a-4cf5-b9b3-\
+88ebd65b293f"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"With", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"gMolarFCC", " ", "=", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"molarGibbsFreeEnergy", "[", "jsonDataFCC", "]"}], "[", 
+           "temperature", "]"}], "[", "xCu", "]"}]}], ",", 
+        RowBox[{"gMolarLiquid", "=", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"molarGibbsFreeEnergy", "[", "jsonDataLiq", "]"}], "[", 
+           "temperature", "]"}], "[", "xCu", "]"}]}]}], "\[IndentingNewLine]",
+        "}"}], ",", "\n", " ", 
+      RowBox[{"Manipulate", "[", "\n", "  ", 
+       RowBox[{
+        InterpretationBox[
+         DynamicModuleBox[{Typeset`open = False}, 
+          TemplateBox[{"Expression", 
+            RowBox[{"Plot", "[", 
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "IconizeEllipsis"]], 
+              "]"}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Byte count: \"", "IconizedLabel"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1080", "IconizedItem"]}]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}}, DefaultBaseStyle -> 
+             "Column", 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+            Dynamic[Typeset`open]},
+           "IconizedObject"]],
+         Plot[{$CellContext`gMolarFCC, $CellContext`gMolarLiquid}, \
+{$CellContext`xCu, 0, 1}, Frame -> True, FrameLabel -> {"xCu", "G (J/mol)"}, 
+          PlotLabel -> "Molar Gibbs Free Energy: FCC A1 Cu-Ag", PlotLegends -> 
+          Placed[{"FCC A1", "Liquid"}, Right], BaseStyle -> {FontSize -> 16}, 
+          ImageSize -> Large],
+         SelectWithContents->True,
+         Selectable->False], ",", "\n", "  ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"temperature", ",", " ", "800", ",", " ", 
+            InterpretationBox[
+             DynamicModuleBox[{Typeset`open = False}, 
+              TemplateBox[{"Expression", 
+                RowBox[{"Style", "[", 
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "FEBitmaps", "IconizeEllipsis"]], "]"}], 
+                GridBox[{{
+                   RowBox[{
+                    TagBox["\"Byte count: \"", "IconizedLabel"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["120", "IconizedItem"]}]}}, 
+                 GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                 DefaultBaseStyle -> "Column", 
+                 GridBoxItemSize -> {
+                  "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+                Dynamic[Typeset`open]},
+               "IconizedObject"]],
+             Style["Temperagure (Kelvin)", 16],
+             SelectWithContents->True,
+             Selectable->False]}], "}"}], ",", "450", ",", " ", "2000"}], 
+         "}"}], ",", "\[IndentingNewLine]", 
+        InterpretationBox[
+         DynamicModuleBox[{Typeset`open = False}, 
+          TemplateBox[{"Expression", 
+            RowBox[{
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "IconizeEllipsis"]], 
+              "\[Rule]", 
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "IconizeEllipsis"]]}], 
+            
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Head: \"", "IconizedLabel"], "\[InvisibleSpace]", 
+                 TagBox["Rule", "IconizedItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Byte count: \"", "IconizedLabel"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["56", "IconizedItem"]}]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}}, DefaultBaseStyle -> 
+             "Column", 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+            Dynamic[Typeset`open]},
+           "IconizedObject"]],
+         SaveDefinitions -> True,
+         SelectWithContents->True,
+         Selectable->False]}], "\n", "  ", "]"}]}], "\n", " ", "]"}], ";"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.995707936292618*^9, 3.99570793986197*^9}, {
+   3.995708376954275*^9, 3.99570838424781*^9}, {3.995708435346613*^9, 
+   3.995708535288859*^9}, {3.9957085768570547`*^9, 3.9957086765730753`*^9}, {
+   3.99571591474257*^9, 3.995715945084806*^9}, {3.9957159886964827`*^9, 
+   3.995715990941762*^9}, 3.995716076991415*^9, {3.995717048341215*^9, 
+   3.995717051700864*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"a87a48e2-a867-49ad-8b76-f721a0a6f4d1"],
+
+Cell[TextData[Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`temperature$$ = 1038., Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`temperature$$], 800, 
+       Style["Temperagure (Kelvin)", 16]}, 450, 2000, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    830.3726806640625, {227.8207032719837, 234.9856202641712}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`temperature$$ = 800}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Plot[{(1 - $CellContext`xCu) $CellContext`xCu (36772.58 - 
+           11.02847 $CellContext`temperature$$ + (4612.43 - 
+             0.28869 $CellContext`temperature$$) (-1 + 2 $CellContext`xCu)) + 
+         8.314462618 $CellContext`temperature$$ ((1 - $CellContext`xCu) 
+            Log[1 - $CellContext`xCu] + $CellContext`xCu 
+            Log[$CellContext`xCu]) + $CellContext`xCu 
+          Piecewise[{{-7770.458 + 52478/$CellContext`temperature$$ + 
+              130.485235 $CellContext`temperature$$ - 
+              0.00265684 $CellContext`temperature$$^2 + 
+              1.29223*^-7 $CellContext`temperature$$^3 - 
+              24.112392 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              298.15 <= $CellContext`temperature$$ <= 1357.77}, {-13542.026 + 
+              3.642*^29 $CellContext`temperature$$^(-9) + 
+              183.803828 $CellContext`temperature$$ - 
+              31.38 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              1357.77 <= $CellContext`temperature$$ <= 3200}}, 0] + (
+           1 - $CellContext`xCu) 
+          Piecewise[{{-7209.512 - 12011/$CellContext`temperature$$ + 
+              118.202013 $CellContext`temperature$$ - 
+              0.001790585 $CellContext`temperature$$^2 - 
+              3.98587*^-7 $CellContext`temperature$$^3 - 
+              23.8463314 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              298.15 <= $CellContext`temperature$$ <= 1234.93}, {-15095.252 + 
+              1.412*^29 $CellContext`temperature$$^(-9) + 
+              190.266404 $CellContext`temperature$$ - 
+              33.472 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              1234.93 <= $CellContext`temperature$$ <= 3000}}, 0], (
+           1 - $CellContext`xCu) $CellContext`xCu (17384.37 - 
+           4.46438 $CellContext`temperature$$ + (-1660.74 + 
+             2.31516 $CellContext`temperature$$) (-1 + 2 $CellContext`xCu)) + 
+         8.314462618 $CellContext`temperature$$ ((1 - $CellContext`xCu) 
+            Log[1 - $CellContext`xCu] + $CellContext`xCu 
+            Log[$CellContext`xCu]) + $CellContext`xCu 
+          Piecewise[{{
+             5194.277 + 52478/$CellContext`temperature$$ + 
+              120.973331 $CellContext`temperature$$ - 
+              0.00265684 $CellContext`temperature$$^2 + 
+              1.29223*^-7 $CellContext`temperature$$^3 - 
+              5.849*^-21 $CellContext`temperature$$^7 - 
+              24.112392 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              298.15 <= $CellContext`temperature$$ <= 1357.77}, {-46.545 + 
+              173.881484 $CellContext`temperature$$ - 
+              31.38 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              1357.77 <= $CellContext`temperature$$ <= 3200}}, 0] + (
+           1 - $CellContext`xCu) 
+          Piecewise[{{
+             3815.564 - 12011/$CellContext`temperature$$ + 
+              109.310993 $CellContext`temperature$$ - 
+              0.001790585 $CellContext`temperature$$^2 - 
+              3.98587*^-7 $CellContext`temperature$$^3 - 
+              1.034*^-20 $CellContext`temperature$$^7 - 
+              23.8463314 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              298.15 <= $CellContext`temperature$$ <= 1234.93}, {-3587.111 + 
+              180.964656 $CellContext`temperature$$ - 
+              33.472 $CellContext`temperature$$ 
+              Log[$CellContext`temperature$$], 
+              1234.93 <= $CellContext`temperature$$ <= 3000}}, 
+            0]}, {$CellContext`xCu, 0, 1}, Frame -> True, 
+        FrameLabel -> {"xCu", "G (J/mol)"}, PlotLabel -> 
+        "Molar Gibbs Free Energy: FCC A1 Cu-Ag", PlotLegends -> 
+        Placed[{"FCC A1", "Liquid"}, Right], BaseStyle -> {FontSize -> 16}, 
+        ImageSize -> Large], 
+      "Specifications" :> {{{$CellContext`temperature$$, 800, 
+          Style["Temperagure (Kelvin)", 16]}, 450, 2000}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      889.7476806640625, {286.40884896947307`, 293.57376596166057`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ Deletable->False,
+ CellChangeTimes->{
+  3.995708385312601*^9, {3.995708477043936*^9, 3.995708491271158*^9}, 
+   3.995708536134719*^9, {3.9957085785297127`*^9, 3.995708627393162*^9}, 
+   3.995709716324168*^9, 3.995715843360216*^9, 
+   3.995715947241334*^9},ExpressionUUID->"4bd2ce6d-c4b9-479c-8c25-\
+f5e79b2329d0"]], "Text",
+ CellChangeTimes->{{3.995716000808936*^9, 
+  3.995716006685144*^9}},ExpressionUUID->"912313f1-089d-445b-b23c-\
+b56b847ef11e"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.995714734464942*^9, 
+  3.995714746639217*^9}},ExpressionUUID->"6da038c3-0079-43bd-976b-\
+2a5ef7406ad3"],
+
+Cell["\<\
+The notebook uses absT or temperature as a reminder that thermodynamic \
+temperature arguments are absolute temperatures in kelvin. The composition \
+axis is xCu because the phase model declares Cu as the independent \
+composition variable.\
+\>", "Text",ExpressionUUID->"3ece57e6-8f7b-4e60-8c5b-4a1af929c111"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Show the form of the Molar Gibbs Free Energy for the Cu-Ag FCC A1 phase\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.99570815525845*^9, 3.995708193587942*^9}, {
+  3.995711808685833*^9, 3.995711814516797*^9}, {3.9957169394604197`*^9, 
+  3.995716941241275*^9}, {3.995716997727265*^9, 
+  3.995716997841218*^9}},ExpressionUUID->"0073da5e-e291-49e0-84b5-\
+f49ee734d21d"],
+
+Cell[BoxData[
+ RowBox[{"TraditionalForm", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"molarGibbsFreeEnergy", "[", "jsonDataFCC", "]"}], "[", "absT", 
+    "]"}], "[", "xCu", "]"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.995718871481504*^9, 3.995718873612359*^9}},
+ CellLabel->"In[93]:=",ExpressionUUID->"5393beae-3a5e-45b5-a595-9c2854f22324"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Documentation", "Section",
+ CellChangeTimes->{{3.995709638457871*^9, 
+  3.9957096458932133`*^9}},ExpressionUUID->"78d81813-355b-4c6b-b565-\
+2c35628f6c9f"],
+
+Cell[CellGroupData[{
+
+Cell["Helper functions", "Subsection",ExpressionUUID->"ee5f2a02-b67d-422c-addb-6979f4fb07c1"],
+
+Cell["\<\
+The following functions form the current development reader. They \
+deliberately operate on ordinary Mathematica Associations and return ordinary \
+symbolic expressions.\
+\>", "Text",ExpressionUUID->"ccec06b8-5b19-47c9-9a49-0dee4edefbf7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Temperature basis functions", "Subsection",ExpressionUUID->"4d9f7f35-5a5b-4950-b015-b1054b10dd95"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"temperatureBasisFunctions", " ", "=", " ", 
+   RowBox[{"<|", "\n", "   ", 
+    RowBox[{
+     RowBox[{"\"\<constant\>\"", " ", "->", " ", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"T", ",", " ", "term"}], "}"}], ",", " ", "1"}], "]"}]}], ",",
+      "\n", "   ", 
+     RowBox[{"\"\<temperature\>\"", " ", "->", " ", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"T", ",", " ", "term"}], "}"}], ",", " ", "T"}], "]"}]}], ",",
+      "\n", "   ", 
+     RowBox[{"\"\<temperatureLogTemperature\>\"", " ", "->", " ", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"T", ",", " ", "term"}], "}"}], ",", " ", 
+        RowBox[{"T", " ", 
+         RowBox[{"Log", "[", "T", "]"}]}]}], "]"}]}], ",", "\n", "   ", 
+     RowBox[{"\"\<temperaturePower\>\"", " ", "->", " ", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"T", ",", " ", "term"}], "}"}], ",", " ", 
+        RowBox[{"T", "^", 
+         RowBox[{"term", "[", "\"\<exponent\>\"", "]"}]}]}], "]"}]}]}], "\n", 
+    "   ", "|>"}]}], ";"}]], "Code",
+ CellLabel->"In[94]:=",ExpressionUUID->"ef5fc497-ffb7-4a58-8d13-226e49ffbe87"],
+
+Cell["\<\
+A temperature-dependence expression is a sum of coefficient times basis \
+function. This same operation is used both for reference-state functions and \
+for temperature-dependent Redlich-Kister coefficients.\
+\>", "Text",ExpressionUUID->"7e963894-5191-468c-942f-512edc65bd57"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"temperatureDependenceExpression", "[", "terms_List", "]"}], "[",
+      "T_", "]"}], " ", ":=", "\n", "    ", 
+    RowBox[{"Total", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"#", "[", "\"\<coefficient\>\"", "]"}], " ", "*", " ", 
+         RowBox[{
+          RowBox[{"temperatureBasisFunctions", "[", 
+           RowBox[{"#", "[", "\"\<basis\>\"", "]"}], "]"}], "[", 
+          RowBox[{"T", ",", " ", "#"}], "]"}]}], ")"}], " ", "&"}], " ", "/@",
+       " ", "terms"}], "]"}]}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "temperatureSegmentExpression", "[", "segment_Association", "]"}], "[", 
+     "T_", "]"}], " ", ":=", "\n", "    ", 
+    RowBox[{
+     RowBox[{"temperatureDependenceExpression", "[", 
+      RowBox[{"segment", "[", "\"\<terms\>\"", "]"}], "]"}], "[", "T", 
+     "]"}]}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"temperatureSegmentPiecewise", "[", "segments_List", "]"}], "[", 
+    "T_", "]"}], " ", ":=", "\n", "    ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{"(", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"temperatureSegmentExpression", "[", "#", "]"}], "[", "T", 
+          "]"}], ",", " ", 
+         RowBox[{
+          RowBox[{"#", "[", "\"\<minimum\>\"", "]"}], " ", "<=", " ", "T", 
+          " ", "<=", " ", 
+          RowBox[{"#", "[", "\"\<maximum\>\"", "]"}]}]}], "}"}], " ", "&"}], 
+      " ", "/@", " ", "segments"}], ")"}], "]"}]}], ";"}]}], "Code",
+ CellLabel->"In[95]:=",ExpressionUUID->"4a3e449f-343e-4162-a9d8-7dc749d5c996"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Reference-state contributions", "Subsection",ExpressionUUID->"7aae3af1-9d5e-4078-8a72-795318490f24"],
+
+Cell["\<\
+Reference-state contributions are stored in the JSON as a list. In \
+Mathematica they are more convenient as an Association keyed by component.\
+\>", "Text",ExpressionUUID->"8a253ddc-fa2c-4c9b-9737-b19377a92011"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"referenceStateRule", "[", "refState_Association", "]"}], " ", ":=",
+     "\n", "    ", 
+    RowBox[{
+     RowBox[{"refState", "[", "\"\<component\>\"", "]"}], " ", "->", " ", 
+     RowBox[{"KeyDrop", "[", 
+      RowBox[{"refState", ",", " ", "\"\<component\>\""}], "]"}]}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"referenceContributionsToAssociation", "[", "jsonData_", "]"}], 
+   " ", ":=", 
+   RowBox[{"Association", "[", 
+    RowBox[{"referenceStateRule", " ", "/@", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"jsonData", "[", "\"\<gibbsEnergyModel\>\"", "]"}], 
+       "[", "\"\<expression\>\"", "]"}], 
+      "[", "\"\<referenceStateContributions\>\"", "]"}]}], "]"}]}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{{3.9957141209422827`*^9, 3.9957141316031017`*^9}},
+ CellLabel->"In[98]:=",ExpressionUUID->"9cc5c078-0499-401c-a50b-e6b8075a0846"],
+
+Cell["\<\
+For the current binary solution model, the composition metadata identify \
+which component is represented by xCu. The other component receives 1 - xCu; \
+the code does not depend on the incidental ordering of the reference-state \
+list.\
+\>", "Text",ExpressionUUID->"48340633-5ece-4114-8122-9d77fd3996cc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"referenceStateContribution", "[", "jsonData_", "]"}], "[", 
+     "absT_", "]"}], "[", "x_", "]"}], " ", ":=", "\n", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"referenceAssociation", " ", "=", " ", 
+        RowBox[{
+        "referenceContributionsToAssociation", "[", "jsonData", "]"}]}], ",", 
+       "\n", "   ", "components", ",", " ", "independentComponent", ",", " ", 
+       "dependentComponent", ",", " ", "referenceStates"}], "}"}], ",", "\n", 
+     "  ", 
+     RowBox[{
+      RowBox[{"components", " ", "=", " ", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{
+         RowBox[{"jsonData", "[", "\"\<components\>\"", "]"}], ",", 
+         " ", "\"\<identifier\>\""}], "]"}]}], ";", "\n", "  ", 
+      RowBox[{"independentComponent", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"jsonData", "[", "\"\<compositionVariables\>\"", "]"}], "[", 
+         
+         RowBox[{"[", "1", "]"}], "]"}], "[", "\"\<component\>\"", "]"}]}], ";",
+       "\n", "  ", 
+      RowBox[{"dependentComponent", " ", "=", " ", 
+       RowBox[{"First", "[", 
+        RowBox[{"DeleteCases", "[", 
+         RowBox[{"components", ",", " ", "independentComponent"}], "]"}], 
+        "]"}]}], ";", "\n", "  ", 
+      RowBox[{"referenceStates", " ", "=", " ", 
+       RowBox[{"AssociationMap", "[", "\n", "     ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"temperatureSegmentPiecewise", "[", 
+            RowBox[{
+             RowBox[{"referenceAssociation", "[", "#", "]"}], 
+             "[", "\"\<temperatureSegments\>\"", "]"}], "]"}], "[", "absT", 
+           "]"}], " ", "&"}], ",", "\n", "     ", "components"}], "]"}]}], ";",
+       "\n", "  ", 
+      RowBox[{
+       RowBox[{"x", " ", 
+        RowBox[{"referenceStates", "[", "independentComponent", "]"}]}], " ", 
+       "+", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", " ", "-", " ", "x"}], ")"}], " ", 
+        RowBox[{"referenceStates", "[", "dependentComponent", "]"}]}]}]}]}], 
+    "\n", "  ", "]"}]}], ";"}]], "Code",
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"8e0b479b-c15d-4cb9-b835-63aa75d2e466"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ideal mixing contribution", "Subsection",ExpressionUUID->"2b39868d-bc1e-4b7b-aea8-47a695e5f9b5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"xlogx", "[", "x_", "]"}], " ", ":=", " ", 
+   RowBox[{"x", " ", 
+    RowBox[{"Log", "[", "x", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"xlogx", "[", "0", "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"xlogx", "[", "1", "]"}], " ", "=", " ", "0"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"xlogx", "[", "0.0", "]"}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{"xlogx", "[", "1.0", "]"}], " ", "=", " ", "0.0"}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"idealMixing", "[", "absT_", "]"}], "[", "x_", "]"}], " ", ":=", 
+    " ", 
+    RowBox[{"absT", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"xlogx", "[", "x", "]"}], " ", "+", " ", 
+       RowBox[{"xlogx", "[", 
+        RowBox[{"1", " ", "-", " ", "x"}], "]"}]}], ")"}]}]}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"idealMixingContribution", "[", "jsonData_", "]"}], "[", "absT_",
+      "]"}], "[", "x_", "]"}], " ", ":=", "\n", " ", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"idealMixingTerm", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"jsonData", "[", "\"\<gibbsEnergyModel\>\"", "]"}], 
+         "[", "\"\<expression\>\"", "]"}], "[", "\"\<idealMixingTerm\>\"", 
+        "]"}]}], "}"}], ",", "\n", "  ", 
+     RowBox[{"Which", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"idealMixingTerm", "[", "\"\<included\>\"", "]"}], ",", "\n", 
+       "   ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"idealMixingTerm", "[", "\"\<gasConstant\>\"", "]"}], 
+         "[", "\"\<value\>\"", "]"}], " ", 
+        RowBox[{
+         RowBox[{"idealMixing", "[", "absT", "]"}], "[", "x", "]"}]}], ",", 
+       "\n", "   ", "True", ",", "\n", "   ", "0"}], "\n", "   ", "]"}]}], 
+    "\n", "  ", "]"}]}], ";"}]}], "Code",
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"75a04dd8-7747-4db4-82c4-a45978ace3ff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Empirical mixing contribution: current Cu-Ag implementation", \
+"Subsection",ExpressionUUID->"5583aa95-2a83-4cb0-9349-57a4ae19f6b7"],
+
+Cell["\<\
+Redlich-Kister is one particular way of representing an empirical \
+contribution to the Gibbs energy of mixing. The current Cu-Ag JSON explicitly \
+identifies its Redlich-Kister terms, so the development reader exposes this \
+implementation directly.\
+\>", "Text",ExpressionUUID->"716e5617-62f4-4163-9738-ac2413cf0a6f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"redlichKisterTerm", "[", "term_Association", "]"}], "[", 
+     "absT_", "]"}], " ", ":=", "\n", "    ", 
+    RowBox[{"Total", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"#", "[", "\"\<coefficient\>\"", "]"}], " ", "*", " ", 
+         RowBox[{
+          RowBox[{"temperatureBasisFunctions", "[", 
+           RowBox[{"#", "[", "\"\<basis\>\"", "]"}], "]"}], "[", 
+          RowBox[{"absT", ",", " ", "#"}], "]"}]}], ")"}], " ", "&"}], " ", "/@",
+       " ", 
+      RowBox[{"term", "[", "\"\<temperatureDependence\>\"", "]"}]}], "]"}]}], 
+   ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"redlichKisterContribution", "[", "jsonData_", "]"}], "[", 
+     "absT_", "]"}], "[", "x_", "]"}], " ", ":=", "\n", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x1", " ", "=", " ", "x"}], ",", " ", 
+       RowBox[{"x2", " ", "=", " ", 
+        RowBox[{"1", " ", "-", " ", "x"}]}], ",", " ", "terms"}], "}"}], ",", 
+     "\n", "  ", 
+     RowBox[{
+      RowBox[{"terms", " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"jsonData", "[", "\"\<gibbsEnergyModel\>\"", "]"}], 
+         "[", "\"\<expression\>\"", "]"}], "[", "\"\<redlichKisterTerms\>\"", 
+        "]"}]}], ";", "\n", "  ", 
+      RowBox[{"x1", " ", "x2", " ", 
+       RowBox[{"Total", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"redlichKisterTerm", "[", "#", "]"}], "[", "absT", "]"}], 
+           " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"x1", " ", "-", " ", "x2"}], ")"}], "^", 
+            RowBox[{"#", "[", "\"\<order\>\"", "]"}]}]}], " ", "&"}], " ", "/@",
+          " ", "terms"}], "]"}]}]}]}], "\n", "  ", "]"}]}], ";"}]}], "Code",
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"9bfb1595-6e33-482e-8ee3-3279c60a579e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Final assembly", "Subsection",ExpressionUUID->"ecc14b0f-17d1-48a3-8a5b-c3e7c7643c11"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"molarGibbsFreeEnergy", "[", "jsonData_", "]"}], "[", "absT_", 
+     "]"}], "[", "x_", "]"}], " ", ":=", "\n", "    ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"referenceStateContribution", "[", "jsonData", "]"}], "[", 
+      "absT", "]"}], "[", "x", "]"}], " ", "+", "\n", "    ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"idealMixingContribution", "[", "jsonData", "]"}], "[", "absT", 
+      "]"}], "[", "x", "]"}], " ", "+", "\n", "    ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"redlichKisterContribution", "[", "jsonData", "]"}], "[", 
+      "absT", "]"}], "[", "x", "]"}]}]}], ";"}]], "Code",
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"86439282-a0dc-4b24-beef-c3aa6eacc2de"],
+
+Cell["\<\
+The public conceptual structure we want to preserve is: reference-state \
+contribution + ideal mixing contribution + empirical mixing contribution. The \
+broader empiricalMixingContribution abstraction is a planned API refinement; \
+it is not required by this current development notebook.\
+\>", "Text",ExpressionUUID->"d85bad09-ad0a-4904-9295-ed8751a43ad5"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Examples:", "Section",
+ CellChangeTimes->{{3.995711006338955*^9, 
+  3.995711013068597*^9}},ExpressionUUID->"ac2d268d-a703-4808-a483-\
+2723172eb4ef"],
+
+Cell[CellGroupData[{
+
+Cell["Inspect the individual contributions", "Subsection",
+ CellChangeTimes->{
+  3.995711016684544*^9},ExpressionUUID->"75dfed46-83ff-4af7-8130-\
+af7955a2ea3f"],
+
+Cell["Reference state", "Text",ExpressionUUID->"b5fa7cd0-4c6f-4e98-bea4-f1e15f50584b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"referenceStateContribution", "[", "jsonDataFCC", "]"}], "[", 
+   "absT", "]"}], "[", "xCu", "]"}]], "Input",
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"d504ca0a-eda8-442c-8711-81f8b4e8e54b"],
+
+Cell["Ideal mixing", "Text",ExpressionUUID->"5ef38722-cc1a-4c07-a3a3-a6f265463512"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"idealMixingContribution", "[", "jsonDataFCC", "]"}], "[", "absT", 
+   "]"}], "[", "xCu", "]"}]], "Input",
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"d0d34580-52d5-4978-ab9d-5463ec4920e8"],
+
+Cell["Redlich-Kister empirical contribution", "Text",ExpressionUUID->"6b65a31e-7312-464d-8bf8-edf6eb79d035"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"redlichKisterContribution", "[", "jsonDataFCC", "]"}], "[", 
+   "absT", "]"}], "[", "xCu", "]"}]], "Input",
+ CellLabel->
+  "In[111]:=",ExpressionUUID->"edfb05fc-8448-4f74-9049-9746601cbed6"],
+
+Cell["\<\
+Note 1:  The tailing arguments (in this case absT and xCu) specify the \
+symbolic form of the variables\[LongDash]they can be anything, but we \
+recommend using symbols that help understanding, like xCu\
+\>", "Text",
+ CellChangeTimes->{{3.995713264112866*^9, 3.995713370882922*^9}, {
+  3.995714999939426*^9, 
+  3.995714999944294*^9}},ExpressionUUID->"53ca911c-00e6-4f72-9a41-\
+810eb13b7a2b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"redlichKisterContribution", "[", "jsonDataFCC", "]"}], "[", 
+   "\[Tau]", "]"}], "[", "\[Xi]", "]"}]], "Input",
+ CellChangeTimes->{{3.9957136343061457`*^9, 3.9957136392307568`*^9}},
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"5211ce3f-5fbe-466e-af70-463709562173"],
+
+Cell["\<\
+Note 2:  One common failure mode is to assign a value to a symbol that is \
+intended to be a variable.
+
+For example, if you do this\[LineSeparator]xCu = 0.67
+then this
+redlichKisterContribution[jsonDataFCC][absT][xCu]
+will no longer appear to be an expression that depends on xCu\[LongDash]and \
+you won\[CloseCurlyQuote]t be able to take derivatives of it.
+If that happens, you can always:
+Clear[xCu] or quick the kernel and start again.
+\
+\>", "Text",
+ CellChangeTimes->{{3.995713264112866*^9, 3.9957134116499233`*^9}, {
+  3.995713479472774*^9, 
+  3.995713606554103*^9}},ExpressionUUID->"fd2444fa-42ef-4270-9d4a-\
+ec9270d4d73a"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Derivatives and thermodynamic use", "Section",ExpressionUUID->"55b57e1c-1b99-4776-9370-db30495a43d6"],
+
+Cell["\<\
+The resulting Gibbs-energy function is an ordinary Wolfram Language function. \
+Differentiation therefore exposes the composition derivative directly, \
+without any special thermodynamic differentiation machinery.
+This function operates on functions of the form F[T][X] and the derivatives \
+are taken with respect to the composition variable X.\
+\>", "Text",
+ CellChangeTimes->{{3.99571111024343*^9, 
+  3.9957111675212393`*^9}},ExpressionUUID->"b7d16fb8-dd53-4521-ba2d-\
+b197e41eac86"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"derivativeFunction", "[", "function_", "]"}], "[", 
+    "order_Integer", "]"}], " ", ":=", "\n", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", "absT", "}"}], ",", " ", 
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", "x", "}"}], ",", " ", 
+        RowBox[{"Evaluate", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Derivative", "[", "order", "]"}], "[", 
+           RowBox[{"function", "[", "absT", "]"}], "]"}], "[", "x", "]"}], 
+         "]"}]}], "]"}], "]"}]}], "]"}]}], ";"}]], "Code",
+ CellLabel->
+  "In[113]:=",ExpressionUUID->"28f2b1e1-9ebc-4553-b9ee-ec5f9f408a56"],
+
+Cell["Examples", "Text",
+ CellChangeTimes->{{3.995711193624535*^9, 
+  3.995711200706995*^9}},ExpressionUUID->"aee3a8c0-88a7-4519-9ea7-\
+d79000d3d8b9"],
+
+Cell[BoxData[
+ RowBox[{"dgdxFCC", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"derivativeFunction", "[", 
+    RowBox[{"molarGibbsFreeEnergy", "[", "jsonDataFCC", "]"}], "]"}], "[", 
+   "1", "]"}]}]], "Input",
+ CellChangeTimes->{3.995711203506983*^9},
+ CellLabel->
+  "In[114]:=",ExpressionUUID->"8ca3ea31-8a29-436d-9dab-d547a9dd4c96"],
+
+Cell[BoxData[
+ RowBox[{"d2gdx2FCC", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"derivativeFunction", "[", 
+    RowBox[{"molarGibbsFreeEnergy", "[", "jsonDataFCC", "]"}], "]"}], "[", 
+   "2", "]"}]}]], "Input",
+ CellChangeTimes->{3.9957112054311247`*^9},
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"08d73ab2-9cae-4e4d-970f-9a610e3bd584"],
+
+Cell[BoxData[
+ RowBox[{"TraditionalForm", "[", 
+  RowBox[{
+   RowBox[{"dgdxFCC", "[", "1600", "]"}], "[", "xCu", "]"}], "]"}]], "Input",
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"a545a77d-b75e-44a0-9cfb-ee6f16906e95"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dgdxFCC", "[", "1600", "]"}], "[", "xCu", "]"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"xCu", ",", " ", "0", ",", " ", "1"}], "}"}], ",", " ", 
+   RowBox[{"Frame", " ", "->", " ", "True"}], ",", " ", 
+   RowBox[{"FrameLabel", " ", "->", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<xCu\>\"", ",", " ", "\"\<dG/dxCu (J/mol)\>\""}], "}"}]}], ",",
+    " ", 
+   RowBox[{"ImageSize", "->", "Large"}], ",", " ", 
+   RowBox[{"BaseStyle", "->", 
+    RowBox[{"{", 
+     RowBox[{"FontSize", "->", "18"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9957112222323914`*^9, 3.9957112358131742`*^9}},
+ CellLabel->
+  "In[117]:=",ExpressionUUID->"ba827539-5606-452b-a8d0-20ea3b459efe"],
+
+Cell["Second derivative", "Text",
+ CellChangeTimes->{{3.995711265526561*^9, 
+  3.995711272186965*^9}},ExpressionUUID->"15dcb0a1-3970-4c55-9343-\
+e2a59f50f2af"],
+
+Cell[BoxData[
+ RowBox[{"TraditionalForm", "[", 
+  RowBox[{
+   RowBox[{"d2gdx2FCC", "[", "1600", "]"}], "[", "xCu", "]"}], "]"}]], "Input",\
+
+ CellLabel->
+  "In[118]:=",ExpressionUUID->"2cf9863c-a370-42f3-b3ac-19e549bb9263"],
+
+Cell[TextData[{
+ "Plot the behavior of the second derivative for the FCC phase and visualize \
+the location where ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         FractionBox[
+          RowBox[{
+            SuperscriptBox["\[PartialD]", "2"], 
+            SubscriptBox[
+             StyleBox["G", "TI"], "mix"]}], 
+          RowBox[{"\[PartialD]", 
+            SubsuperscriptBox[
+             StyleBox["X", "TI"], "Cu", "2"]}]], "\[LongEqual]", "0"}], 
+       TraditionalForm], "errors" -> {}, "input" -> 
+     "\\frac{\\partial^2 G_{\\mbox{mix}}}{\\partial X_{\\mbox{Cu}}^2} = 0", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "a951a2d4-5616-4f98-b91c-20fe1be4c1de"]
+}], "Text",
+ CellChangeTimes->{{3.995711299823021*^9, 3.9957113074589357`*^9}, {
+  3.995711585285894*^9, 
+  3.995711637258606*^9}},ExpressionUUID->"ed6bda31-9028-4c17-8fa4-\
+fc7720568d97"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"d2gdx2FCC", "[", "absT", "]"}], "[", "xCu", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"xCu", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"absT", ",", "700", ",", "1500"}], "}"}], ",", 
+     RowBox[{"PlotLegends", "->", "Automatic"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"d2gdx2FCC", "[", "absT", "]"}], "[", "xCu", "]"}], "==", 
+      "0"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"xCu", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"absT", ",", "700", ",", "1500"}], "}"}], ",", 
+     RowBox[{"PlotLegends", "->", "Automatic"}], ",", 
+     RowBox[{"ContourStyle", "->", 
+      RowBox[{"{", 
+       RowBox[{"White", ",", 
+        RowBox[{"Thickness", "[", "0.01", "]"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"FrameLabel", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\!\(\*SubscriptBox[\(X\), \(Cu\)]\)\>\"", ",", 
+        " ", "\"\<T (K)\>\""}], "}"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.9957113100150127`*^9, 3.9957113421288433`*^9}, {
+  3.995711417991415*^9, 3.995711575683769*^9}, {3.995711715350684*^9, 
+  3.995711745970496*^9}, {3.995714812487194*^9, 3.995714815198516*^9}},
+ CellLabel->
+  "In[119]:=",ExpressionUUID->"0c1075f0-51cf-4c03-ad4c-9e517c8c3910"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["What the JSON contains", "Section",ExpressionUUID->"3cb0c15d-7a42-4a19-b431-51b27b99a813"],
+
+Cell["\<\
+The JSON is intentionally more explicit than the final Mathematica \
+expression. It records model structure, composition conventions, temperature \
+ranges, reference-state provenance, and the empirical parameterization. \
+Exploring the raw Associations is therefore useful when developing readers or \
+contributing new systems.\
+\>", "Text",ExpressionUUID->"140a3e2e-ef76-473e-a950-d42594034664"],
+
+Cell[BoxData[
+ RowBox[{"Dataset", "[", "jsonDataFCC", "]"}]], "Input",
+ CellLabel->
+  "In[120]:=",ExpressionUUID->"f8749036-07a9-4419-897a-5316e25efc6d"],
+
+Cell[BoxData[
+ RowBox[{"Dataset", "[", "\[IndentingNewLine]", 
+  RowBox[{"jsonDataFCC", "[", "\"\<compositionVariables\>\"", "]"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.995708017081606*^9, 3.995708021360517*^9}},
+ CellLabel->
+  "In[121]:=",ExpressionUUID->"d50d2faa-8a15-46b5-aebc-2a4b332b9a67"],
+
+Cell[BoxData[
+ RowBox[{"Dataset", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"jsonDataFCC", "[", "\"\<gibbsEnergyModel\>\"", "]"}], 
+    "[", "\"\<expression\>\"", "]"}], "[", "\"\<redlichKisterTerms\>\"", 
+   "]"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.9957080250339813`*^9, 3.9957080300599937`*^9}},
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"255e5396-38cd-4998-9ea9-4c998aba77d7"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Generated Representations (Human Readable Data Descriptions)", "Section",
+ CellChangeTimes->{{3.995712572355976*^9, 3.995712592292951*^9}, {
+  3.995712637593442*^9, 
+  3.995712638853712*^9}},ExpressionUUID->"355fb105-2168-4b9c-be46-\
+08fdca0b77fe"],
+
+Cell["\<\
+The canonical JSON is the source of thermodynamic data. Human-readable \
+representations such as TeX, PDF, and an equation SVG are generated from that \
+source rather than maintained as independent data. The full model sheet is \
+useful when a reader wants provenance and units; an equation snapshot is \
+useful for a quick look.
+
+For example, this PDF contains information and provenance of the FCC-A1 phase \
+data\
+\>", "Text",
+ CellChangeTimes->{{3.995713021609396*^9, 
+  3.9957130760169163`*^9}},ExpressionUUID->"5e8b329b-59c3-4f8d-81bc-\
+3ef861a17867"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pdfPath", " ", "=", " ", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "obglLibrary", ",", " ", "\"\<data\>\"", ",", " ", "\"\<cu-ag\>\"", ",", 
+      " ", "\"\<rendered\>\"", ",", " ", "\"\<fcc-a1.pdf\>\""}], "}"}], 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"FileExistsQ", "[", "pdfPath", "]"}], ",", " ", 
+   RowBox[{"Import", "[", "pdfPath", "]"}], ",", 
+   " ", "\"\<PDF not found in current checkout.\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{3.995716131624036*^9},
+ CellLabel->
+  "In[123]:=",ExpressionUUID->"1ed84544-8bcd-4f12-8733-db545cb9aba9"],
+
+Cell["Read the data", "Text",
+ CellChangeTimes->{{3.99570815525845*^9, 3.995708193587942*^9}, {
+  3.9957082566398697`*^9, 3.9957082604637203`*^9}, {3.995709658290847*^9, 
+  3.995709664817669*^9}, {3.995713085670437*^9, 
+  3.995713093004394*^9}},ExpressionUUID->"59672234-d973-4b40-a7f8-\
+b5267fa3b627"],
+
+Cell[BoxData[
+ RowBox[{"TabView", "[", "\[IndentingNewLine]", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"pdfDescription", " ", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"obglLibrary", ",", "\"\<data\>\"", ",", "\"\<cu-ag\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"jsonDataFCC", "[", "\"\<representations\>\"", "]"}], 
+           "[", "\"\<pdf\>\"", "]"}], "[", "\"\<path\>\"", "]"}]}], "}"}], 
+       "]"}]}], "}"}], ",", "\[IndentingNewLine]", " ", 
+    RowBox[{"Import", "[", "pdfDescription", "]"}]}], "\[IndentingNewLine]", 
+   "]"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{3.995716137374723*^9},
+ CellLabel->
+  "In[125]:=",ExpressionUUID->"1b71a85e-1b76-46f8-a9df-8ea7e7ed7d0e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Verification notes", "Section",ExpressionUUID->"58e4970e-6e3a-4cdb-b938-4fff14b640c3"],
+
+Cell["\<\
+The complete phase Gibbs-energy model uses the pure-element SGTE reference \
+functions documented here only to 3000 K, so the present complete model is \
+limited to that range even though some interaction parameters are tabulated \
+more broadly. The Cu-Ag model should be checked against the published \
+assessment and an independent phase-equilibrium reference before acceptance \
+as the first public data exemplar.\
+\>", "Text",ExpressionUUID->"fe374be2-4065-4624-b2b4-a0a3227b155b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Future development notes", "Section",ExpressionUUID->"1c2415ec-0d03-4ed3-b958-2c8023f1bb2f"],
+
+Cell["\<\
+The current notebook intentionally reflects the infrastructure that exists \
+today. Planned changes are recorded without requiring them here: a broader \
+empiricalMixingContribution interface above model-specific representations; a \
+public/private split when the reader becomes a Wolfram Language package; and \
+richer metadata for available, metastable, or deliberately suppressed phase \
+models used in thermodynamic what-if experiments.\
+\>", "Text",ExpressionUUID->"fc4251e6-4940-45a3-ac4c-5f21ad1716b0"]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{1421, 739},
+WindowMargins->{{76, Automatic}, {Automatic, 9}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (July 2, 2026)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["Text"], CellMargins -> {{100, 10}, {7, 8}}, FontSize -> 16, 
+    FontSlant -> "Italic", FontColor -> 
+    RGBColor[0.7512016479743648, 0.07605096513313496, 0.06642252231631952]]}, 
+  Visible -> False, FrontEndVersion -> 
+  "15.0 for Mac OS X ARM (64-bit) (July 2, 2026)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"8a771351-49a8-4ffd-b0e4-26d626c3599f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 128, 0, 120, "Title",ExpressionUUID->"575d349e-7dd0-4bf1-94d1-dd8dcc935751"],
+Cell[707, 24, 252, 4, 104, "Subtitle",ExpressionUUID->"42729dc2-ce3c-4156-a941-e56500cba972"],
+Cell[CellGroupData[{
+Cell[984, 32, 81, 0, 82, "Section",ExpressionUUID->"66fde51d-82f2-47df-8320-5c80a299872c"],
+Cell[1068, 34, 453, 6, 70, "Text",ExpressionUUID->"3f562b68-80df-4c26-a8d6-82c97d95060b"],
+Cell[1524, 42, 1307, 28, 70, "Text",ExpressionUUID->"799bfe49-a393-4831-97d4-4511ea10d5c1"],
+Cell[2834, 72, 596, 12, 70, "Subsection",ExpressionUUID->"e1c232cc-5fe2-4236-8213-0039f2ca133f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3467, 89, 96, 0, 64, "Section",ExpressionUUID->"1989ce1a-5c54-4706-b515-3f28f483c1ca"],
+Cell[3566, 91, 245, 4, 70, "Text",ExpressionUUID->"1b706a57-f70f-4256-9bba-b0df2bd5d0c1"],
+Cell[CellGroupData[{
+Cell[3836, 99, 168, 3, 70, "Subsubsection",ExpressionUUID->"92941de8-2bb4-45be-b26b-b6ebae27407c"],
+Cell[4007, 104, 1073, 23, 70, "Code",ExpressionUUID->"c6a84b17-6def-492c-b919-f61b6ec9b29e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5117, 132, 235, 4, 70, "Subsubsection",ExpressionUUID->"538467f8-68fa-4cc8-9387-ae7b9b8ebb35"],
+Cell[5355, 138, 160, 3, 70, "Text",ExpressionUUID->"d7278e16-05ba-4c73-b433-9272b6689db6"],
+Cell[5518, 143, 369, 6, 70, "Input",ExpressionUUID->"9e13cd75-6366-4327-b837-71d8b408a0a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5924, 154, 185, 3, 70, "Subsubsection",ExpressionUUID->"47b755e4-fe16-4d1b-9860-85be43a3d8d8"],
+Cell[6112, 159, 1752, 43, 70, "Code",ExpressionUUID->"bfed5ab9-8dc7-4601-ad03-bade00571fde"],
+Cell[7867, 204, 460, 9, 70, "Text",ExpressionUUID->"ee33af72-946a-42c9-9b24-ba7d1c9b67a8"],
+Cell[8330, 215, 663, 14, 70, "Code",ExpressionUUID->"1c5fd6a2-2bf7-4f09-9899-a50590a14c7a"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[9042, 235, 270, 4, 64, "Section",ExpressionUUID->"9549e40d-0c73-430a-8ee9-1093a85e848a"],
+Cell[CellGroupData[{
+Cell[9337, 243, 482, 11, 153, "Subsection",ExpressionUUID->"59db78ce-dc7a-41dd-b972-d881d5e63d5b"],
+Cell[9822, 256, 924, 17, 246, "Text",ExpressionUUID->"461b4a43-4e0b-40bc-90a2-d19deff7286d"],
+Cell[CellGroupData[{
+Cell[10771, 277, 469, 9, 85, "Subsubsection",ExpressionUUID->"11baa126-6382-4c04-939b-cb20f4cdeca7"],
+Cell[11243, 288, 514, 11, 130, "Text",ExpressionUUID->"e0070561-ec7a-4cf5-b9b3-88ebd65b293f"],
+Cell[11760, 301, 4732, 106, 369, "Input",ExpressionUUID->"a87a48e2-a867-49ad-8b76-f721a0a6f4d1"],
+Cell[16495, 409, 6227, 115, 598, "Text",ExpressionUUID->"912313f1-089d-445b-b23c-b56b847ef11e"],
+Cell[22725, 526, 142, 3, 43, "Text",ExpressionUUID->"6da038c3-0079-43bd-976b-2a5ef7406ad3"],
+Cell[22870, 531, 319, 5, 72, "Text",ExpressionUUID->"3ece57e6-8f7b-4e60-8c5b-4a1af929c111"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23226, 541, 378, 7, 54, "Subsubsection",ExpressionUUID->"0073da5e-e291-49e0-84b5-f49ee734d21d"],
+Cell[23607, 550, 385, 7, 87, "Input",ExpressionUUID->"5393beae-3a5e-45b5-a595-9c2854f22324"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24053, 564, 160, 3, 82, "Section",ExpressionUUID->"78d81813-355b-4c6b-b565-2c35628f6c9f"],
+Cell[CellGroupData[{
+Cell[24238, 571, 93, 0, 70, "Subsection",ExpressionUUID->"ee5f2a02-b67d-422c-addb-6979f4fb07c1"],
+Cell[24334, 573, 248, 4, 70, "Text",ExpressionUUID->"ccec06b8-5b19-47c9-9a49-0dee4edefbf7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24619, 582, 104, 0, 70, "Subsection",ExpressionUUID->"4d9f7f35-5a5b-4950-b015-b1054b10dd95"],
+Cell[24726, 584, 1272, 32, 70, "Code",ExpressionUUID->"ef5fc497-ffb7-4a58-8d13-226e49ffbe87"],
+Cell[26001, 618, 286, 4, 70, "Text",ExpressionUUID->"7e963894-5191-468c-942f-512edc65bd57"],
+Cell[26290, 624, 1723, 48, 70, "Code",ExpressionUUID->"4a3e449f-343e-4162-a9d8-7dc749d5c996"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28050, 677, 106, 0, 70, "Subsection",ExpressionUUID->"7aae3af1-9d5e-4078-8a72-795318490f24"],
+Cell[28159, 679, 222, 3, 70, "Text",ExpressionUUID->"8a253ddc-fa2c-4c9b-9737-b19377a92011"],
+Cell[28384, 684, 932, 24, 70, "Code",ExpressionUUID->"9cc5c078-0499-401c-a50b-e6b8075a0846"],
+Cell[29319, 710, 315, 5, 70, "Text",ExpressionUUID->"48340633-5ece-4114-8122-9d77fd3996cc"],
+Cell[29637, 717, 2245, 56, 70, "Code",ExpressionUUID->"8e0b479b-c15d-4cb9-b835-63aa75d2e466"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31919, 778, 102, 0, 70, "Subsection",ExpressionUUID->"2b39868d-bc1e-4b7b-aea8-47a695e5f9b5"],
+Cell[32024, 780, 1991, 59, 70, "Code",ExpressionUUID->"75a04dd8-7747-4db4-82c4-a45978ace3ff"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34052, 844, 138, 1, 70, "Subsection",ExpressionUUID->"5583aa95-2a83-4cb0-9349-57a4ae19f6b7"],
+Cell[34193, 847, 329, 5, 70, "Text",ExpressionUUID->"716e5617-62f4-4163-9738-ac2413cf0a6f"],
+Cell[34525, 854, 1982, 55, 70, "Code",ExpressionUUID->"9bfb1595-6e33-482e-8ee3-3279c60a579e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36544, 914, 91, 0, 70, "Subsection",ExpressionUUID->"ecc14b0f-17d1-48a3-8a5b-c3e7c7643c11"],
+Cell[36638, 916, 770, 21, 70, "Code",ExpressionUUID->"86439282-a0dc-4b24-beef-c3aa6eacc2de"],
+Cell[37411, 939, 368, 5, 70, "Text",ExpressionUUID->"d85bad09-ad0a-4904-9295-ed8751a43ad5"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[37828, 950, 154, 3, 64, "Section",ExpressionUUID->"ac2d268d-a703-4808-a483-2723172eb4ef"],
+Cell[CellGroupData[{
+Cell[38007, 957, 160, 3, 70, "Subsection",ExpressionUUID->"75dfed46-83ff-4af7-8130-af7955a2ea3f"],
+Cell[38170, 962, 86, 0, 70, "Text",ExpressionUUID->"b5fa7cd0-4c6f-4e98-bea4-f1e15f50584b"],
+Cell[38259, 964, 238, 6, 70, "Input",ExpressionUUID->"d504ca0a-eda8-442c-8711-81f8b4e8e54b"],
+Cell[38500, 972, 83, 0, 70, "Text",ExpressionUUID->"5ef38722-cc1a-4c07-a3a3-a6f265463512"],
+Cell[38586, 974, 235, 6, 70, "Input",ExpressionUUID->"d0d34580-52d5-4978-ab9d-5463ec4920e8"],
+Cell[38824, 982, 108, 0, 70, "Text",ExpressionUUID->"6b65a31e-7312-464d-8bf8-edf6eb79d035"],
+Cell[38935, 984, 237, 6, 70, "Input",ExpressionUUID->"edfb05fc-8448-4f74-9049-9746601cbed6"],
+Cell[39175, 992, 401, 8, 70, "Text",ExpressionUUID->"53ca911c-00e6-4f72-9a41-810eb13b7a2b"],
+Cell[39579, 1002, 311, 7, 70, "Input",ExpressionUUID->"5211ce3f-5fbe-466e-af70-463709562173"],
+Cell[39893, 1011, 640, 16, 70, "Text",ExpressionUUID->"fd2444fa-42ef-4270-9d4a-ec9270d4d73a"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[40582, 1033, 107, 0, 64, "Section",ExpressionUUID->"55b57e1c-1b99-4776-9370-db30495a43d6"],
+Cell[40692, 1035, 496, 9, 101, "Text",ExpressionUUID->"b7d16fb8-dd53-4521-ba2d-b197e41eac86"],
+Cell[41191, 1046, 720, 20, 87, "Code",ExpressionUUID->"28f2b1e1-9ebc-4553-b9ee-ec5f9f408a56"],
+Cell[41914, 1068, 150, 3, 43, "Text",ExpressionUUID->"aee3a8c0-88a7-4519-9ea7-d79000d3d8b9"],
+Cell[42067, 1073, 327, 8, 36, "Input",ExpressionUUID->"8ca3ea31-8a29-436d-9dab-d547a9dd4c96"],
+Cell[42397, 1083, 331, 8, 36, "Input",ExpressionUUID->"08d73ab2-9cae-4e4d-970f-9a610e3bd584"],
+Cell[42731, 1093, 219, 5, 36, "Input",ExpressionUUID->"a545a77d-b75e-44a0-9cfb-ee6f16906e95"],
+Cell[42953, 1100, 747, 18, 62, "Input",ExpressionUUID->"ba827539-5606-452b-a8d0-20ea3b459efe"],
+Cell[43703, 1120, 159, 3, 43, "Text",ExpressionUUID->"15dcb0a1-3970-4c55-9343-e2a59f50f2af"],
+Cell[43865, 1125, 223, 6, 36, "Input",ExpressionUUID->"2cf9863c-a370-42f3-b3ac-19e549bb9263"],
+Cell[44091, 1133, 946, 24, 73, "Text",ExpressionUUID->"ed6bda31-9028-4c17-8fa4-fc7720568d97"],
+Cell[45040, 1159, 1521, 38, 164, "Input",ExpressionUUID->"0c1075f0-51cf-4c03-ad4c-9e517c8c3910"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[46598, 1202, 96, 0, 64, "Section",ExpressionUUID->"3cb0c15d-7a42-4a19-b431-51b27b99a813"],
+Cell[46697, 1204, 406, 6, 70, "Text",ExpressionUUID->"140a3e2e-ef76-473e-a950-d42594034664"],
+Cell[47106, 1212, 153, 3, 70, "Input",ExpressionUUID->"f8749036-07a9-4419-897a-5316e25efc6d"],
+Cell[47262, 1217, 323, 6, 70, "Input",ExpressionUUID->"d50d2faa-8a15-46b5-aebc-2a4b332b9a67"],
+Cell[47588, 1225, 430, 9, 70, "Input",ExpressionUUID->"255e5396-38cd-4998-9ea9-4c998aba77d7"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[48055, 1239, 254, 4, 64, "Section",ExpressionUUID->"355fb105-2168-4b9c-be46-08fdca0b77fe"],
+Cell[48312, 1245, 567, 12, 70, "Text",ExpressionUUID->"5e8b329b-59c3-4f8d-81bc-3ef861a17867"],
+Cell[48882, 1259, 646, 16, 70, "Input",ExpressionUUID->"1ed84544-8bcd-4f12-8733-db545cb9aba9"],
+Cell[49531, 1277, 302, 5, 70, "Text",ExpressionUUID->"59672234-d973-4b40-a7f8-b5267fa3b627"],
+Cell[49836, 1284, 792, 18, 70, "Input",ExpressionUUID->"1b71a85e-1b76-46f8-a9df-8ea7e7ed7d0e"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[50665, 1307, 92, 0, 64, "Section",ExpressionUUID->"58e4970e-6e3a-4cdb-b938-4fff14b640c3"],
+Cell[50760, 1309, 495, 7, 70, "Text",ExpressionUUID->"fe374be2-4065-4624-b2b4-a0a3227b155b"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[51292, 1321, 98, 0, 64, "Section",ExpressionUUID->"1c2415ec-0d03-4ed3-b958-2c8023f1bb2f"],
+Cell[51393, 1323, 519, 7, 70, "Text",ExpressionUUID->"fc4251e6-4940-45a3-ac4c-5f21ad1716b0"]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
