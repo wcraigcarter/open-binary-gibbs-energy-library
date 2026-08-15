@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "pb-bi",
+  "systemName": "Pb-Bi",
+  "components": [
+    {
+      "identifier": "Bi",
+      "formula": "Bi",
+      "name": "Bismuth"
+    },
+    {
+      "identifier": "Pb",
+      "formula": "Pb",
+      "name": "Lead"
+    }
+  ],
+  "phaseModels": [
+    {
+      "phaseIdentifier": "liquid",
+      "file": "phases/liquid.json"
+    },
+    {
+      "phaseIdentifier": "fcc-a1",
+      "file": "phases/fcc-a1.json"
+    },
+    {
+      "phaseIdentifier": "hcp-a3",
+      "file": "phases/hcp-a3.json"
+    },
+    {
+      "phaseIdentifier": "rhombo-a7",
+      "file": "phases/rhombo-a7.json"
+    }
+  ],
+  "references": [
+    "yoon-lee-1998",
+    "nist-solder-2017",
+    "dinsdale-1991",
+    "nist-bi-pb",
+    "boa-ansara-1998"
+  ],
+  "notes": "Candidate Pb-Bi system built from the Yoon & Lee (1998) assessment as represented in the open NIST solder database. The database explicitly tags the Bi-Pb liquid, FCC_A1, and HCP_A3 interaction parameters as 98Yoo. Pure-element and lattice-stability functions are taken from the NIST/SGTE compilation. This candidate is intentionally marked unverified pending comparison with the original Yoon & Lee equations and independent numerical reproduction of the NIST invariant equilibria."
+}
