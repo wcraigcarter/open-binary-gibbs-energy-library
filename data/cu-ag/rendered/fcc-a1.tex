@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\title{OBGEL Model Sheet: Cu--Ag -- FCC A1}
+\author{Open Binary Gibbs Energy Library}
+\date{v0.2.0 candidate}
+\begin{document}
+\maketitle
+\section*{Phase}
+The FCC A1 phase is represented as a substitutional solution model; below its miscibility gap, the same phase model supplies the Ag-rich and Cu-rich solid solutions.
+
+\section*{Composition}
+The independent composition variable is $x=x_{\mathrm{Cu}}$ with $x_{\mathrm{Ag}}=1-x$.
+
+\section*{Molar Gibbs free energy}
+\begin{align*}
+G_m(x,T) &= xG^0_{\mathrm{Cu}}(T)+(1-x)G^0_{\mathrm{Ag}}(T)\\
+&\quad+RT\left[x\ln x+(1-x)\ln(1-x)\right]\\
+&\quad+x(1-x)\sum_k L_k(T)(2x-1)^k.
+\end{align*}
+
+\section*{Redlich--Kister parameters}
+\begin{align*}
+L_0(T)&=36772.6 - 11.0285T,\\
+L_1(T)&=4612.43 - 0.28869T.
+\end{align*}
+
+\section*{Standard-state Gibbs energies}
+The pure-component functions are piecewise functions from the SGTE data for pure elements. The complete OBGEL model is limited by the common documented range of these functions.
+
+\subsection*{Cu in FCC A1}
+\begin{align*}
+G^0_{Cu}(T) &=  - 7770.458 + 130.48523T - 24.112392T\ln T - 0.00265684T^{2}\\[4pt]
+&\quad+ 1.29223\times 10^{-7}T^{3} + 52478T^{-1} && 298.15 \le T \le 1357.77\\[4pt]
+&\quad - 13542.026 + 183.80383T - 31.38T\ln T + 3.642\times 10^{29}T^{-9} && 1357.77 \le T \le 3200
+\end{align*}
+
+\subsection*{Ag in FCC A1}
+\begin{align*}
+G^0_{Ag}(T) &=  - 7209.512 + 118.20201T - 23.846331T\ln T - 0.001790585T^{2}\\[4pt]
+&\quad - 3.98587\times 10^{-7}T^{3} - 12011T^{-1} && 298.15 \le T \le 1234.93\\[4pt]
+&\quad - 15095.252 + 190.2664T - 33.472T\ln T + 1.412\times 10^{29}T^{-9} && 1234.93 \le T \le 3000
+\end{align*}
+
+\section*{Source and validation}
+The binary interaction parameters are reproduced from Kusoffsky (2002), which attributes them to a 1998 private communication from H. L. Lukas. NIST identifies the Hayes--Lukas--Effenberg--Petzow assessment as the full Cu--Ag thermodynamic assessment. Independent numerical evaluation of the complete Cu--Ag model gives a eutectic temperature of approximately 1053 K (779.9 C), consistent with the NIST value of 779.1 C.
+
+\end{document}

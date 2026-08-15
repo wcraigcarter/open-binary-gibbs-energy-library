@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "cu-ag",
+  "systemName": "Cu-Ag",
+  "components": [
+    {
+      "identifier": "Cu",
+      "formula": "Cu",
+      "name": "Copper"
+    },
+    {
+      "identifier": "Ag",
+      "formula": "Ag",
+      "name": "Silver"
+    }
+  ],
+  "phaseModels": [
+    {
+      "phaseIdentifier": "liquid",
+      "file": "phases/liquid.json"
+    },
+    {
+      "phaseIdentifier": "fcc-a1",
+      "file": "phases/fcc-a1.json"
+    }
+  ],
+  "references": [
+    "hayes-1986",
+    "kusoffsky-2002",
+    "dinsdale-1991",
+    "nist-ag-cu"
+  ],
+  "notes": "The Cu-Ag system is used as the first OBGEL exemplar because it demonstrates strong positive excess Gibbs energy, a eutectic, and limited mutual solid solubility. The phase models use the Ag-Cu binary interaction parameters reproduced by Kusoffsky (2002), with the composition convention transformed to x_Cu for OBGEL, and SGTE pure-element reference functions from Dinsdale (1991)."
+}

@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "cu-ag",
+  "phase": {
+    "identifier": "fcc-a1",
+    "displayName": "FCC A1",
+    "displayNameStatus": "standard",
+    "description": "Disordered FCC substitutional solid solution model; the single FCC phase becomes the Ag-rich and Cu-rich solid solutions below its miscibility gap."
+  },
+  "components": [
+    {
+      "identifier": "Cu",
+      "formula": "Cu",
+      "name": "Copper"
+    },
+    {
+      "identifier": "Ag",
+      "formula": "Ag",
+      "name": "Silver"
+    }
+  ],
+  "compositionVariables": [
+    {
+      "name": "xCu",
+      "quantity": "moleFraction",
+      "component": "Cu",
+      "role": "independent",
+      "definition": "xCu = nCu/(nCu+nAg); xAg = 1 - xCu."
+    }
+  ],
+  "temperatureRange": {
+    "minimum": 298.15,
+    "maximum": 3000,
+    "units": "K",
+    "rangeBasis": "recommendedUse",
+    "notes": "The published interaction parameters are tabulated to 6000 K, but the pure-element SGTE functions used here are documented only to 3000 K. The complete phase Gibbs-energy model is therefore limited here to 3000 K."
+  },
+  "gibbsEnergyModel": {
+    "quantity": "molarGibbsFreeEnergy",
+    "modelType": "idealPlusRedlichKister",
+    "units": "J/mol",
+    "expression": {
+      "referenceStateContributions": [
+        {
+          "component": "Cu",
+          "standardStatePhase": "fcc-a1",
+          "temperatureSegments": [
+            {
+              "minimum": 298.15,
+              "maximum": 1357.77,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": -7770.458
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 130.485235
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -24.112392
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -0.00265684,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 1.29223e-07,
+                  "exponent": 3
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 52478,
+                  "exponent": -1
+                }
+              ]
+            },
+            {
+              "minimum": 1357.77,
+              "maximum": 3200,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": -13542.026
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 183.803828
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -31.38
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 3.642e+29,
+                  "exponent": -9
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "Ag",
+          "standardStatePhase": "fcc-a1",
+          "temperatureSegments": [
+            {
+              "minimum": 298.15,
+              "maximum": 1234.93,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": -7209.512
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 118.202013
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -23.8463314
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -0.001790585,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -3.98587e-07,
+                  "exponent": 3
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -12011,
+                  "exponent": -1
+                }
+              ]
+            },
+            {
+              "minimum": 1234.93,
+              "maximum": 3000,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": -15095.252
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 190.266404
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -33.472
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 1.412e+29,
+                  "exponent": -9
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "idealMixingTerm": {
+        "included": true,
+        "gasConstant": {
+          "value": 8.314462618,
+          "units": "J/(mol K)"
+        }
+      },
+      "redlichKisterTerms": [
+        {
+          "order": 0,
+          "temperatureDependence": [
+            {
+              "basis": "constant",
+              "coefficient": 36772.58
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -11.02847
+            }
+          ]
+        },
+        {
+          "order": 1,
+          "temperatureDependence": [
+            {
+              "basis": "constant",
+              "coefficient": 4612.43
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -0.28869
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "references": [
+    {
+      "identifier": "hayes-1986",
+      "citation": "F. H. Hayes, H. L. Lukas, G. Effenberg, and G. Petzow, \"A thermodynamic optimisation of the Cu-Ag-Pb system,\" Z. Metallkde. 77 (1986) 749-754. DOI: 10.1515/ijmr-1986-771108."
+    },
+    {
+      "identifier": "kusoffsky-2002",
+      "citation": "A. Kusoffsky, \"Thermodynamic evaluation of the ternary Ag-Au-Cu system - including a short range order description,\" Acta Materialia 50 (2002) 5139-5145. DOI: 10.1016/S1359-6454(02)00382-8."
+    },
+    {
+      "identifier": "dinsdale-1991",
+      "citation": "A. T. Dinsdale, \"SGTE data for pure elements,\" CALPHAD 15 (1991) 317-425. DOI: 10.1016/0364-5916(91)90030-N."
+    },
+    {
+      "identifier": "nist-ag-cu",
+      "citation": "NIST Phase Diagrams and Computational Thermodynamics, Ag-Cu System; thermodynamic description adapted for SGTE compatibility by U. R. Kattner (1999)."
+    }
+  ],
+  "representations": {
+    "tex": {
+      "path": "rendered/fcc-a1.tex",
+      "generated": true,
+      "sourceOfTruth": "gibbsEnergyModel"
+    },
+    "pdf": {
+      "path": "rendered/fcc-a1.pdf",
+      "generated": true,
+      "sourceOfTruth": "gibbsEnergyModel"
+    }
+  },
+  "verification": {
+    "status": "verified",
+    "transcribedFromSource": true,
+    "independentlyCrossChecked": true,
+    "renderedEquationChecked": true,
+    "numericallyValidated": true,
+    "validationNotes": "The Cu-first Redlich-Kister coefficients are obtained by transforming the published Ag-first convention. A numerical common-tangent calculation using the full liquid and FCC models gives a eutectic temperature of approximately 1053.0 K (779.9 C), consistent with the NIST assessment value 779.1 C. The three coexistence compositions are also consistent with the NIST invariant-equilibrium composition to within the expected numerical/model-reference precision."
+  }
+}
