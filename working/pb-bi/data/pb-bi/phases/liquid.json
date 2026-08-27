@@ -29,11 +29,11 @@
     "description": "Liquid substitutional solution model for Bi-Pb."
   },
   "temperatureRange": {
-    "minimum": 298.15,
-    "maximum": 2100,
+    "minimum": 298.14,
+    "maximum": 3000.0,
     "units": "K",
-    "rangeBasis": "recommendedUse",
-    "notes": "Yoon 1998 parameters reproduced in the NIST solder database; complete model currently limited by the Pb liquid/reference-state function to 2100 K."
+    "rangeBasis": "modelValidity",
+    "notes": "Common range of the source unary functions used in the Yoon-Lee 1998 model."
   },
   "gibbsEnergyModel": {
     "quantity": "molarGibbsFreeEnergy",
@@ -43,19 +43,32 @@
       "referenceStateContributions": [
         {
           "component": "Bi",
-          "standardStatePhase": "rhombo-a7",
+          "standardStatePhase": "liquid",
           "temperatureSegments": [
             {
-              "minimum": 298.15,
-              "maximum": 544.55,
+              "minimum": 298.14,
+              "maximum": 544.52,
               "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 11245.936
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -20.637366
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -5.9726e-19,
+                  "exponent": 7
+                },
                 {
                   "basis": "constant",
                   "coefficient": -7817.776
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 128.418925
+                  "coefficient": 128.418885
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -74,16 +87,29 @@
               ]
             },
             {
-              "minimum": 544.55,
-              "maximum": 800.0,
+              "minimum": 544.52,
+              "maximum": 3000.0,
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 30208.022
+                  "coefficient": 11336.361
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": -393.650351
+                  "coefficient": -20.811733
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -1.66491e+25,
+                  "exponent": -9
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": 30207.94
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -393.650255
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -101,68 +127,12 @@
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": -3616168,
+                  "coefficient": -3616168.0,
                   "exponent": -1
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": 1.66145e+25,
-                  "exponent": -9
-                }
-              ]
-            },
-            {
-              "minimum": 800.0,
-              "maximum": 1200.0,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": -11045.664
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 182.548971
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -35.9824
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 0.0074266,
-                  "exponent": 2
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -1.046e-06,
-                  "exponent": 3
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.66145e+25,
-                  "exponent": -9
-                }
-              ]
-            },
-            {
-              "minimum": 1200.0,
-              "maximum": 3000.0,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": -7581.312
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 124.77144
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -27.196
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.66145e+25,
+                  "coefficient": 1.66491e+25,
                   "exponent": -9
                 }
               ]
@@ -171,19 +141,32 @@
         },
         {
           "component": "Pb",
-          "standardStatePhase": "fcc-a1",
+          "standardStatePhase": "liquid",
           "temperatureSegments": [
             {
-              "minimum": 298.15,
-              "maximum": 600.61,
+              "minimum": 298.14,
+              "maximum": 600.65,
               "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 4672.157
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -7.750257
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -6.0144e-19,
+                  "exponent": 7
+                },
                 {
                   "basis": "constant",
                   "coefficient": -7650.085
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 101.700244
+                  "coefficient": 101.715188
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -202,16 +185,29 @@
               ]
             },
             {
-              "minimum": 600.61,
-              "maximum": 1200.0,
+              "minimum": 600.65,
+              "maximum": 3000.0,
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": -10531.095
+                  "coefficient": 4853.112
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 154.243182
+                  "coefficient": -8.066587
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -8.05644e+25,
+                  "exponent": -9
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": -10531.115
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 154.258155
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -224,45 +220,7 @@
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": 8.054e+25,
-                  "exponent": -9
-                }
-              ]
-            },
-            {
-              "minimum": 1200.0,
-              "maximum": 2100.0,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": 4157.616
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 53.139072
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -18.9640637
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -0.002882943,
-                  "exponent": 2
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 9.8144e-08,
-                  "exponent": 3
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -2696755,
-                  "exponent": -1
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 8.054e+25,
+                  "coefficient": 8.05644e+25,
                   "exponent": -9
                 }
               ]

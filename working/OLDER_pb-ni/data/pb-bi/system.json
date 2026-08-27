@@ -39,5 +39,5 @@
     "nist-bi-pb",
     "boa-ansara-1998"
   ],
-  "notes": "Source-audited Pb-Bi model based on Yoon & Lee (1998). Phase JSON files retain explicit compositionVariables metadata for compatibility with the current Mathematica reference reader. Bi FCC A1 and HCP A3 unary reference contributions include the complete GHSERBI(T) function plus the phase-specific Yoon-Lee lattice-stability terms. Liquid uses the metastable pure-liquid unary functions specified by the assessment. The accompanying implementation-observations.md records the development observations."
+  "notes": "Candidate Pb-Bi system built from the Yoon & Lee (1998) assessment as represented in the open NIST solder database. The database explicitly tags the Bi-Pb liquid, FCC_A1, and HCP_A3 interaction parameters as 98Yoo. Pure-element and lattice-stability functions are taken from the NIST/SGTE compilation. This candidate is intentionally marked unverified pending comparison with the original Yoon & Lee equations and independent numerical reproduction of the NIST invariant equilibria."
 }

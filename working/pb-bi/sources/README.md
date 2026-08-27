@@ -1,12 +1,17 @@
 # Pb–Bi source notes
 
-The candidate uses the open NIST solder database as the immediate transcription source for the model expressions. In `NIST-solder.tdb`, the Bi–Pb binary interaction parameters are explicitly tagged `98Yoo`:
+## Primary source
 
-- liquid: `L0 = -4807.37 - 1.25 T`
-- FCC A1: `L0 = -5208.18 + 0.575 T`
-- HCP A3: `L0 = -7388.9 - 0.68 T`, `L1 = 2.86 T`
-- RHOMBO_A7: no Bi–Pb excess parameter listed
+S. W. Yoon and H. M. Lee, “A Thermodynamic Study of Phase Equilibria in the Sn-Bi-Pb Solder System,” *Calphad* 22 (1998) 167–178. DOI: 10.1016/S0364-5916(98)00022-4.
 
-The same database provides the pure-element SGTE functions and lattice-stability functions used to construct absolute phase Gibbs energies. The NIST Bi–Pb assessment page identifies Yoon & Lee (1998) as the full thermodynamic assessment and reports the four phase models and invariant equilibria.
+The original paper is the primary source for the Pb–Bi phase-model equations in this package. Table 1 provides the Gibbs-energy reference-state contributions and interaction parameters; Table 2 provides calculated and experimental invariant temperatures and compositions.
 
-Source URL: https://www.metallurgy.nist.gov/phase/solder/NIST-solder.tdb
+The supplied paper is retained by the developer/user separately rather than redistributed in this OBGEL package.
+
+## Initial development source
+
+The open NIST solder database was used as an initial machine-readable transcription source. In the NIST database, the Bi–Pb liquid, FCC A1, and HCP A3 interaction parameters are tagged to Yoon and Lee (1998). The NIST/SGTE elemental functions were also used during development.
+
+## Independent comparison source
+
+P. Taskinen, *The Phase Equilibria and Solution Thermodynamics of Bismuth-Lead Alloys*, Report TKK-V-B46, Helsinki University of Technology (1989), is retained as an independent comparison assessment. Its optimized excess parameters are not the Yoon–Lee parameterization and should not be substituted for the present model.

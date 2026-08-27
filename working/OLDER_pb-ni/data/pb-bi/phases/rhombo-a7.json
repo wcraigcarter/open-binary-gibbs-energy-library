@@ -23,17 +23,17 @@
     }
   ],
   "phase": {
-    "identifier": "fcc-a1",
-    "displayName": "FCC A1 (Pb-rich solid solution)",
+    "identifier": "rhombo-a7",
+    "displayName": "Rhombohedral A7 (Bi-rich solid solution)",
     "displayNameStatus": "standard",
-    "description": "FCC A1 substitutional solid solution model for the Pb-rich phase."
+    "description": "Rhombohedral A7 substitutional model for the Bi-rich phase."
   },
   "temperatureRange": {
     "minimum": 298.15,
     "maximum": 2100,
     "units": "K",
     "rangeBasis": "recommendedUse",
-    "notes": "Yoon 1998 parameter reproduced in the NIST solder database."
+    "notes": "No Bi-Pb excess interaction parameter is listed for RHOMBO_A7 in the NIST solder database, so the candidate uses ideal mixing between the Bi-rich A7 and metastable Pb-A7 reference state. This choice requires confirmation against the source assessment."
   },
   "gibbsEnergyModel": {
     "quantity": "molarGibbsFreeEnergy",
@@ -43,27 +43,19 @@
       "referenceStateContributions": [
         {
           "component": "Bi",
-          "standardStatePhase": "fcc-a1",
+          "standardStatePhase": "rhombo-a7",
           "temperatureSegments": [
             {
               "minimum": 298.15,
-              "maximum": 544.52,
+              "maximum": 544.55,
               "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": 9900
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -12.5
-                },
                 {
                   "basis": "constant",
                   "coefficient": -7817.776
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 128.418885
+                  "coefficient": 128.418925
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -82,24 +74,16 @@
               ]
             },
             {
-              "minimum": 544.52,
+              "minimum": 544.55,
               "maximum": 800.0,
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 9900
+                  "coefficient": 30208.022
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": 30207.94
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -393.650255
+                  "coefficient": -393.650351
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -117,12 +101,12 @@
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": -3616168.0,
+                  "coefficient": -3616168,
                   "exponent": -1
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
+                  "coefficient": 1.66145e+25,
                   "exponent": -9
                 }
               ]
@@ -133,19 +117,11 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 9900
+                  "coefficient": -11045.664
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": -11045.746
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 182.549067
+                  "coefficient": 182.548971
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -163,30 +139,22 @@
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
+                  "coefficient": 1.66145e+25,
                   "exponent": -9
                 }
               ]
             },
             {
               "minimum": 1200.0,
-              "maximum": 2100,
+              "maximum": 3000.0,
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 9900
+                  "coefficient": -7581.312
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": -7581.394
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 124.771535
+                  "coefficient": 124.77144
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -194,7 +162,7 @@
                 },
                 {
                   "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
+                  "coefficient": 1.66145e+25,
                   "exponent": -9
                 }
               ]
@@ -203,7 +171,7 @@
         },
         {
           "component": "Pb",
-          "standardStatePhase": "fcc-a1",
+          "standardStatePhase": "rhombo-a7",
           "temperatureSegments": [
             {
               "minimum": 298.15,
@@ -211,7 +179,7 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": -7650.085
+                  "coefficient": 7349.915
                 },
                 {
                   "basis": "temperature",
@@ -239,7 +207,7 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": -10531.095
+                  "coefficient": 4468.905000000001
                 },
                 {
                   "basis": "temperature",
@@ -267,7 +235,7 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 4157.616
+                  "coefficient": 19157.616
                 },
                 {
                   "basis": "temperature",
@@ -309,21 +277,7 @@
           "units": "J/(mol K)"
         }
       },
-      "redlichKisterTerms": [
-        {
-          "order": 0,
-          "temperatureDependence": [
-            {
-              "basis": "constant",
-              "coefficient": -5208.18
-            },
-            {
-              "basis": "temperature",
-              "coefficient": 0.575
-            }
-          ]
-        }
-      ]
+      "redlichKisterTerms": []
     }
   },
   "references": [
@@ -354,20 +308,22 @@
   ],
   "representations": {
     "tex": {
-      "path": "rendered/fcc-a1.tex",
+      "path": "rendered/rhombo-a7.tex",
       "generated": false,
       "sourceOfTruth": "gibbsEnergyModel"
     },
     "pdf": {
-      "path": "rendered/fcc-a1.pdf",
+      "path": "rendered/rhombo-a7.pdf",
       "generated": false,
       "sourceOfTruth": "gibbsEnergyModel"
     }
   },
   "verification": {
-    "sourceAudit": "Yoon-Lee-1998-Table-1",
-    "status": "source-audited",
-    "notes": "Bi reference-state contribution is GHSERBI(T) plus the phase-specific Yoon-Lee lattice-stability term; composition variable is xBi mole fraction; temperature branches include their endpoints.",
-    "primarySource": "Yoon-Lee-1998-Table-1"
+    "status": "working",
+    "transcribedFromSource": true,
+    "independentlyCrossChecked": false,
+    "numericallyValidated": false,
+    "validationNotes": "Candidate transcription from the open NIST solder database. Numerical validation against the NIST invariant equilibria remains to be completed; the phase/reference-state formulation should be checked before acceptance.",
+    "renderedEquationChecked": false
   }
 }

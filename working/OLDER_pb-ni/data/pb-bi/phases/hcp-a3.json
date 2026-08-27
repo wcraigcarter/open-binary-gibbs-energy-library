@@ -23,17 +23,17 @@
     }
   ],
   "phase": {
-    "identifier": "fcc-a1",
-    "displayName": "FCC A1 (Pb-rich solid solution)",
+    "identifier": "hcp-a3",
+    "displayName": "HCP A3 (epsilon Pb)",
     "displayNameStatus": "standard",
-    "description": "FCC A1 substitutional solid solution model for the Pb-rich phase."
+    "description": "HCP A3 substitutional model for epsilon-Pb."
   },
   "temperatureRange": {
     "minimum": 298.15,
     "maximum": 2100,
     "units": "K",
     "rangeBasis": "recommendedUse",
-    "notes": "Yoon 1998 parameter reproduced in the NIST solder database."
+    "notes": "Yoon 1998 parameters reproduced in the NIST solder database. The HCP reference-state treatment is a compiled NIST/SGTE representation and should be checked against the original paper before final acceptance."
   },
   "gibbsEnergyModel": {
     "quantity": "molarGibbsFreeEnergy",
@@ -43,11 +43,11 @@
       "referenceStateContributions": [
         {
           "component": "Bi",
-          "standardStatePhase": "fcc-a1",
+          "standardStatePhase": "hcp-a3",
           "temperatureSegments": [
             {
               "minimum": 298.15,
-              "maximum": 544.52,
+              "maximum": 3000.0,
               "terms": [
                 {
                   "basis": "constant",
@@ -55,147 +55,7 @@
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": -7817.776
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 128.418885
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -28.4096529
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 0.012338888,
-                  "exponent": 2
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -8.381598e-06,
-                  "exponent": 3
-                }
-              ]
-            },
-            {
-              "minimum": 544.52,
-              "maximum": 800.0,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": 9900
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": 30207.94
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -393.650255
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": 51.8556592
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -0.075311163,
-                  "exponent": 2
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.3499885e-05,
-                  "exponent": 3
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -3616168.0,
-                  "exponent": -1
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
-                  "exponent": -9
-                }
-              ]
-            },
-            {
-              "minimum": 800.0,
-              "maximum": 1200.0,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": 9900
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": -11045.746
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 182.549067
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -35.9824
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 0.0074266,
-                  "exponent": 2
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": -1.046e-06,
-                  "exponent": 3
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
-                  "exponent": -9
-                }
-              ]
-            },
-            {
-              "minimum": 1200.0,
-              "maximum": 2100,
-              "terms": [
-                {
-                  "basis": "constant",
-                  "coefficient": 9900
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": -12.5
-                },
-                {
-                  "basis": "constant",
-                  "coefficient": -7581.394
-                },
-                {
-                  "basis": "temperature",
-                  "coefficient": 124.771535
-                },
-                {
-                  "basis": "temperatureLogTemperature",
-                  "coefficient": -27.196
-                },
-                {
-                  "basis": "temperaturePower",
-                  "coefficient": 1.66491e+25,
-                  "exponent": -9
+                  "coefficient": -11.8
                 }
               ]
             }
@@ -203,7 +63,7 @@
         },
         {
           "component": "Pb",
-          "standardStatePhase": "fcc-a1",
+          "standardStatePhase": "hcp-a3",
           "temperatureSegments": [
             {
               "minimum": 298.15,
@@ -211,11 +71,11 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": -7650.085
+                  "coefficient": -7350.085
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 101.700244
+                  "coefficient": 102.700244
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -239,11 +99,11 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": -10531.095
+                  "coefficient": -10231.095
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 154.243182
+                  "coefficient": 155.243182
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -267,11 +127,11 @@
               "terms": [
                 {
                   "basis": "constant",
-                  "coefficient": 4157.616
+                  "coefficient": 4457.616
                 },
                 {
                   "basis": "temperature",
-                  "coefficient": 53.139072
+                  "coefficient": 54.139072
                 },
                 {
                   "basis": "temperatureLogTemperature",
@@ -315,11 +175,20 @@
           "temperatureDependence": [
             {
               "basis": "constant",
-              "coefficient": -5208.18
+              "coefficient": -7388.9
             },
             {
               "basis": "temperature",
-              "coefficient": 0.575
+              "coefficient": -0.68
+            }
+          ]
+        },
+        {
+          "order": 1,
+          "temperatureDependence": [
+            {
+              "basis": "temperature",
+              "coefficient": 2.86
             }
           ]
         }
@@ -354,20 +223,22 @@
   ],
   "representations": {
     "tex": {
-      "path": "rendered/fcc-a1.tex",
+      "path": "rendered/hcp-a3.tex",
       "generated": false,
       "sourceOfTruth": "gibbsEnergyModel"
     },
     "pdf": {
-      "path": "rendered/fcc-a1.pdf",
+      "path": "rendered/hcp-a3.pdf",
       "generated": false,
       "sourceOfTruth": "gibbsEnergyModel"
     }
   },
   "verification": {
-    "sourceAudit": "Yoon-Lee-1998-Table-1",
-    "status": "source-audited",
-    "notes": "Bi reference-state contribution is GHSERBI(T) plus the phase-specific Yoon-Lee lattice-stability term; composition variable is xBi mole fraction; temperature branches include their endpoints.",
-    "primarySource": "Yoon-Lee-1998-Table-1"
+    "status": "working",
+    "transcribedFromSource": true,
+    "independentlyCrossChecked": false,
+    "numericallyValidated": false,
+    "validationNotes": "Candidate transcription from the open NIST solder database. Numerical validation against the NIST invariant equilibria remains to be completed; the phase/reference-state formulation should be checked before acceptance.",
+    "renderedEquationChecked": false
   }
 }
