@@ -1,0 +1,696 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     28800,        695]
+NotebookOptionsPosition[     23645,        599]
+NotebookOutlinePosition[     24449,        624]
+CellTagsIndexPosition[     24406,        621]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995967844279045*^9, 
+  3.995967844975503*^9}},ExpressionUUID->"d4f00acd-0121-405c-8f20-\
+4a9b26e1ffba"],
+
+Cell["\<\
+working example near bottom, uses functions from the Cu-Ag reader exemplar\
+\>", "Subsection",
+ CellChangeTimes->{{3.99596780922729*^9, 
+  3.995967851432982*^9}},ExpressionUUID->"801ee342-bba6-406e-a91a-\
+3e824cd684fd"],
+
+Cell[CellGroupData[{
+
+Cell["Purpose", "Section",ExpressionUUID->"66fde51d-82f2-47df-8320-5c80a299872c"],
+
+Cell["\<\
+This notebook demonstrates how the canonical OBGEL JSON representation is \
+interpreted into symbolic Wolfram Language expressions. It uses the Cu-Ag FCC \
+A1 phase as the first complete exemplar. The notebook is executable against \
+the current repository data and is also intended to explain the construction \
+of the thermodynamic model to future developers and teachers.\
+\>", "Text",ExpressionUUID->"3f562b68-80df-4c26-a8d6-82c97d95060b"],
+
+Cell[TextData[{
+ "The main idea is simple: start with a useful Gibbs-energy function, then \
+show how the JSON data are assembled into the expression. The thermodynamic \
+structure is\n\n    ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["G", "TI"], "m"], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "reference"], "+", "\[CapitalDelta]", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "ideal"], "+", 
+         SubscriptBox[
+          StyleBox["G", "TI"], "empirical"]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "G_{\\mbox{m}} = G_{\\mbox{reference}} + \\Delta G_{\\mbox{ideal}}+ \
+G_{\\mbox{empirical}}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "a618e7dd-ada2-489b-b7e6-9d9554c3a9f4"],
+ "\n\nFor the present Cu-Ag model, the empirical contribution is represented \
+by a Redlich-Kister expansion. A future reader may expose a broader \
+empiricalMixingContribution interface; this notebook deliberately uses only \
+infrastructure that exists in the current repository."
+}], "Text",
+ CellChangeTimes->{{3.9956894773245983`*^9, 3.995689478968616*^9}, 
+   3.995689558381181*^9},ExpressionUUID->"799bfe49-a393-4831-97d4-\
+4511ea10d5c1"],
+
+Cell["\<\
+The helper functions in this notebook are stored as initialization cells so \
+that the examples can be evaluated from a fresh kernel.  If you accepted \
+\[OpenCurlyDoubleQuote]Evaluate Initialization Cells\[CloseCurlyDoubleQuote], \
+then everything should work.
+
+The notebook has been tested from a fresh Wolfram Language kernel with its \
+initialization cells evaluated before the examples.\
+\>", "Subsection",
+ CellChangeTimes->{{3.995714587903492*^9, 3.995714626077239*^9}, {
+  3.995714897440207*^9, 
+  3.995714899142482*^9}},ExpressionUUID->"e1c232cc-5fe2-4236-8213-\
+0039f2ca133f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Setup and data loading", "Section",ExpressionUUID->"1989ce1a-5c54-4706-b515-3f28f483c1ca"],
+
+Cell["\<\
+Run this section first. The path is derived from the notebook location so \
+that the exemplar can live inside the repository without hard-coded \
+user-specific paths.
+
+Examples need tools and library converter from Common Tangent Tool\
+\>", "Text",
+ CellChangeTimes->{{3.996838958827629*^9, 
+  3.996838975764965*^9}},ExpressionUUID->"1b706a57-f70f-4256-9bba-\
+b0df2bd5d0c1"],
+
+Cell[CellGroupData[{
+
+Cell["Library Location:", "Subsubsection",
+ CellChangeTimes->{{3.995709495838766*^9, 
+  3.995709505506329*^9}},ExpressionUUID->"92941de8-2bb4-45be-b26b-\
+b6ebae27407c"],
+
+Cell[BoxData[
+ RowBox[{"obglLibrary", " ", "=", " ", 
+  RowBox[{"ParentDirectory", "[", 
+   RowBox[{"ParentDirectory", "[", 
+    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.9957076695741673`*^9, 3.995707735326346*^9}, {
+   3.995708796244068*^9, 3.995708824256914*^9}, {3.995708867027491*^9, 
+   3.995708947446023*^9}, {3.995708999263404*^9, 3.9957091318073387`*^9}, {
+   3.995709175000348*^9, 3.995709196618342*^9}, {3.995709510045192*^9, 
+   3.9957095114836893`*^9}, {3.99571231473661*^9, 3.9957123536515493`*^9}, {
+   3.995712402542109*^9, 3.995712404053648*^9}, 3.9957702292940407`*^9},
+ CellLabel->"In[66]:=",ExpressionUUID->"ce41e6cf-d18a-44ef-a417-e4e053139e74"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"DirectoryQ", "[", "obglLibrary", "]"}], ",", "\n", 
+    RowBox[{"$OBGELBaseDirectory", " ", "=", " ", "obglLibrary"}], ",", "\n", 
+    
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<OBGEL directory not found: \>\"", ",", " ", "obglLibrary"}],
+      "]"}]}], "\n", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.9957076695741673`*^9, 3.995707735326346*^9}, {
+  3.995708796244068*^9, 3.995708824256914*^9}, {3.995708867027491*^9, 
+  3.995708947446023*^9}, {3.995708999263404*^9, 3.9957091318073387`*^9}, {
+  3.995709175000348*^9, 3.995709196618342*^9}, {3.995709510045192*^9, 
+  3.9957095114836893`*^9}, {3.99571231473661*^9, 3.9957123536515493`*^9}, {
+  3.995712402542109*^9, 3.995712404053648*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"fe9df022-929e-4e46-8397-8efc65586f79"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"systemJSON", " ", "=", 
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\</Users/ccarter/MIT Dropbox/Craig \
+Carter/Projects/open-binary-gibbs-energy-library/data/pb-bi/system.json\>\"", 
+      ",", "\"\<RawJSON\>\""}], "]"}]}], ")"}], "//", "Dataset"}]], "Code",
+ CellChangeTimes->{{3.995771342968855*^9, 3.9957713630976067`*^9}, {
+   3.995771428551758*^9, 3.9957714314903708`*^9}, {3.995771466372209*^9, 
+   3.995771475915185*^9}, {3.99683848841817*^9, 3.996838489240398*^9}, 
+   3.996838528047518*^9},
+ CellLabel->"In[68]:=",ExpressionUUID->"679a94f7-2912-49c4-8e15-541590148f67"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"systemJSON", "[", "\"\<phaseModels\>\"", "]"}], "//", 
+  "Dataset"}]], "Code",
+ CellChangeTimes->{{3.99577147847824*^9, 3.995771491216947*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"0a7ba057-d024-4581-b3af-79c6ac5da592"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"systemJSON", "[", "\"\<components\>\"", "]"}], "//", 
+  "Dataset"}]], "Code",
+ CellChangeTimes->{{3.995772060429152*^9, 3.9957720621628017`*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"38388a13-6e7b-4c1c-93a8-4b240c83c69f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["liquid", "Subsection",
+ CellChangeTimes->{{3.995771435476124*^9, 
+  3.995771436620213*^9}},ExpressionUUID->"97994bd3-c4d1-4904-a6a3-\
+efd596993837"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"liquidPbBiJSON", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+       "$OBGELBaseDirectory", ",", "\"\<data\>\"", ",", "\"\<pb-bi\>\"", 
+        ",", "\"\<phases\>\"", ",", "\"\<liquid.json\>\""}], "}"}], "]"}], 
+     ",", "\"\<RawJSON\>\""}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.9957703102689857`*^9, 3.995770345591214*^9}, {
+   3.995770401567512*^9, 3.995770406209639*^9}, {3.995770456522184*^9, 
+   3.9957704620758343`*^9}, 3.995771668965454*^9, {3.996838549232465*^9, 
+   3.996838550297521*^9}, 3.996838654089203*^9},
+ CellLabel->"In[69]:=",ExpressionUUID->"0a5f574b-7b0b-49ac-aa51-3008684e73d2"],
+
+Cell[BoxData[
+ RowBox[{"Dataset", "[", "liquidPbBiJSON", "]"}]], "Code",
+ CellLabel->"In[55]:=",ExpressionUUID->"a49dd1f4-2437-454e-8dda-706a5cfdce5e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"molarGibbsFreeEnergy", "[", "liquidPbBiJSON", "]"}], "[", "absT",
+     "]"}], "[", "xBi", "]"}], "//", "InputForm"}]], "Input",
+ CellChangeTimes->{{3.995968958112266*^9, 3.995968969880307*^9}, {
+  3.996834362152697*^9, 3.996834365241372*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"babfdd0c-ee17-43b8-9039-341bab9c2704"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["hcp-a3", "Subsection",
+ CellChangeTimes->{{3.995771507913869*^9, 
+  3.99577151044818*^9}},ExpressionUUID->"dab12236-5242-491a-938d-\
+f60bf59b429e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"hcpPbBiJSON", "=", " ", 
+    RowBox[{"Import", "[", "\n", 
+     RowBox[{
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "$OBGELBaseDirectory", ",", "\"\<data\>\"", ",", "\"\<pb-bi\>\"", 
+         ",", "\"\<phases\>\"", ",", "\"\<hcp-a3.json\>\""}], "}"}], "]"}], ",",
+       "\n", "\"\<RawJSON\>\""}], "]"}]}], ")"}], "//", "Dataset"}]], "Code",
+ CellChangeTimes->{{3.9957703102689857`*^9, 3.995770345591214*^9}, {
+  3.995770401567512*^9, 3.995770406209639*^9}, {3.995770456522184*^9, 
+  3.9957704620758343`*^9}, {3.9957716013936367`*^9, 3.995771618740394*^9}, {
+  3.9957716892712517`*^9, 3.995771699533064*^9}, {3.996838683744151*^9, 
+  3.996838705847252*^9}},
+ CellLabel->"In[70]:=",ExpressionUUID->"7f26e564-4c44-4f5d-95c7-fb293ae51923"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["fcc-a1", "Subsection",
+ CellChangeTimes->{{3.995771507913869*^9, 3.99577151044818*^9}, {
+  3.9957723167467203`*^9, 
+  3.995772321376051*^9}},ExpressionUUID->"73fdcbc1-85b9-4ec2-9220-\
+4af06cfef7f5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"fccPbBiJSON", "=", " ", "\n", " ", 
+     RowBox[{"Import", "[", "\n", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+         "$OBGELBaseDirectory", ",", "\"\<data\>\"", ",", "\"\<pb-bi\>\"", 
+          ",", "\"\<phases\>\"", ",", "\"\<fcc-a1.json\>\""}], "}"}], "]"}], ",",
+        "\n", "\"\<RawJSON\>\""}], "]"}]}], ")"}], "//", "Dataset"}], 
+  "\n"}]], "Code",
+ CellChangeTimes->{{3.9957703102689857`*^9, 3.995770345591214*^9}, {
+  3.995770401567512*^9, 3.995770406209639*^9}, {3.995770456522184*^9, 
+  3.9957704620758343`*^9}, {3.9957716013936367`*^9, 3.995771618740394*^9}, {
+  3.9957716892712517`*^9, 3.995771699533064*^9}, {3.995772325138969*^9, 
+  3.995772335509235*^9}, {3.9968387158582983`*^9, 3.996838729923065*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"281fc427-826c-4018-823a-44ca3848c69a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["rhombo-a7", "Subsection",
+ CellChangeTimes->{{3.995771507913869*^9, 3.99577151044818*^9}, {
+  3.9957723167467203`*^9, 3.995772321376051*^9}, {3.9957731958828917`*^9, 
+  3.995773200827977*^9}},ExpressionUUID->"ad7fbaa8-9157-4473-9a62-\
+5cd6e8a5450d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"rhomboPbBiJSON", "=", " ", "\n", " ", 
+    RowBox[{"Import", "[", "\n", 
+     RowBox[{
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "$OBGELBaseDirectory", ",", "\"\<data\>\"", ",", "\"\<pb-bi\>\"", 
+         ",", "\"\<phases\>\"", ",", "\"\<rhombo-a7.json\>\""}], "}"}], "]"}],
+       ",", "\n", "\"\<RawJSON\>\""}], "]"}]}], ")"}], "//", 
+  "Dataset"}]], "Code",
+ CellChangeTimes->{{3.9957703102689857`*^9, 3.995770345591214*^9}, {
+  3.995770401567512*^9, 3.995770406209639*^9}, {3.995770456522184*^9, 
+  3.9957704620758343`*^9}, {3.9957716013936367`*^9, 3.995771618740394*^9}, {
+  3.9957716892712517`*^9, 3.995771699533064*^9}, {3.995772325138969*^9, 
+  3.995772335509235*^9}, {3.995773206300227*^9, 3.995773221125578*^9}, {
+  3.996838736760489*^9, 3.996838774725268*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"306608eb-1975-40c2-9cac-e1a05fcf2309"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Demonstrative Usage examples", "Section",
+ CellChangeTimes->{{3.995689612974862*^9, 3.995689620991308*^9}, 
+   3.995709614821723*^9, 3.995711797486261*^9, {3.995711838698722*^9, 
+   3.9957118398543577`*^9}},ExpressionUUID->"9549e40d-0c73-430a-8ee9-\
+1093a85e848a"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Canonical Example",
+  FontWeight->"Bold"],
+ "\nThe interactive example below demonstrates the principal result of this \
+notebook. Everything that follows explains how the symbolic Gibbs free-energy \
+function is constructed from the canonical OBGEL representation."
+}], "Subsection",
+ CellFrame->True,
+ CellChangeTimes->{
+  3.995716882485882*^9, {3.99571758052914*^9, 
+   3.9957175922642603`*^9}},ExpressionUUID->"59db78ce-dc7a-41dd-b972-\
+d881d5e63d5b"],
+
+Cell["\<\
+The following examples show the main object constructed by this notebook: a \
+symbolic molar Gibbs free-energy function that can be plotted, \
+differentiated, and passed directly to phase-equilibrium calculations.
+
+ An experienced user can immediately take this Gibbs-energy function into a \
+common-tangent or phase-diagram calculation. A teacher can use the same \
+expression directly in a classroom demonstration.
+
+The data must be loaded as described in the proceeding section. If the \
+following command doesn\[CloseCurlyQuote]t work, then the library failed to \
+load properly\[LongDash]that is likely due to the library sitting at the \
+wrong place in the directory tree.\
+\>", "Text",
+ CellChangeTimes->{{3.9956897169533567`*^9, 3.995689744437652*^9}, {
+  3.995708704974625*^9, 3.99570878678514*^9}, {3.995714685538917*^9, 
+  3.995714688546364*^9}},ExpressionUUID->"461b4a43-4e0b-40bc-90a2-\
+d19deff7286d"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+1) Compare the Temperature Dependencies of the Molar Free Energies of Mixing \
+for the FCC-A1 and Liquid phases.  Explore the Behavior Near the Eutectic \
+Point.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.9957109377578278`*^9, 3.9957109726461983`*^9}, {
+  3.995713133731491*^9, 3.9957131918798113`*^9}, {3.995716943523587*^9, 
+  3.995716944347704*^9}, {3.995717002593006*^9, 
+  3.99571702662599*^9}},ExpressionUUID->"11baa126-6382-4c04-939b-\
+cb20f4cdeca7"],
+
+Cell["\<\
+This illustrates the two molar free energies of mixing for Liquid and FCC-A1 \
+in the Cu-Ag system.
+
+These phase Gibbs-energy curves are the objects from which phase-equilibrium \
+constructions such as common tangents can be made. The Eutectic Point is near \
+ 1053K.\
+\>", "Text",
+ CellChangeTimes->{{3.995710843479369*^9, 3.995710926452533*^9}, {
+  3.995711385375534*^9, 3.995711387055491*^9}, {3.995714751101688*^9, 
+  3.9957147624174147`*^9}},ExpressionUUID->"e0070561-ec7a-4cf5-b9b3-\
+88ebd65b293f"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.995714734464942*^9, 
+  3.995714746639217*^9}},ExpressionUUID->"6da038c3-0079-43bd-976b-\
+2a5ef7406ad3"],
+
+Cell["\<\
+The notebook uses absT or temperature as a reminder that thermodynamic \
+temperature arguments are absolute temperatures in kelvin. The composition \
+axis is xCu because the phase model declares Cu as the independent \
+composition variable.\
+\>", "Text",ExpressionUUID->"3ece57e6-8f7b-4e60-8c5b-4a1af929c111"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Show the form of the Molar Gibbs Free Energy for the Cu-Ag FCC A1 phase\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.99570815525845*^9, 3.995708193587942*^9}, {
+  3.995711808685833*^9, 3.995711814516797*^9}, {3.9957169394604197`*^9, 
+  3.995716941241275*^9}, {3.995716997727265*^9, 
+  3.995716997841218*^9}},ExpressionUUID->"0073da5e-e291-49e0-84b5-\
+f49ee734d21d"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995772199540102*^9, 
+  3.995772200359356*^9}},ExpressionUUID->"341d4b8f-0c5f-4c45-8142-\
+f68c51085037"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fromOBGELtoCTTFunction", "[", "obgelJSON_", "]"}], ":=", 
+  RowBox[{"Function", "[", 
+   RowBox[{
+    RowBox[{"{", "absT", "}"}], ",", 
+    RowBox[{"Evaluate", "[", 
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", "x", "}"}], ",", 
+       RowBox[{"Evaluate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"molarGibbsFreeEnergy", "[", "obgelJSON", "]"}], "[", 
+          "absT", "]"}], "[", "x", "]"}], "]"}]}], "]"}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[61]:=",ExpressionUUID->"47499514-193c-454f-a3db-233c1663e823"],
+
+Cell[BoxData[
+ RowBox[{"With", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"gMolarLiquid", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"molarGibbsFreeEnergy", "[", "liquidPbBiJSON", "]"}], "[", 
+        "temperature", "]"}], "[", "xBi", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"gMolarHCP", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"molarGibbsFreeEnergy", "[", "hcpPbBiJSON", "]"}], "[", 
+        "temperature", "]"}], "[", "xBi", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"gMolarFCC", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"molarGibbsFreeEnergy", "[", "fccPbBiJSON", "]"}], "[", 
+        "temperature", "]"}], "[", "xBi", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"gMolarRhombo", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"molarGibbsFreeEnergy", "[", "rhomboPbBiJSON", "]"}], "[", 
+        "temperature", "]"}], "[", "xBi", "]"}]}]}], "\[IndentingNewLine]", 
+    "}"}], ",", "\n", " ", 
+   RowBox[{"Manipulate", "[", "\n", "  ", 
+    RowBox[{
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "gMolarLiquid", ",", "gMolarHCP", ",", "gMolarFCC", ",", 
+         "gMolarRhombo"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"xBi", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+       RowBox[{"FrameLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"\"\<xBi\>\"", ",", "\"\<G (J/mol)\>\""}], "}"}]}], ",", 
+       RowBox[{
+       "PlotLabel", "\[Rule]", "\"\<Molar Gibbs Free Energies: Pb-Bi\>\""}], ",", 
+       RowBox[{"PlotLegends", "\[Rule]", 
+        RowBox[{"Placed", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Liquid\>\"", ",", "\"\<HCP-A3\>\"", ",", 
+            " ", "\"\<FCC-A1\>\"", ",", " ", "\"\<Rhombo-A7\>\""}], "}"}], ",",
+           "Right"}], "]"}]}], ",", 
+       RowBox[{"BaseStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"FontSize", "\[Rule]", "16"}], "}"}]}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", "\n", "  ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"temperature", ",", " ", "400", ",", " ", 
+         InterpretationBox[
+          DynamicModuleBox[{Typeset`open = False}, 
+           TemplateBox[{"Expression", 
+             RowBox[{"Style", "[", 
+               DynamicBox[
+                FEPrivate`FrontEndResource["FEBitmaps", "IconizeEllipsis"]], 
+               "]"}], 
+             GridBox[{{
+                RowBox[{
+                  TagBox["\"Byte count: \"", "IconizedLabel"], 
+                  "\[InvisibleSpace]", 
+                  TagBox["120", "IconizedItem"]}]}}, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}}, DefaultBaseStyle -> 
+              "Column", 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+             Dynamic[Typeset`open]},
+            "IconizedObject"]],
+          Style["Temperagure (Kelvin)", 16],
+          SelectWithContents->True,
+          Selectable->False]}], "}"}], ",", "300", ",", " ", "1200"}], 
+      "}"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{"SaveDefinitions", "\[Rule]", "True"}], "*)"}], "\n", "  ", 
+    "]"}]}], "\n", " ", "]"}]], "Input",
+ CellChangeTimes->{{3.9957724644293623`*^9, 3.995772625893496*^9}, {
+   3.99577279058431*^9, 3.99577280424651*^9}, {3.995773383185278*^9, 
+   3.9957734818892403`*^9}, {3.9957735410428762`*^9, 
+   3.9957735489952097`*^9}, {3.995773873541388*^9, 3.995773884553822*^9}, {
+   3.995774187062581*^9, 3.995774206353641*^9}, {3.995786738123474*^9, 
+   3.995786743985458*^9}, 3.995961183938014*^9, {3.995961238963339*^9, 
+   3.995961239244792*^9}, {3.9959612745342197`*^9, 3.9959613092968616`*^9}, {
+   3.995971582620553*^9, 3.9959716210285063`*^9}, {3.995973671547887*^9, 
+   3.9959737049531603`*^9}, {3.995973804077016*^9, 3.995973815686623*^9}, {
+   3.9959739087859087`*^9, 3.995974010458901*^9}, {3.996038733381823*^9, 
+   3.996038738941771*^9}, {3.996048120006792*^9, 3.996048125721018*^9}, {
+   3.9968352308349857`*^9, 3.996835285295665*^9}},
+ CellLabel->"In[73]:=",ExpressionUUID->"e9150ec3-1ed8-45e5-bf01-6b9b9f596b64"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["working example", "Chapter",
+ CellChangeTimes->{{3.9959677927203703`*^9, 
+  3.995967795171463*^9}},ExpressionUUID->"cd587751-4039-46d6-8f32-\
+a7c25f0699cd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"fef", " ", "=", " ", 
+    RowBox[{"fromOBGELtoCTTFunction", "/@", 
+     RowBox[{"{", 
+      RowBox[{
+      "liquidPbBiJSON", ",", "hcpPbBiJSON", ",", "fccPbBiJSON", ",", 
+       "rhomboPbBiJSON"}], "}"}]}]}], ";"}], "\n"}]], "Input",
+ CellChangeTimes->{{3.995962016555438*^9, 3.9959620634663143`*^9}, {
+   3.995969387740403*^9, 3.995969391496072*^9}, 3.995973087335473*^9, 
+   3.996044685862376*^9, 3.996835318507978*^9},
+ Background->RGBColor[0.936, 0.988, 1.],
+ CellLabel->"In[74]:=",ExpressionUUID->"226533cf-58aa-41c6-9a6b-d42fbb5efe2a"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "example showing Peritectic and Eutectic at \[LineSeparator]",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["T", "peri"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d26d1547-fcf9-43f4-8121-926dfaeb95bd"],
+ " = 458K and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "Bi"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "92cf07a8-24b6-4cfe-b67a-d97714877e4e"],
+ " = 0.278\n",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["T", "eut"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2c9a5ad2-666f-4990-8faa-dc186ceec9f1"],
+ " = 400k and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "Bi"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "65d95877-23f3-406a-a265-96ea23a07ee0"],
+ " = 0.55"
+}], "Subsubsection",
+ CellChangeTimes->{{3.996839019556497*^9, 3.996839035225952*^9}, {
+  3.9968393537879267`*^9, 3.99683935912601*^9}, {3.99683940604772*^9, 
+  3.996839499495837*^9}},ExpressionUUID->"6677d118-ff60-4e58-b7b1-\
+12c389ca4a1f"],
+
+Cell[BoxData[
+ RowBox[{"systemJSON", "[", "\"\<temperatureValidity\>\"", "]"}]], "Input",
+ CellLabel->"In[77]:=",ExpressionUUID->"6b522f32-8da2-4d88-a6f1-8422c0a2b1e9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"minTemp", ",", "maxTemp"}], "}"}], "=", 
+  RowBox[{
+   RowBox[{"systemJSON", "[", "\"\<temperatureValidity\>\"", "]"}], "/@", 
+   RowBox[{"{", 
+    RowBox[{"\"\<minimum\>\"", ",", "\"\<maximum\>\""}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.996839082834888*^9, 3.9968390828407583`*^9}, {
+  3.996839115441647*^9, 3.9968391615113983`*^9}},
+ CellLabel->"In[81]:=",ExpressionUUID->"d3532b5f-7d21-4f46-a4ff-9192d0de282d"],
+
+Cell[BoxData[
+ RowBox[{"freeEnergyCommonTangentTool", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"fef", ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Liquid\>\"", ",", " ", "\"\<HCP\>\"", ",", "\"\<FCC\>\"", ",",
+        " ", "\"\<Rhomb\>\""}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"minTemp", ",", "630", ",", "1"}], "}"}], ",", ".01"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.996835402630101*^9, 3.996835528178804*^9}, {
+   3.9968355635658073`*^9, 3.996835619497033*^9}, {3.996835749220578*^9, 
+   3.996835749792597*^9}, {3.996835794106596*^9, 3.996835819540668*^9}, {
+   3.996836175671338*^9, 3.996836212968491*^9}, 3.996836243030607*^9, {
+   3.996839166038967*^9, 3.996839166890188*^9}},
+ CellLabel->"In[82]:=",ExpressionUUID->"d8a2af8c-00b9-4120-8923-4cd67e8d34c8"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1143, 790},
+WindowMargins->{{22, Automatic}, {Automatic, 52}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (July 2, 2026)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["Text"], CellMargins -> {{100, 10}, {7, 8}}, FontSize -> 16, 
+    FontSlant -> "Italic", FontColor -> 
+    RGBColor[0.7512016479743648, 0.07605096513313496, 0.06642252231631952]]}, 
+  Visible -> False, FrontEndVersion -> 
+  "15.0 for Mac OS X ARM (64-bit) (July 2, 2026)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"fbb1bb61-c856-4703-9f44-ac9c5bc9e611"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[400, 13, 152, 3, 29, "Input",ExpressionUUID->"d4f00acd-0121-405c-8f20-4a9b26e1ffba"],
+Cell[555, 18, 229, 5, 53, "Subsection",ExpressionUUID->"801ee342-bba6-406e-a91a-3e824cd684fd"],
+Cell[CellGroupData[{
+Cell[809, 27, 81, 0, 52, "Section",ExpressionUUID->"66fde51d-82f2-47df-8320-5c80a299872c"],
+Cell[893, 29, 453, 6, 58, "Text",ExpressionUUID->"3f562b68-80df-4c26-a8d6-82c97d95060b"],
+Cell[1349, 37, 1307, 28, 151, "Text",ExpressionUUID->"799bfe49-a393-4831-97d4-4511ea10d5c1"],
+Cell[2659, 67, 596, 12, 131, "Subsection",ExpressionUUID->"e1c232cc-5fe2-4236-8213-0039f2ca133f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3292, 84, 96, 0, 52, "Section",ExpressionUUID->"1989ce1a-5c54-4706-b515-3f28f483c1ca"],
+Cell[3391, 86, 384, 9, 81, "Text",ExpressionUUID->"1b706a57-f70f-4256-9bba-b0df2bd5d0c1"],
+Cell[CellGroupData[{
+Cell[3800, 99, 168, 3, 43, "Subsubsection",ExpressionUUID->"92941de8-2bb4-45be-b26b-b6ebae27407c"],
+Cell[3971, 104, 712, 11, 51, "Code",ExpressionUUID->"ce41e6cf-d18a-44ef-a417-e4e053139e74"],
+Cell[4686, 117, 845, 16, 107, "Code",ExpressionUUID->"fe9df022-929e-4e46-8397-8efc65586f79"],
+Cell[5534, 135, 631, 12, 51, "Code",ExpressionUUID->"679a94f7-2912-49c4-8e15-541590148f67"],
+Cell[6168, 149, 257, 5, 51, "Code",ExpressionUUID->"0a7ba057-d024-4581-b3af-79c6ac5da592"],
+Cell[6428, 156, 259, 5, 51, "Code",ExpressionUUID->"38388a13-6e7b-4c1c-93a8-4b240c83c69f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6724, 166, 154, 3, 53, "Subsection",ExpressionUUID->"97994bd3-c4d1-4904-a6a3-efd596993837"],
+Cell[6881, 171, 722, 15, 51, "Code",ExpressionUUID->"0a5f574b-7b0b-49ac-aa51-3008684e73d2"],
+Cell[7606, 188, 151, 2, 51, "Code",ExpressionUUID->"a49dd1f4-2437-454e-8dda-706a5cfdce5e"],
+Cell[7760, 192, 381, 8, 29, "Input",ExpressionUUID->"babfdd0c-ee17-43b8-9039-341bab9c2704"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8178, 205, 153, 3, 53, "Subsection",ExpressionUUID->"dab12236-5242-491a-938d-f60bf59b429e"],
+Cell[8334, 210, 827, 17, 88, "Code",ExpressionUUID->"7f26e564-4c44-4f5d-95c7-fb293ae51923"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9198, 232, 204, 4, 53, "Subsection",ExpressionUUID->"73fdcbc1-85b9-4ec2-9220-4af06cfef7f5"],
+Cell[9405, 238, 918, 19, 126, "Code",ExpressionUUID->"281fc427-826c-4018-823a-44ca3848c69a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10360, 262, 255, 4, 53, "Subsection",ExpressionUUID->"ad7fbaa8-9157-4473-9a62-5cd6e8a5450d"],
+Cell[10618, 268, 942, 19, 107, "Code",ExpressionUUID->"306608eb-1975-40c2-9cac-e1a05fcf2309"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11609, 293, 270, 4, 52, "Section",ExpressionUUID->"9549e40d-0c73-430a-8ee9-1093a85e848a"],
+Cell[CellGroupData[{
+Cell[11904, 301, 482, 11, 122, "Subsection",ExpressionUUID->"59db78ce-dc7a-41dd-b972-d881d5e63d5b"],
+Cell[12389, 314, 924, 17, 150, "Text",ExpressionUUID->"461b4a43-4e0b-40bc-90a2-d19deff7286d"],
+Cell[CellGroupData[{
+Cell[13338, 335, 469, 9, 43, "Subsubsection",ExpressionUUID->"11baa126-6382-4c04-939b-cb20f4cdeca7"],
+Cell[13810, 346, 514, 11, 104, "Text",ExpressionUUID->"e0070561-ec7a-4cf5-b9b3-88ebd65b293f"],
+Cell[14327, 359, 142, 3, 35, "Text",ExpressionUUID->"6da038c3-0079-43bd-976b-2a5ef7406ad3"],
+Cell[14472, 364, 319, 5, 58, "Text",ExpressionUUID->"3ece57e6-8f7b-4e60-8c5b-4a1af929c111"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14828, 374, 378, 7, 43, "Subsubsection",ExpressionUUID->"0073da5e-e291-49e0-84b5-f49ee734d21d"],
+Cell[15209, 383, 152, 3, 29, "Input",ExpressionUUID->"341d4b8f-0c5f-4c45-8142-f68c51085037"],
+Cell[15364, 388, 594, 16, 29, "Input",ExpressionUUID->"47499514-193c-454f-a3db-233c1663e823"],
+Cell[15961, 406, 4346, 96, 368, "Input",ExpressionUUID->"e9150ec3-1ed8-45e5-bf01-6b9b9f596b64"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20368, 509, 162, 3, 67, "Chapter",ExpressionUUID->"cd587751-4039-46d6-8f32-a7c25f0699cd"],
+Cell[20533, 514, 588, 13, 65, "Input",ExpressionUUID->"226533cf-58aa-41c6-9a6b-d42fbb5efe2a"],
+Cell[CellGroupData[{
+Cell[21146, 531, 1036, 30, 94, "Subsubsection",ExpressionUUID->"6677d118-ff60-4e58-b7b1-12c389ca4a1f"],
+Cell[22185, 563, 168, 2, 29, "Input",ExpressionUUID->"6b522f32-8da2-4d88-a6f1-8422c0a2b1e9"],
+Cell[22356, 567, 471, 10, 29, "Input",ExpressionUUID->"d3532b5f-7d21-4f46-a4ff-9192d0de282d"],
+Cell[22830, 579, 787, 16, 29, "Input",ExpressionUUID->"d8a2af8c-00b9-4120-8923-4cd67e8d34c8"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

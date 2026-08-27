@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "pb-bi",
+  "components": [
+    {
+      "identifier": "Bi",
+      "formula": "Bi",
+      "name": "Bismuth"
+    },
+    {
+      "identifier": "Pb",
+      "formula": "Pb",
+      "name": "Lead"
+    }
+  ],
+  "compositionVariables": [
+    {
+      "name": "xBi",
+      "quantity": "moleFraction",
+      "component": "Bi",
+      "role": "independent",
+      "definition": "xBi = nBi/(nBi+nPb); xPb = 1 - xBi."
+    }
+  ],
+  "phase": {
+    "identifier": "liquid",
+    "displayName": "Liquid",
+    "displayNameStatus": "standard",
+    "description": "Liquid substitutional solution model for Bi-Pb."
+  },
+  "temperatureRange": {
+    "minimum": 298.14,
+    "maximum": 3000.0,
+    "units": "K",
+    "rangeBasis": "modelValidity",
+    "notes": "Common range of the source unary functions used in the Yoon-Lee 1998 model."
+  },
+  "gibbsEnergyModel": {
+    "quantity": "molarGibbsFreeEnergy",
+    "modelType": "idealPlusRedlichKister",
+    "units": "J/mol",
+    "expression": {
+      "referenceStateContributions": [
+        {
+          "component": "Bi",
+          "standardStatePhase": "liquid",
+          "temperatureSegments": [
+            {
+              "minimum": 298.14,
+              "maximum": 544.52,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 11245.936
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -20.637366
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -5.9726e-19,
+                  "exponent": 7
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": -7817.776
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 128.418885
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -28.4096529
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 0.012338888,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -8.381598e-06,
+                  "exponent": 3
+                }
+              ]
+            },
+            {
+              "minimum": 544.52,
+              "maximum": 3000.0,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 11336.361
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -20.811733
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -1.66491e+25,
+                  "exponent": -9
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": 30207.94
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -393.650255
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": 51.8556592
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -0.075311163,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 1.3499885e-05,
+                  "exponent": 3
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -3616168.0,
+                  "exponent": -1
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 1.66491e+25,
+                  "exponent": -9
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "Pb",
+          "standardStatePhase": "liquid",
+          "temperatureSegments": [
+            {
+              "minimum": 298.14,
+              "maximum": 600.65,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 4672.157
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -7.750257
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -6.0144e-19,
+                  "exponent": 7
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": -7650.085
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 101.715188
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -24.5242231
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -0.00365895,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -2.4395e-07,
+                  "exponent": 3
+                }
+              ]
+            },
+            {
+              "minimum": 600.65,
+              "maximum": 3000.0,
+              "terms": [
+                {
+                  "basis": "constant",
+                  "coefficient": 4853.112
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": -8.066587
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": -8.05644e+25,
+                  "exponent": -9
+                },
+                {
+                  "basis": "constant",
+                  "coefficient": -10531.115
+                },
+                {
+                  "basis": "temperature",
+                  "coefficient": 154.258155
+                },
+                {
+                  "basis": "temperatureLogTemperature",
+                  "coefficient": -32.4913959
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 0.00154613,
+                  "exponent": 2
+                },
+                {
+                  "basis": "temperaturePower",
+                  "coefficient": 8.05644e+25,
+                  "exponent": -9
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "idealMixingTerm": {
+        "included": true,
+        "gasConstant": {
+          "value": 8.314462618,
+          "units": "J/(mol K)"
+        }
+      },
+      "redlichKisterTerms": [
+        {
+          "order": 0,
+          "temperatureDependence": [
+            {
+              "basis": "constant",
+              "coefficient": -4807.37
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -1.25
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "references": [
+    {
+      "identifier": "yoon-lee-1998",
+      "citation": "S. W. Yoon and H. M. Lee, \"A Thermodynamic Study of Phase Equilibria in the Sn-Bi-Pb Solder System,\" CALPHAD 22 (1998) 167-178. DOI: 10.1016/S0364-5916(98)00022-4.",
+      "doi": "10.1016/S0364-5916(98)00022-4",
+      "role": "originalAssessment"
+    },
+    {
+      "identifier": "nist-solder-2017",
+      "citation": "U. R. Kattner, NIST Solder Database, NIST-solder.tdb, last update 4 August 2017; publicly available Thermo-Calc format database. The Bi-Pb interaction parameters in the database are tagged 98Yoo (Yoon, 1998).",
+      "url": "https://www.metallurgy.nist.gov/phase/solder/NIST-solder.tdb",
+      "role": "secondarySource"
+    },
+    {
+      "identifier": "dinsdale-1991",
+      "citation": "A. T. Dinsdale, \"SGTE data for pure elements,\" CALPHAD 15 (1991) 317-425. DOI: 10.1016/0364-5916(91)90030-N.",
+      "doi": "10.1016/0364-5916(91)90030-N",
+      "role": "referenceData"
+    },
+    {
+      "identifier": "nist-bi-pb",
+      "citation": "NIST Phase Diagrams & Computational Thermodynamics, Bi-Pb System. NIST identifies Yoon and Lee (1998) as the full thermodynamic assessment and reports the four phase models and invariant equilibria.",
+      "url": "https://www.metallurgy.nist.gov/phase/solder/bipb.html",
+      "role": "validationSource"
+    }
+  ],
+  "representations": {
+    "tex": {
+      "path": "rendered/liquid.tex",
+      "generated": false,
+      "sourceOfTruth": "gibbsEnergyModel"
+    },
+    "pdf": {
+      "path": "rendered/liquid.pdf",
+      "generated": false,
+      "sourceOfTruth": "gibbsEnergyModel"
+    }
+  },
+  "verification": {
+    "status": "working",
+    "transcribedFromSource": true,
+    "independentlyCrossChecked": false,
+    "numericallyValidated": false,
+    "validationNotes": "Candidate transcription from the open NIST solder database. Numerical validation against the NIST invariant equilibria remains to be completed; the phase/reference-state formulation should be checked before acceptance.",
+    "renderedEquationChecked": false
+  }
+}

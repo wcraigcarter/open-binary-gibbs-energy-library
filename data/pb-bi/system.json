@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "pb-bi",
+  "systemName": "Pb-Bi",
+  "components": [
+    {
+      "identifier": "Bi",
+      "formula": "Bi",
+      "name": "Bismuth"
+    },
+    {
+      "identifier": "Pb",
+      "formula": "Pb",
+      "name": "Lead"
+    }
+  ],
+  "phaseModels": [
+    {
+      "phaseIdentifier": "liquid",
+      "file": "phases/liquid.json"
+    },
+    {
+      "phaseIdentifier": "fcc-a1",
+      "file": "phases/fcc-a1.json"
+    },
+    {
+      "phaseIdentifier": "hcp-a3",
+      "file": "phases/hcp-a3.json"
+    },
+    {
+      "phaseIdentifier": "rhombo-a7",
+      "file": "phases/rhombo-a7.json"
+    }
+  ],
+  "references": [
+    "yoon-lee-1998",
+    "nist-solder-2017",
+    "dinsdale-1991",
+    "nist-bi-pb",
+    "boa-ansara-1998"
+  ],
+  "notes": "Source-audited Pb-Bi model based on Yoon & Lee (1998). Phase JSON files retain explicit compositionVariables metadata for compatibility with the current Mathematica reference reader. Bi FCC A1 and HCP A3 unary reference contributions include the complete GHSERBI(T) function plus the phase-specific Yoon-Lee lattice-stability terms. Liquid uses the metastable pure-liquid unary functions specified by the assessment. The accompanying implementation-observations.md records the development observations.",
+  "temperatureValidity": {
+    "minimum": 298.15,
+    "maximum": 2100.0,
+    "units": "K",
+    "basis": "intersectionOfPhaseValidityRanges",
+    "status": "derived",
+    "notes": "Derived as the intersection of the declared temperature validity ranges of all phase models in this system. The liquid model begins at 298.14 K, but the common range of all four phase models begins at 298.15 K."
+  }
+}
