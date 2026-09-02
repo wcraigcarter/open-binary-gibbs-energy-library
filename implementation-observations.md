@@ -38,3 +38,12 @@ Piecewise functions for the free-energy curves must return real, well-defined va
 
 **Observation 13**
 When a phase reference contribution is assembled from an elemental SER function plus a phase-specific lattice-stability term, the canonical JSON representation must preserve the complete unary Gibbs-energy contribution; omitting the elemental SER term changes the phase Gibbs-energy surface by a composition-dependent amount and can alter phase equilibria.
+
+**Observation 14**
+OBGEL phases must identify whether their composition is continuous or constrained. In particular, a stoichiometric line compound must be identified explicitly and must provide its fixed composition. CTT must treat a line compound as a fixed-composition Gibbs-energy point rather than as a continuous G(T,x) curve.
+
+
+
+**Observation 15**
+It will be useful to constuct a list of Unary phase reference free energies and then use those to enforce consistency between binary systems.
+
