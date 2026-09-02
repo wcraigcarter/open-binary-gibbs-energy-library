@@ -70,7 +70,7 @@ Print["OBGEL directory not found: ", obglLibrary]
 
 With[
 {
-unaryPbJSON =FileNameJoin[{obglLibrary,"working","unary","Pb_Standard_Reference.json"}]
+unaryPbJSON =FileNameJoin[{obglLibrary,"data","unary","pb-standard-reference.json"}]
 },
 
 Which[
@@ -210,6 +210,12 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 (*re =resultExpressions =functionsAssociation/.referenceFunctionName->referenceFunction;*)
 (*rf =resultFunctions=Map[Function[{T},#]&,resultExpressions];*)
 (*AssociateTo[resultFunctions, "stableEnvelope"->Function[{T},Evaluate[Min[Values[resultExpressions]]]]]*)
+(**)
+(*(*  renove the stableEnvelope key and construct a stableEnvelope function that takes a list of result and creates the function, i.e.,*)
+(*stableEnvelope[json][T], thus the stable envelope and stablePhase[molarGibbsReference[json]][T] live outside the association*)
+(**)
+(*molarGibbsReference return only the phase-specific unary functions,and that stableEnvelope and stablePhase operate on that returned association.*)
+(**)*)
 (*]*)
 (**)
 
@@ -253,3 +259,76 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 (* ::Input:: *)
 (*Plot[examplePbReference["stableEnvelope"][temperature],{temperature,transitionTemperature-2,transitionTemperature+2}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large, Epilog->{InfiniteLine[{transitionTemperature,0},{0,1}]}]*)
+
+
+(* ::Chapter:: *)
+(*Example for Bi*)
+
+
+(* ::Input:: *)
+(*With[*)
+(*{*)
+(*unaryBiJSON =FileNameJoin[{obglLibrary,"data","unary","bi-standard-reference.json"}]*)
+(*},*)
+(**)
+(*Which[*)
+(*FileExistsQ[unaryBiJSON],*)
+(*jsonDataUnaryBi = Import[unaryBiJSON, "RawJSON"];*)
+(*,*)
+(*True,*)
+(*StringTemplate["Data files not found:\n `1`"][unaryBiJSON]*)
+(*]*)
+(*]*)
+
+
+(* ::Input:: *)
+(*Dataset[jsonDataUnaryBi]*)
+
+
+(* ::Input:: *)
+(*Dataset[jsonDataUnaryBi["functions"]]*)
+
+
+(* ::Input:: *)
+(*Dataset[*)
+(*exampleBiReference=molarGibbsReference[jsonDataUnaryBi]*)
+(*]*)
+
+
+(* ::Input:: *)
+(*Keys[exampleBiReference]*)
+
+
+(* ::Input:: *)
+(*tmp =KeyDrop[exampleBiReference,"stableEnvelope"];*)
+
+
+(* ::Input:: *)
+(*funcs = Values[KeyDrop[exampleBiReference,"stableEnvelope"]]*)
+
+
+(* ::Input:: *)
+(*With[{funcs =Comap[Values[KeyDrop[exampleBiReference,"stableEnvelope"]], temperature]},*)
+(* Plot[funcs,{temperature,300,1000}, PlotLegends->Keys[KeyDrop[exampleBiReference,"stableEnvelope"]],*)
+(*Frame->True, FrameLabel->{"Temperature (K)", "Molar Free Energy"}, ImageSize->Large]*)
+(*]*)
+(**)
+
+
+(* ::Input:: *)
+(*Keys[exampleBiReference]*)
+
+
+(* ::Input:: *)
+(*FindRoot[exampleBiReference["stableReference"][T]== exampleBiReference["metastableLiquidReference"][T],{T,500}]*)
+
+
+(* ::Input:: *)
+(*544.5200027063481`*)
+
+
+(* ::Input:: *)
+(*With[{funcs =Comap[Values[KeyDrop[exampleBiReference,"stableEnvelope"]], temperature]},*)
+(* Plot[funcs,{temperature,1000,1200}, PlotLegends->Keys[KeyDrop[exampleBiReference,"stableEnvelope"]],*)
+(*Frame->True, FrameLabel->{"Temperature (K)", "Molar Free Energy"}, ImageSize->Large]*)
+(*]*)
