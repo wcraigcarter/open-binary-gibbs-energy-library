@@ -35,10 +35,12 @@ Readers should implement this vocabulary once and apply it consistently wherever
 
 `baseFunction` denotes mathematical dependency only. Its presence or absence must not be interpreted as a statement about phase stability or reference-state semantics.
 
-When a temperature segment supplies both `baseFunction` and `terms`, the segment evaluates as the named base function plus the sum of its basis terms. The `terms` field retains the common basis-term representation described above.
+When a phase's molar Gibbs-energy function is defined relative to a reference function, the enclosing function object includes a `baseFunction` naming that reference. `baseFunction` is specified once at the function level; individual temperature segments contain only segment-specific information and do not repeat the reference-function dependency. The `terms` field retains the common basis-term representation described above.
 
 Standard reference semantics are expressed through explicit metadata. Readers must not infer that a function is the standard reference from the absence of `baseFunction`.
 
 ## Temperature Validity
 
 Temperature validity is explicit. Temperature segments declare the domains in which they are valid, and a value outside those domains is distinct from a function value of zero.
+
+Endpoint inclusion is data, not reader policy. Each temperature segment carries `minimumTemperature`, `minimumInclusive`, `maximumTemperature`, and `maximumInclusive`. Readers must honor these four fields when constructing the segment's validity interval and must not impose a universal half-open interval convention.

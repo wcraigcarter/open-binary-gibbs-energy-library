@@ -104,6 +104,7 @@
     },
     "metastableLiquidReference": {
       "name": "gLiquidReferencePb",
+      "baseFunction": "gReferencePb",
       "sgteIdentifier": "GLIQPB",
       "phase": "LIQUID",
       "thermodynamicRole": "metastable pure-liquid Gibbs-energy reference function",
@@ -121,7 +122,6 @@
           "minimumInclusive": true,
           "maximumInclusive": false,
           "expression": "gReferencePb(T) + 4672.123 - 7.750683*T - 6.019e-19*T^7",
-          "baseFunction": "gReferencePb",
           "terms": [
             { "basis": "constant", "coefficient": 4672.123 },
             { "basis": "temperature", "coefficient": -7.750683 },
@@ -134,7 +134,6 @@
           "minimumInclusive": true,
           "maximumInclusive": true,
           "expression": "gReferencePb(T) + 4853.138 - 8.067136*T - 8.054e25*T^-9",
-          "baseFunction": "gReferencePb",
           "terms": [
             { "basis": "constant", "coefficient": 4853.138 },
             { "basis": "temperature", "coefficient": -8.067136 },
