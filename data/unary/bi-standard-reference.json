@@ -1,0 +1,449 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "canonical-provisional-pending-primary-source-audit",
+  "identity": {
+    "elementName": "bismuth",
+    "elementSymbol": "Bi"
+  },
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {
+      "name": "Rhombohedral A7",
+      "role": "stable reference phase"
+    },
+    "referenceConditions": {
+      "temperature": {
+        "value": 298.15,
+        "unit": "K"
+      },
+      "pressure": {
+        "value": 1,
+        "unit": "bar"
+      }
+    },
+    "energyReference": "H_SER(Bi), the enthalpy of Bi in its Standard Element Reference state"
+  },
+  "units": {
+    "temperature": "K",
+    "molarGibbsEnergy": "J/mol"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Endpoint inclusion is specified explicitly on every segment.",
+    "outsideValidity": "undefined",
+    "coefficientInterpretation": "Each function evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "Mathematical dependency only; baseFunction does not indicate phase stability or reference-state status."
+  },
+  "functions": {
+    "stableReference": {
+      "name": "gReferenceBi",
+      "phase": "Rhombohedral A7",
+      "thermodynamicRole": "stable Standard Element Reference Gibbs-energy function",
+      "quantity": "G(Bi,Rhombohedral-A7,T) - H_SER(Bi)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 544.55,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -7817.776
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 128.418925
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -28.4096529
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 0.012338888,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -8.381598e-6,
+              "exponent": 3
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 544.55,
+          "maximumTemperature": 800.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 30208.022
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -393.650351
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": 51.8556592
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -0.075311163,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 1.3499885e-5,
+              "exponent": 3
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -3616168.0,
+              "exponent": -1
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 1.66145e25,
+              "exponent": -9
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 800.0,
+          "maximumTemperature": 1200.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -11045.664
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 182.548971
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -35.9824
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 0.0074266,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -1.046e-6,
+              "exponent": 3
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 1.66145e25,
+              "exponent": -9
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 1200.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -7581.312
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 124.77144
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -27.196
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 1.66145e25,
+              "exponent": -9
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceFunctionIdentifier": "GHSERBI",
+        "sourceReference": "dinsdale-1991",
+        "auditStatus": "provisional-pending-direct-primary-source-audit",
+        "provisionalBasis": "Transcribed from the existing source-audited Pb-Bi development data and retained here for reader development; the coefficients have not yet been checked directly against the Bi table in Dinsdale (1991)."
+      }
+    },
+    "metastableLiquidReference": {
+      "name": "gLiquidReferenceBi",
+      "phase": "Liquid",
+      "thermodynamicRole": "metastable pure-liquid Gibbs-energy reference function",
+      "quantity": "G(Bi,Liquid,T) - H_SER(Bi)",
+      "construction": "gReferenceBi(T) plus the liquid-minus-Rhombohedral-A7 lattice-stability terms",
+      "baseFunction": "gReferenceBi",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 544.52,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 11245.936
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -20.637366
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -5.9726e-19,
+              "exponent": 7
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 544.52,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 11336.361
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -20.811733
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -1.66491e25,
+              "exponent": -9
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceFunctionIdentifier": "GLIQBI",
+        "sourceReference": "dinsdale-1991",
+        "auditStatus": "provisional-pending-direct-primary-source-audit",
+        "provisionalBasis": "The lattice-stability coefficients were extracted in the Bi unary development discussion from an independent SGTE/Dinsdale-style transcription; final comparison with the primary Dinsdale table is still pending."
+      }
+    },
+    "metastableFccReference": {
+      "name": "gFccReferenceBi",
+      "phase": "FCC-A1",
+      "thermodynamicRole": "metastable FCC-A1 Gibbs-energy reference function",
+      "quantity": "G(Bi,FCC-A1,T) - H_SER(Bi)",
+      "construction": "gReferenceBi(T) plus the FCC-A1-minus-Rhombohedral-A7 lattice-stability terms",
+      "baseFunction": "gReferenceBi",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 9900.0
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -12.5
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourceRelationship": "G(Bi,FCC-A1,T) = GHSERBI(T) + 9900 - 12.5 T",
+        "auditStatus": "provisional-pending-direct-primary-source-audit",
+        "provisionalBasis": "The lattice-stability relationship was extracted in the Bi unary development discussion and is independently consistent with the audited Pb-Bi assessment, but it has not yet been checked directly against the primary Dinsdale table."
+      }
+    },
+    "metastableHcpReference": {
+      "name": "gHcpReferenceBi",
+      "phase": "HCP-A3",
+      "thermodynamicRole": "metastable HCP-A3 Gibbs-energy reference function",
+      "quantity": "G(Bi,HCP-A3,T) - H_SER(Bi)",
+      "construction": "gReferenceBi(T) plus the HCP-A3-minus-Rhombohedral-A7 lattice-stability terms",
+      "baseFunction": "gReferenceBi",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 9900.0
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -11.8
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourceRelationship": "G(Bi,HCP-A3,T) = GHSERBI(T) + 9900 - 11.8 T",
+        "auditStatus": "provisional-pending-direct-primary-source-audit",
+        "provisionalBasis": "The lattice-stability relationship was extracted in the Bi unary development discussion and is independently consistent with the audited Pb-Bi assessment, but it has not yet been checked directly against the primary Dinsdale table."
+      }
+    }
+  },
+  "sourceProvenance": {
+    "sourceFamily": "SGTE unary data",
+    "intendedPrimarySourceIdentifier": "dinsdale-1991",
+    "references": [
+      {
+        "identifier": "dinsdale-1991",
+        "authors": [
+          "A. T. Dinsdale"
+        ],
+        "title": "SGTE data for pure elements",
+        "journal": "CALPHAD",
+        "volume": 15,
+        "year": 1991,
+        "pages": "317-425",
+        "doi": "10.1016/0364-5916(91)90030-N",
+        "useInThisExemplar": "Intended primary authority; direct Bi coefficient audit is pending."
+      },
+      {
+        "identifier": "obgel-pb-bi-development-transcription",
+        "title": "Existing OBGEL Pb-Bi source-audited development data",
+        "useInThisExemplar": "Immediate transcription source for the provisional gReferenceBi coefficients and an independent consistency check for the FCC-A1 and HCP-A3 lattice-stability relationships."
+      }
+    ],
+    "provenanceRule": "Source identifiers are metadata only. Semantic function keys and Mathematica-facing names describe thermodynamic meaning rather than reproducing CALPHAD or SGTE acronyms.",
+    "provisionalUseRestriction": "This canonical library entry remains provisional and is suitable for reader development. It must not be treated as an authoritative unary dataset until every coefficient, breakpoint, and validity limit has been checked directly against the primary Dinsdale source."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "Computed verification values are consequences of the encoded functions and must be reproducible without using the verification metadata as model input.",
+    "overallStatus": "provisional-structurally-verified-pending-primary-source-audit",
+    "phaseTransitions": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "stableReference",
+          "highTemperaturePhase": "metastableLiquidReference"
+        },
+        "sourceValue": {
+          "temperature": 544.5,
+          "unit": "K",
+          "reference": "dinsdale-1991",
+          "auditStatus": "provisional-pending-direct-primary-source-audit",
+          "note": "Approximate source transition value retained separately from the encoded 544.52 K liquid and 544.55 K stable-reference breakpoints; those breakpoints still require direct primary-source audit."
+        },
+        "computedValue": {
+          "temperature": 544.52,
+          "unit": "K",
+          "status": "independently-reproduced",
+          "method": "numerical root of equal Gibbs energies",
+          "condition": "G_stableReference(T) = G_metastableLiquidReference(T)",
+          "reproducibility": "Evaluate the two named functions from their encoded temperature segments and solve the stated equality within their common validity range."
+        }
+      }
+    ],
+    "auditTrail": {
+      "supersededReportedComputedValue": {
+        "temperature": 544.32,
+        "unit": "K",
+        "status": "not-reproducible-from-current-model",
+        "resolution": "The current Mathematica notebook and an independent evaluation of the encoded liquid-minus-reference expressions both give a 544.52 K crossing. The canonical computed value is therefore recorded to two decimal places."
+      }
+    },
+    "structuralChecks": {
+      "jsonSyntax": "passed",
+      "semanticFunctionKeys": "passed",
+      "functionNames": "present for all functions",
+      "baseFunctionPlacement": "function level",
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "explicitEndpointInclusion": "present on every segment",
+      "basisVocabulary": "limited to the common unary reader vocabulary"
+    },
+    "coefficientAudit": {
+      "stableReference": "provisional; direct Dinsdale audit pending",
+      "metastableLiquidReference": "provisional; direct Dinsdale audit pending",
+      "metastableFccReference": "provisional; direct Dinsdale audit pending",
+      "metastableHcpReference": "provisional; direct Dinsdale audit pending"
+    },
+    "numericalChecks": {
+      "stableReferenceContinuity": [
+        {
+          "temperature": 544.55,
+          "adjacentSegmentDifference": -0.0000294123,
+          "unit": "J/mol"
+        },
+        {
+          "temperature": 800.0,
+          "adjacentSegmentDifference": 0.0002688723,
+          "unit": "J/mol"
+        },
+        {
+          "temperature": 1200.0,
+          "adjacentSegmentDifference": 0.0001318356,
+          "unit": "J/mol"
+        }
+      ],
+      "liquidLatticeStabilityContinuity": {
+        "temperature": 544.52,
+        "adjacentSegmentDifference": -0.0000562767,
+        "unit": "J/mol"
+      },
+      "liquidSolidCrossingCheck": {
+        "temperature": 544.52,
+        "liquidMinusStableUsingActiveSegment": 0.0000561468,
+        "unit": "J/mol",
+        "interpretation": "The provisional liquid and stable-reference functions cross at the expected Bi melting region."
+      }
+    },
+    "knownAuditQuestions": [
+      "Confirm all gReferenceBi coefficients and the 544.55 K, 800 K, and 1200 K breakpoints directly from Dinsdale (1991).",
+      "Resolve the 544.52 K liquid lattice-stability breakpoint versus the 544.55 K stable-reference breakpoint from the primary source.",
+      "Confirm the 298.15-3000 K validity limits for all four functions from the primary source.",
+      "Confirm the source identifiers recorded in metadata for the FCC-A1 and HCP-A3 functions."
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "canonical-audited",
+  "identity": {
+    "elementName": "lead",
+    "elementSymbol": "Pb"
+  },
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {
+      "name": "FCC-A1",
+      "role": "stable reference phase"
+    },
+    "referenceConditions": {
+      "temperature": {
+        "value": 298.15,
+        "unit": "K"
+      },
+      "pressure": {
+        "value": 1,
+        "unit": "bar"
+      }
+    },
+    "energyReference": "H_SER(Pb), the enthalpy of Pb in its Standard Element Reference state"
+  },
+  "units": {
+    "temperature": "K",
+    "molarGibbsEnergy": "J/mol"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "lower-inclusive and upper-exclusive, except that the final segment is upper-inclusive",
+    "outsideValidity": "undefined",
+    "coefficientInterpretation": "Each expression evaluates to J/mol when T is supplied in K."
+  },
+  "functions": {
+    "stableReference": {
+      "name": "gReferencePb",
+      "sgteIdentifier": "GHSERPB",
+      "phase": "FCC-A1",
+      "thermodynamicRole": "stable Standard Element Reference Gibbs-energy function",
+      "quantity": "G(Pb,FCC-A1,T) - H_SER(Pb)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 2100.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 600.612,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "expression": "-7650.085 + 101.700244*T - 24.5242231*T*ln(T) - 0.00365895*T^2 - 0.24395e-6*T^3",
+          "terms": [
+            { "basis": "constant", "coefficient": -7650.085 },
+            { "basis": "temperature", "coefficient": 101.700244 },
+            { "basis": "temperatureLogTemperature", "coefficient": -24.5242231 },
+            { "basis": "temperaturePower", "coefficient": -0.00365895, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -2.4395e-7, "exponent": 3 }
+          ]
+        },
+        {
+          "minimumTemperature": 600.612,
+          "maximumTemperature": 1200.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "expression": "-10531.095 + 154.243182*T - 32.4913959*T*ln(T) + 0.00154613*T^2 + 8.054e25*T^-9",
+          "terms": [
+            { "basis": "constant", "coefficient": -10531.095 },
+            { "basis": "temperature", "coefficient": 154.243182 },
+            { "basis": "temperatureLogTemperature", "coefficient": -32.4913959 },
+            { "basis": "temperaturePower", "coefficient": 0.00154613, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 8.054e25, "exponent": -9 }
+          ]
+        },
+        {
+          "minimumTemperature": 1200.0,
+          "maximumTemperature": 2100.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "expression": "4157.616 + 53.139072*T - 18.9640637*T*ln(T) - 0.002882943*T^2 + 0.098144e-6*T^3 - 2696755*T^-1 + 8.054e25*T^-9",
+          "terms": [
+            { "basis": "constant", "coefficient": 4157.616 },
+            { "basis": "temperature", "coefficient": 53.139072 },
+            { "basis": "temperatureLogTemperature", "coefficient": -18.9640637 },
+            { "basis": "temperaturePower", "coefficient": -0.002882943, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 9.8144e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -2696755.0, "exponent": -1 },
+            { "basis": "temperaturePower", "coefficient": 8.054e25, "exponent": -9 }
+          ]
+        }
+      ]
+    },
+    "metastableLiquidReference": {
+      "name": "gLiquidReferencePb",
+      "baseFunction": "gReferencePb",
+      "sgteIdentifier": "GLIQPB",
+      "phase": "LIQUID",
+      "thermodynamicRole": "metastable pure-liquid Gibbs-energy reference function",
+      "quantity": "G(Pb,LIQUID,T) - H_SER(Pb)",
+      "construction": "gReferencePb(T) plus the Dinsdale liquid-minus-FCC-A1 lattice-stability expression",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 2100.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 600.612,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "expression": "gReferencePb(T) + 4672.123 - 7.750683*T - 6.019e-19*T^7",
+          "terms": [
+            { "basis": "constant", "coefficient": 4672.123 },
+            { "basis": "temperature", "coefficient": -7.750683 },
+            { "basis": "temperaturePower", "coefficient": -6.019e-19, "exponent": 7 }
+          ]
+        },
+        {
+          "minimumTemperature": 600.612,
+          "maximumTemperature": 2100.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "expression": "gReferencePb(T) + 4853.138 - 8.067136*T - 8.054e25*T^-9",
+          "terms": [
+            { "basis": "constant", "coefficient": 4853.138 },
+            { "basis": "temperature", "coefficient": -8.067136 },
+            { "basis": "temperaturePower", "coefficient": -8.054e25, "exponent": -9 }
+          ]
+        }
+      ]
+    }
+  },
+  "sourceProvenance": {
+    "primarySource": {
+      "authors": ["A. T. Dinsdale"],
+      "title": "SGTE data for pure elements",
+      "journal": "CALPHAD",
+      "volume": 15,
+      "year": 1991,
+      "pages": "317-425",
+      "leadDataLocation": "page 385"
+    },
+    "sourceFamily": "SGTE unary data",
+    "referenceVersion": "Dinsdale 1991",
+    "provenanceRule": "The numerical functions in this canonical unary entry are tied specifically to Dinsdale (1991); coefficients from later or assessment-specific unary descriptions are not substituted."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "Computed verification values are consequences of the encoded functions and must be reproducible without using the verification metadata as model input.",
+    "overallStatus": "coefficient-audited against Dinsdale (1991)",
+    "phaseTransitions": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "stableReference",
+          "highTemperaturePhase": "metastableLiquidReference"
+        },
+        "sourceValue": {
+          "temperature": 600.612,
+          "unit": "K",
+          "reference": "Dinsdale 1991",
+          "auditStatus": "audited"
+        },
+        "computedValue": {
+          "temperature": 600.612,
+          "unit": "K",
+          "status": "independently-reproduced",
+          "method": "numerical root of equal Gibbs energies",
+          "condition": "G_stableReference(T) = G_metastableLiquidReference(T)",
+          "reproducibility": "Evaluate the two named functions from their encoded temperature segments and solve the stated equality within their common validity range."
+        }
+      }
+    ],
+    "stableReference": {
+      "status": "audited",
+      "result": "Corrected coefficients agree with the Dinsdale 1991 Pb reference function as audited in the referenced conversation."
+    },
+    "metastableLiquidReference": {
+      "status": "audited",
+      "result": "The provisional mixed-source liquid coefficients were replaced by the Dinsdale 1991 liquid-relative-to-FCC-A1 coefficients."
+    },
+    "continuity": {
+      "status": "not recorded as numerically verified in the source audit",
+      "breakpointsToCheck": [600.612, 1200.0],
+      "unit": "K",
+      "note": "The 1200 K breakpoint applies only to gReferencePb; gLiquidReferencePb changes its explicit offset at 600.612 K."
+    },
+    "auditTrail": {
+      "correctionsToPreliminaryStableReference": [
+        {
+          "field": "first breakpoint",
+          "preliminaryValue": 600.64,
+          "auditedValue": 600.612,
+          "unit": "K"
+        },
+        {
+          "field": "600.612-1200 K T^2 coefficient",
+          "preliminaryValue": -0.00154613,
+          "auditedValue": 0.00154613
+        },
+        {
+          "field": "1200-2100 K T^2 coefficient",
+          "preliminaryValue": -0.00289243,
+          "auditedValue": -0.002882943
+        }
+      ],
+      "correctionToPreliminaryLiquidReference": {
+        "issue": "The preliminary expression used later Yoon-Lee-style coefficients rather than the Dinsdale 1991 unary values.",
+        "replacedLowTemperatureExpression": "4672.157 - 7.750257*T - 6.0144e-19*T^7",
+        "replacedHighTemperatureExpression": "4853.112 - 8.066587*T - ...",
+        "resolution": "Both liquid lattice-stability segments were replaced with the Dinsdale 1991 expressions encoded above."
+      }
+    }
+  }
+}

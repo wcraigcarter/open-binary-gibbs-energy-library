@@ -44,3 +44,24 @@ Standard reference semantics are expressed through explicit metadata. Readers mu
 Temperature validity is explicit. Temperature segments declare the domains in which they are valid, and a value outside those domains is distinct from a function value of zero.
 
 Endpoint inclusion is data, not reader policy. Each temperature segment carries `minimumTemperature`, `minimumInclusive`, `maximumTemperature`, and `maximumInclusive`. Readers must honor these four fields when constructing the segment's validity interval and must not impose a universal half-open interval convention.
+
+## Verification Metadata
+
+Verification metadata records derived checks on a thermodynamic model. It is non-model-defining: coefficients, basis terms, dependencies, validity intervals, and other model data must be sufficient to evaluate the model without consulting verification results. Conversely, every computed verification result must be reproducible from the underlying model data.
+
+When a literature or other source value and a value computed from the encoded model are both available, they are recorded separately as `sourceValue` and `computedValue`. This preserves the distinction between what a source reports and what the OBGEL representation produces. Provenance and audit status must be explicit for each value, and only information that has actually been checked may be marked as validated or audited.
+
+Equilibrium transition identity is direction-neutral and describes the stable phases immediately on either side of the transition temperature:
+
+```json
+{
+  "transition": {
+    "lowTemperaturePhase": "stableReference",
+    "highTemperaturePhase": "metastableLiquidReference"
+  }
+}
+```
+
+The phase identifiers are keys from the model's `functions` object. Transition identity does not use `from` and `to`, which imply a heating or cooling direction, and does not rely on a process-dependent label such as `melting`. The structure therefore applies equally to solid-solid and solid-liquid transitions and does not imply a kinetic path.
+
+A computed verification value documents the physical or mathematical condition and a language-independent method, for example `numerical root of equal Gibbs energies`. It must not require a particular programming language, library, or software routine. Implementation-specific details may be retained in a separate audit trail, but they are not the verification method or part of the thermodynamic model.
