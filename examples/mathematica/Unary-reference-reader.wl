@@ -1,5 +1,9 @@
 (* ::Package:: *)
 
+(* ::Input:: *)
+(*NotebookDirectory[]*)
+
+
 (* ::Title:: *)
 (*Open Binary Gibbs Energy Library: Unary Reference Reader*)
 
@@ -65,7 +69,7 @@ Print["OBGEL directory not found: ", obglLibrary]
 
 
 (* ::Subsubsection:: *)
-(*Loading Data*)
+(*Loading Data (Using Pb as an example)*)
 
 
 With[
@@ -140,7 +144,7 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
-(*temperatureSegments = jsonDataUnaryPb["functions"]["stableReference"]["temperatureSegments"];*)
+(*temperatureSegments = jsonDataUnaryPb["functions"]["stableReference"]["temperatureSegments"]*)
 (**)
 (*temperatureSegmentExpression[#][T]&/@temperatureSegments*)
 
@@ -150,6 +154,8 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
+(*lessOrLessThan[boundType_]:= Which[boundType,LessEqual,True,Less]*)
+(**)
 (*temperatureSegmentsToRanges[T_][temperatureSegment_Association]:= *)
 (*Block[{},*)
 (*Inequality[temperatureSegment["minimumTemperature"],lessOrLessThan[temperatureSegment["minimumInclusive"]],T,lessOrLessThan[temperatureSegment["maximumInclusive"]],temperatureSegment["maximumTemperature"]] *)
@@ -200,22 +206,62 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 (*phases,*)
 (*functionsAssociation,*)
 (*referencePhase,referenceFunction,referenceFunctionName,referencePhaseKey, result,T,*)
-(*resultExpressions,resultFunctions*)
+(*resultExpressions,resultFunctions,validTemperatureRanges,minimumValidTemperature,maximumValidTemperature*)
 (*},*)
 (*phases= Keys[functions];*)
-(*fa =functionsAssociation =AssociationMap[molarGibbsReferenceFunction[json],phases];*)
+(*functionsAssociation =AssociationMap[molarGibbsReferenceFunction[json],phases];*)
 (*referencePhase=Select[json["functions"],!KeyExistsQ[#,"baseFunction"]&];*)
 (*referencePhaseKey =Keys[referencePhase][[1]];referenceFunctionName = Values[referencePhase][[1]]["name"];*)
 (*referenceFunction=functionsAssociation[referencePhaseKey];*)
-(*re =resultExpressions =functionsAssociation/.referenceFunctionName->referenceFunction;*)
-(*rf =resultFunctions=Map[Function[{T},#]&,resultExpressions];*)
-(*AssociateTo[resultFunctions, "stableEnvelope"->Function[{T},Evaluate[Min[Values[resultExpressions]]]]]*)
+(*resultExpressions =functionsAssociation/.referenceFunctionName->referenceFunction;*)
+(*resultFunctions=Map[Function[{T},#]&,resultExpressions];*)
+(*validTemperatureRanges = Lookup[json["functions"]//Values, "validity"];*)
+(*minimumValidTemperature = Max[Lookup[validTemperatureRanges,"minimumTemperature"]];*)
+(*maximumValidTemperature = Min[Lookup[validTemperatureRanges,"maximumTemperature"]];*)
+(*<|"Valid Temperature Range"->{minimumValidTemperature,maximumValidTemperature},"functions"->resultFunctions|>*)
 (**)
-(*(*  renove the stableEnvelope key and construct a stableEnvelope function that takes a list of result and creates the function, i.e.,*)
-(*stableEnvelope[json][T], thus the stable envelope and stablePhase[molarGibbsReference[json]][T] live outside the association*)
+(*]*)
 (**)
-(*molarGibbsReference return only the phase-specific unary functions,and that stableEnvelope and stablePhase operate on that returned association.*)
-(**)*)
+
+
+(* ::Input:: *)
+(*Options[stabilityEnvelope]={"Temperature Resolution"->1};*)
+(**)
+(*stabilityEnvelope[molarGibbsReferenceResult_Association, OptionsPattern[]]:=*)
+(*Block[{*)
+(*keys = Keys[molarGibbsReferenceResult["functions"]],*)
+(*functions = Values[molarGibbsReferenceResult["functions"]],*)
+(*temperatureLow =First[molarGibbsReferenceResult["Valid Temperature Range"]],*)
+(*temperatureHigh=Last[molarGibbsReferenceResult["Valid Temperature Range"]],*)
+(*grid , gridCount,functionValuesOnGrid,hullIndices,hullPhases,segments,*)
+(*transitionIntervals,transitionPhases,transitionTemperatures,stablePhaseAtT*)
+(*},*)
+(*gridCount = Round[(temperatureHigh-temperatureLow)/OptionValue["Temperature Resolution"]];*)
+(*grid =Subdivide[temperatureLow + .001 ,temperatureHigh - .001,gridCount];*)
+(*functionValuesOnGrid = Comap[functions,#]&/@grid;*)
+(*hullIndices = First[PositionSmallest[#]]&/@functionValuesOnGrid;*)
+(*hullPhases=Transpose[{grid,hullIndices}];*)
+(*segments = Most[MapThread[{#1,#2}&,{hullPhases,RotateLeft[hullPhases]}]];*)
+(*transitionIntervals =Cases[segments,{{_?NumericQ,p1_?IntegerQ},{_?NumericQ,p2_?IntegerQ}}/;p1!=p2];*)
+(*transitionPhases ={keys[[ Last[First[#]]]],keys[[Last[Last[#]]]]}&/@transitionIntervals;*)
+(*transitionTemperatures=Block[{temperature},*)
+(*With[{tdown =#[[1,1]] , tup =#[[2,1]], pdown =#[[1,2]], pup =#[[2,2]] },*)
+(*temperature/.FindRoot[functions[[pdown]][temperature]== functions[[pup]][temperature],{temperature,Mean[{tdown,tup }], tdown,tup}]*)
+(*]*)
+(*]&/@transitionIntervals;*)
+(*transitionPhases ={keys[[ Last[First[#]]]],keys[[Last[Last[#]]]]}&/@transitionIntervals;*)
+(*stablePhaseAtT=*)
+(*Block[{interpolator,phaseSequence},*)
+(*phaseSequence = Join[{hullPhases[[1]]}, Sequence@@transitionIntervals, {hullPhases[[-1]]}];*)
+(*phaseSequence = phaseSequence/.{t_?NumericQ,pos_?IntegerQ}:> {t,keys[[pos]]};*)
+(*Interpolation[phaseSequence,*)
+(*InterpolationOrder->0]*)
+(*]*)
+(*;*)
+(*<|"Stable Phase at Temperature"->stablePhaseAtT,"Transitions"->*)
+(*MapThread[<|"Transition Temperature"->#1, "Phases"-><|"Low Temperature"->First[#2],"High Temperature"->Last[#2]|>|>&,*)
+(*{transitionTemperatures, transitionPhases}]*)
+(*|>*)
 (*]*)
 (**)
 
@@ -233,16 +279,16 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
-(*examplePbReference["stableReference"]*)
+(*examplePbReference["functions"]["stableReference"]*)
 
 
 (* ::Input:: *)
-(*Plot[examplePbReference["stableReference"][temperature],{temperature,250,2400},*)
+(*Plot[examplePbReference["functions"]["stableReference"][temperature],{temperature,250,2400},*)
 (*Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLabel->"Reference (FCC)"]*)
 
 
 (* ::Input:: *)
-(*Plot[{examplePbReference["stableReference"][temperature],examplePbReference["metastableLiquidReference"][temperature]},{temperature,300,2200}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large]*)
+(*Plot[{examplePbReference["functions"]["stableReference"][temperature],examplePbReference["functions"]["metastableLiquidReference"][temperature]},{temperature,300,2200}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large]*)
 
 
 (* ::Text:: *)
@@ -250,15 +296,23 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
-(*transitionTemperature = temperature/.FindRoot[examplePbReference["stableReference"][temperature]==  examplePbReference["metastableLiquidReference"][temperature], {temperature,300}]*)
+(*transitionTemperature = temperature/.FindRoot[examplePbReference["functions"]["stableReference"][temperature]==  examplePbReference["functions"]["metastableLiquidReference"][temperature], {temperature,300}]*)
 
 
 (* ::Input:: *)
-(*Plot[{examplePbReference["stableReference"][temperature],examplePbReference["metastableLiquidReference"][temperature]},{temperature,transitionTemperature-5,transitionTemperature+5}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large]*)
+(*Plot[{examplePbReference["functions"]["stableReference"][temperature],examplePbReference["functions"]["metastableLiquidReference"][temperature]},{temperature,transitionTemperature-5,transitionTemperature+5}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large]*)
+
+
+(* ::Subsubsection:: *)
+(*extract data for the phase transitions*)
 
 
 (* ::Input:: *)
-(*Plot[examplePbReference["stableEnvelope"][temperature],{temperature,transitionTemperature-2,transitionTemperature+2}, Frame->True,FrameLabel->{"Temperarure (K)","Molar Gibbs Free Energy"}, PlotLegends->{"Reference", "Liquid"},ImageSize->Large, Epilog->{InfiniteLine[{transitionTemperature,0},{0,1}]}]*)
+(*stabilityDataPb =stabilityEnvelope[examplePbReference]*)
+
+
+(* ::Input:: *)
+(*stabilityDataPb["Stable Phase at Temperature"][433]*)
 
 
 (* ::Chapter:: *)
@@ -296,20 +350,20 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
+(*Dataset[exampleBiReference["functions"]]*)
+
+
+(* ::Input:: *)
 (*Keys[exampleBiReference]*)
 
 
 (* ::Input:: *)
-(*tmp =KeyDrop[exampleBiReference,"stableEnvelope"];*)
+(*funcs = Values[exampleBiReference["functions"]]*)
 
 
 (* ::Input:: *)
-(*funcs = Values[KeyDrop[exampleBiReference,"stableEnvelope"]]*)
-
-
-(* ::Input:: *)
-(*With[{funcs =Comap[Values[KeyDrop[exampleBiReference,"stableEnvelope"]], temperature]},*)
-(* Plot[funcs,{temperature,300,1000}, PlotLegends->Keys[KeyDrop[exampleBiReference,"stableEnvelope"]],*)
+(*With[{funcs =Comap[funcs, temperature]},*)
+(* Plot[funcs,{temperature,300,1000}, PlotLegends->Keys[exampleBiReference["functions"]],*)
 (*Frame->True, FrameLabel->{"Temperature (K)", "Molar Free Energy"}, ImageSize->Large]*)
 (*]*)
 (**)
@@ -320,7 +374,7 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
-(*FindRoot[exampleBiReference["stableReference"][T]== exampleBiReference["metastableLiquidReference"][T],{T,500}]*)
+(*FindRoot[exampleBiReference["functions"]["stableReference"][T]== exampleBiReference["functions"]["metastableLiquidReference"][T],{T,500}]*)
 
 
 (* ::Input:: *)
@@ -328,7 +382,19 @@ StringTemplate["Data files not found:\n `1`"][unaryPbJSON]
 
 
 (* ::Input:: *)
-(*With[{funcs =Comap[Values[KeyDrop[exampleBiReference,"stableEnvelope"]], temperature]},*)
-(* Plot[funcs,{temperature,1000,1200}, PlotLegends->Keys[KeyDrop[exampleBiReference,"stableEnvelope"]],*)
+(*With[{funcs =Comap[funcs, temperature]},*)
+(* Plot[funcs,{temperature,1000,1200}, PlotLegends->Keys[exampleBiReference["functions"]],*)
 (*Frame->True, FrameLabel->{"Temperature (K)", "Molar Free Energy"}, ImageSize->Large]*)
 (*]*)
+
+
+(* ::Subsection:: *)
+(*equilibrium properties*)
+
+
+(* ::Input:: *)
+(*Dataset[exampleBiReference]*)
+
+
+(* ::Input:: *)
+(*stabilityEnvelope[exampleBiReference]*)

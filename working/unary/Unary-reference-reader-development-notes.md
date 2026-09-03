@@ -31,7 +31,8 @@ canonical unary JSON
     -> piecewise expressions over explicit validity intervals
     -> base-function dependency resolution
     -> Function[{T}, ...] objects
-    -> phase-function association plus stable envelope
+    -> common valid-temperature range plus phase-function association
+    -> separately computed stability envelope and transition data
 ```
 
 The imported JSON remains source data. The reader constructs derived Wolfram Language expressions and functions without modifying the imported association.
@@ -65,18 +66,38 @@ If future unary data contain chained or multiple dependencies, for example `A ->
 
 This preserves the useful separation already present in the reader and avoids requiring an association to self-reference. The generalization should be implemented only when supported by a concrete dataset and tests.
 
-## Phase functions and stable envelope
+## `molarGibbsReference` result
 
-The result association preserves the individual phase/reference functions, including metastable ones. It also adds `stableEnvelope`, defined as the pointwise minimum of the available unary phase Gibbs-energy expressions.
+`molarGibbsReference` returns an association with two entries:
 
-`stableEnvelope` is intentionally named as an envelope rather than a general equilibrium result. For a pure element it identifies the lowest available phase Gibbs energy at each temperature, but it is not a common-tangent or multiphase-mixture calculation.
+- `"Valid Temperature Range"` is the common range over which all returned phase functions are valid. Its lower bound is the greatest minimum temperature among the JSON functions, and its upper bound is the least maximum temperature.
+- `"functions"` is an association of phase/reference identifiers to unary `G(T)` functions. It preserves the stable-reference, liquid, and other metastable branches rather than discarding functions that do not lie on the stable envelope.
 
-Keeping both the individual functions and the envelope supports:
+Keeping the common range alongside the individual functions supports:
 
 - inspection of metastable phase functions;
 - transition-temperature calculations from function crossings;
 - visual debugging around breakpoints and crossings; and
 - later uses in teaching or nucleation calculations where metastable functions matter.
+
+## `stabilityEnvelope` result
+
+`stabilityEnvelope` operates on the association returned by `molarGibbsReference`. It identifies the minimum-energy phase on a temperature grid over the common valid range, refines each detected phase crossing numerically, and returns an association containing:
+
+- `"Stable Phase at Temperature"`, a callable zero-order interpolation that returns the identifier of the stable phase at a supplied temperature; and
+- `"Transitions"`, a list of transition associations.
+
+Each transition association contains `"Transition Temperature"` and a nested `"Phases"` association. The latter records the phase identifiers under `"Low Temperature"` and `"High Temperature"`.
+
+The envelope is intentionally a pure-element stability result rather than a common-tangent or multiphase-mixture calculation.
+
+## Pb and Bi validation
+
+The same reader and stability-envelope functions operate unchanged on the canonical Pb and Bi unary JSON files.
+
+- Pb reproduces the stable-reference-to-liquid transition at 600.612 K.
+- Bi reproduces the stable-reference-to-liquid transition at 544.52 K.
+- The additional metastable Bi FCC-A1 and HCP-A3 branches remain available in the phase-function association but do not enter the stable envelope.
 
 ## JSON/function separation
 
@@ -86,7 +107,4 @@ This separation should be retained: canonical OBGEL JSON is the thermodynamic da
 
 ## Validation direction
 
-The Pb notebook currently provides a useful visual sequence: inspect the reference function, compare reference and liquid functions, solve for their crossing, and plot the stable envelope near the crossing.
-
-The next strong architectural test is to apply the same reader, without Pb-specific restructuring, to another unary dataset such as Mg. That exercise should reveal whether the present abstractions are general enough before common package code or a more elaborate dependency resolver is introduced.
-
+The notebook now exercises both Pb and Bi through the same reader. The next strong architectural test should use a unary dataset whose dependencies or phase topology differ materially from these two examples. Until such a dataset requires it, the single-root implementation should remain in place and chained or general dependency resolution should remain deferred future work.
