@@ -1,0 +1,410 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "canonical-provisional-pending-primary-source-audit",
+  "identity": {
+    "elementName": "magnesium",
+    "elementSymbol": "Mg"
+  },
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {
+      "name": "HCP-A3",
+      "role": "stable reference phase"
+    },
+    "referenceConditions": {
+      "temperature": {
+        "value": 298.15,
+        "unit": "K"
+      },
+      "pressure": {
+        "value": 1,
+        "unit": "bar"
+      }
+    },
+    "energyReference": "H_SER(Mg), the enthalpy of Mg in its Standard Element Reference state"
+  },
+  "units": {
+    "temperature": "K",
+    "molarGibbsEnergy": "J/mol"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Endpoint inclusion is specified explicitly on every segment.",
+    "outsideValidity": "undefined",
+    "coefficientInterpretation": "Each function evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "Mathematical dependency only; baseFunction does not indicate phase stability or reference-state status."
+  },
+  "functions": {
+    "stableReference": {
+      "name": "gReferenceMg",
+      "phase": "HCP-A3",
+      "thermodynamicRole": "stable Standard Element Reference Gibbs-energy function",
+      "quantity": "G(Mg,HCP-A3,T) - H_SER(Mg)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 923.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -8367.34
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 143.675547
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -26.1849782
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 0.0004858,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -1.393669e-6,
+              "exponent": 3
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 78950.0,
+              "exponent": -1
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 923.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -14130.185
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 204.716215
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -34.3088
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 1.038192e28,
+              "exponent": -9
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceFunctionIdentifier": "GHSERMG",
+        "sourceReference": "dinsdale-1991",
+        "auditStatus": "provisional-pending-direct-primary-source-audit",
+        "provisionalBasis": "Transcribed from the Mg unary development discussion, where the function was attributed to Dinsdale (1991) and SGTE data; a line-by-line comparison with the primary Mg table is not recorded in the repository."
+      }
+    },
+    "metastableLiquidReference": {
+      "name": "gLiquidReferenceMg",
+      "phase": "Liquid",
+      "thermodynamicRole": "metastable pure-liquid Gibbs-energy reference function",
+      "quantity": "G(Mg,Liquid,T) - H_SER(Mg)",
+      "construction": "gReferenceMg(T) plus the liquid-minus-HCP-A3 lattice-stability terms",
+      "baseFunction": "gReferenceMg",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 923.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 8202.243
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -8.83693
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -8.0176e-20,
+              "exponent": 7
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 923.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 8690.316
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -9.392158
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -1.038192e28,
+              "exponent": -9
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceFunctionIdentifier": "GLIQMG",
+        "sourceReference": "dinsdale-1991",
+        "auditStatus": "provisional-secondary-source-corroborated-pending-direct-primary-source-audit",
+        "provisionalBasis": "The lattice-stability coefficients were established in the Mg unary development discussion and corroborated with an SGTE/COST reproduction, but have not yet been checked directly against the primary Dinsdale table in the repository record."
+      }
+    },
+    "metastableFccReference": {
+      "name": "gFccReferenceMg",
+      "phase": "FCC-A1",
+      "thermodynamicRole": "metastable FCC-A1 Gibbs-energy reference function",
+      "quantity": "G(Mg,FCC-A1,T) - H_SER(Mg)",
+      "construction": "gReferenceMg(T) plus the FCC-A1-minus-HCP-A3 lattice-stability terms",
+      "baseFunction": "gReferenceMg",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 2600.0
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -0.9
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourceRelationship": "G(Mg,FCC-A1,T) = GHSERMG(T) + 2600 - 0.9 T",
+        "auditStatus": "provisional-secondary-source-corroborated-pending-direct-primary-source-audit",
+        "provisionalBasis": "The relationship was established in the Mg unary development discussion and attributed to the SGTE/Dinsdale data, but direct comparison with the primary table is not recorded."
+      }
+    },
+    "metastableBccReference": {
+      "name": "gBccReferenceMg",
+      "phase": "BCC-A2",
+      "thermodynamicRole": "metastable BCC-A2 Gibbs-energy reference function",
+      "quantity": "G(Mg,BCC-A2,T) - H_SER(Mg)",
+      "construction": "gReferenceMg(T) plus the BCC-A2-minus-HCP-A3 lattice-stability terms",
+      "baseFunction": "gReferenceMg",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 3100.0
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -2.1
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourceRelationship": "G(Mg,BCC-A2,T) = GHSERMG(T) + 3100 - 2.1 T",
+        "auditStatus": "provisional-secondary-source-corroborated-pending-direct-primary-source-audit",
+        "provisionalBasis": "The relationship was established in the Mg unary development discussion and attributed to the SGTE/Dinsdale data, but direct comparison with the primary table is not recorded."
+      }
+    }
+  },
+  "sourceProvenance": {
+    "sourceFamily": "SGTE unary data",
+    "intendedPrimarySourceIdentifier": "dinsdale-1991",
+    "references": [
+      {
+        "identifier": "dinsdale-1991",
+        "authors": [
+          "A. T. Dinsdale"
+        ],
+        "title": "SGTE data for pure elements",
+        "journal": "CALPHAD",
+        "volume": 15,
+        "year": 1991,
+        "pages": "317-425",
+        "doi": "10.1016/0364-5916(91)90030-N",
+        "useInThisExemplar": "Intended primary authority; direct Mg coefficient and validity audit is pending."
+      },
+      {
+        "identifier": "mg-unary-development-discussion",
+        "title": "Mg unary source-extraction discussion",
+        "useInThisExemplar": "Immediate transcription record for all four functions and their provisional audit status."
+      },
+      {
+        "identifier": "sgte-cost-secondary-reproduction",
+        "title": "SGTE/COST secondary reproduction cited in the Mg unary development discussion",
+        "bibliographicStatus": "exact citation and data location not yet recorded",
+        "useInThisExemplar": "Independent corroboration of the Mg lattice-stability functions; not treated as a substitute for the pending direct Dinsdale audit."
+      }
+    ],
+    "provenanceRule": "Source identifiers are metadata only. Semantic function keys and Mathematica-facing names describe thermodynamic meaning rather than reproducing CALPHAD or SGTE acronyms.",
+    "provisionalUseRestriction": "This canonical library entry remains provisional and is suitable for reader development. It must not be treated as an authoritative unary dataset until every coefficient, breakpoint, endpoint convention, and validity limit has been checked directly against the primary Dinsdale source."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "Computed verification values are consequences of the encoded functions and must be reproducible without using the verification metadata as model input.",
+    "overallStatus": "provisional-structurally-and-numerically-verified-pending-primary-source-audit",
+    "phaseTransitions": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "metastableFccReference",
+          "highTemperaturePhase": "metastableBccReference",
+          "type": "metastable-phase-crossing"
+        },
+        "computedValue": {
+          "temperature": 416.667,
+          "unit": "K",
+          "status": "independently-reproduced",
+          "method": "numerical root of equal Gibbs energies",
+          "condition": "G_metastableFccReference(T) = G_metastableBccReference(T)",
+          "reproducibility": "Evaluate the two named functions from their encoded temperature segments and solve the stated equality within their common validity range.",
+          "note": "This is a metastable phase crossing, not a stable-envelope transition."
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "stableReference",
+          "highTemperaturePhase": "metastableLiquidReference",
+          "type": "stable-envelope-transition"
+        },
+        "sourceValue": {
+          "temperature": 923.0,
+          "unit": "K",
+          "reference": "mg-unary-development-discussion",
+          "auditStatus": "provisional-secondary-source-corroborated-pending-direct-primary-source-audit",
+          "note": "The discussion identifies 923 K as the Mg melting/equality boundary and reports SGTE/COST corroboration; direct verification against the Dinsdale Mg table is pending."
+        },
+        "computedValue": {
+          "temperature": 923.0,
+          "unit": "K",
+          "status": "reproduced-to-encoded-coefficient-precision",
+          "method": "numerical root of equal Gibbs energies",
+          "condition": "G_stableReference(T) = G_metastableLiquidReference(T)",
+          "reproducibility": "Evaluate the two named functions from their encoded temperature segments and solve the stated equality within their common validity range.",
+          "note": "This is a stable-envelope transition. Rounded coefficients yield roots at 922.9999718767 K and 923.0001083905 K rather than one exact continuous crossing; 923.0 K is the physically meaningful value to the precision of the source extraction."
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "stableReference",
+          "highTemperaturePhase": "metastableBccReference",
+          "type": "metastable-phase-crossing"
+        },
+        "computedValue": {
+          "temperature": 1476.19,
+          "unit": "K",
+          "status": "independently-reproduced",
+          "method": "numerical root of equal Gibbs energies",
+          "condition": "G_stableReference(T) = G_metastableBccReference(T)",
+          "reproducibility": "Evaluate the two named functions from their encoded temperature segments and solve the stated equality within their common validity range.",
+          "note": "This is a metastable phase crossing, not a stable-envelope transition; liquid Mg lies below both solid functions at this temperature."
+        }
+      }
+    ],
+    "structuralChecks": {
+      "jsonSyntax": "passed",
+      "semanticFunctionKeys": "passed",
+      "functionNames": "present for all functions",
+      "baseFunctionPlacement": "function level",
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "explicitEndpointInclusion": "present on every segment",
+      "basisVocabulary": "limited to the common unary reader vocabulary"
+    },
+    "coefficientAudit": {
+      "stableReference": "provisional; direct Dinsdale audit pending",
+      "metastableLiquidReference": "provisional and secondary-source corroborated; direct Dinsdale audit pending",
+      "metastableFccReference": "provisional and secondary-source corroborated; direct Dinsdale audit pending",
+      "metastableBccReference": "provisional and secondary-source corroborated; direct Dinsdale audit pending"
+    },
+    "numericalChecks": {
+      "stableReferenceContinuity": {
+        "temperature": 923.0,
+        "adjacentSegmentDifference": -0.0013625489,
+        "unit": "J/mol",
+        "differenceDefinition": "upper segment minus lower-segment extrapolation"
+      },
+      "liquidLatticeStabilityBoundary": {
+        "temperature": 923.0,
+        "lowSegmentExtrapolatedValue": -0.0002582832,
+        "activeHighSegmentValue": 0.0009954525,
+        "adjacentSegmentDifference": 0.0012537357,
+        "unit": "J/mol"
+      },
+      "liquidSolidEqualityRoots": [
+        {
+          "temperature": 922.9999718767,
+          "segment": "low-temperature liquid lattice-stability expression",
+          "unit": "K"
+        },
+        {
+          "temperature": 923.0001083905,
+          "segment": "high-temperature liquid lattice-stability expression",
+          "unit": "K"
+        }
+      ],
+      "interpretation": "The sub-millikelvin root splitting and millijoule-per-mole boundary residuals arise from the precision of the encoded coefficients; they support a 923 K derived transition check but not a claim of exact piecewise continuity."
+    },
+    "knownAuditQuestions": [
+      "Confirm all gReferenceMg coefficients and the 923 K breakpoint directly from Dinsdale (1991).",
+      "Confirm both Mg liquid lattice-stability expressions and their endpoint convention directly from Dinsdale (1991).",
+      "Confirm the FCC-A1 and BCC-A2 lattice-stability coefficients directly from Dinsdale (1991).",
+      "Confirm the 298.15-3000 K validity limits for all four functions from the primary source.",
+      "Record the exact bibliographic identity and data location of the SGTE/COST secondary corroboration."
+    ]
+  }
+}
