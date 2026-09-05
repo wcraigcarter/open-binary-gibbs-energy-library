@@ -9,10 +9,10 @@ IAPWS-95 for fluid water and the IAPWS Ice Ih Gibbs formulation for ordinary
 hexagonal ice.
 
 The small equations produced here are **approximations made by model
-reduction**. They are not replacements for IAPWS. The reviewed reduction has
-been promoted to `data/unary/h2o-pure-substance-unary.json`; generated samples,
-candidate fits, and diagnostics in the development workspace remain audit
-artifacts rather than separate canonical thermodynamic data.
+reduction**. They are not replacements for IAPWS. The reviewed reduced model
+is the canonical OBGEL file `data/unary/h2o-standard-reference.json`; the
+samples and fitting artifacts in the development workspace remain audit
+material rather than independent thermodynamic data.
 
 ## Why this is a unary model
 
@@ -80,10 +80,10 @@ That matters because heat capacity is related to the second derivative:
 C_p=-T\left(\frac{\partial^2G}{\partial T^2}\right)_P.
 \]
 
-Small, slowly varying errors in (G) can hide a poor second derivative. The
+Small, slowly varying errors in \(G\) can hide a poor second derivative. The
 development tool therefore fits the curvature-bearing coefficients against
 IAPWS heat capacity first and then determines the constant and linear terms
-against (G). It reports both
+against \(G\). It reports both
 
 \[
 \Delta G=G_{\mathrm{fit}}-G_{\mathrm{IAPWS}}
@@ -135,7 +135,7 @@ This is why the development data separately record:
 - whether a phase is stable or metastable at 1 atm;
 - whether the source formulation actually supplies a mechanically stable
   branch; and
-- the smaller interval, if any, used for a candidate reduced fit.
+- the smaller interval, if any, used for the reduced fit.
 
 Keeping these ideas separate prevents an intentional teaching or application
 scope from being mistaken for a statement about nature or source validity.
@@ -152,8 +152,48 @@ This is a strong final check on the reduction. Small residuals in each isolated
 branch are not sufficient if they move a crossing unacceptably. The development
 tool therefore compares the melting and boiling temperatures obtained directly
 from the source equations with those obtained from the reduced functions. It
-does not force the reduced curves to cross at preset
-temperatures; any shift is reported as a diagnostic.
+does not force the reduced curves to cross at preset temperatures; any shift is
+reported as a diagnostic.
+
+The completed end-to-end test used the unchanged generic Mathematica unary
+reader over the intentional 250–500 K scope at 1 atm. With the phase keys
+`iceIh`, `liquid`, and `vapor`, it recovered:
+
+| Pair of phases | Reader result | Thermodynamic meaning |
+|---|---:|---|
+| Ice Ih and liquid | 273.156 K | stable-envelope melting transition |
+| liquid and vapor | 373.122 K | stable-envelope boiling transition |
+| Ice Ih and vapor | 350.882 K | metastable pairwise crossing, not an equilibrium transition |
+
+The first two are places where the identity of the lowest-Gibbs-energy phase
+changes. They reproduce the familiar IAPWS reference transitions used in
+constructing and checking the reduced model, so this agreement validates the
+reduction and its implementation; it is not an independent prediction of the
+melting and boiling temperatures.
+
+The third result is the especially useful teaching example. At 350.882 K the
+encoded branches satisfy
+
+\[
+G_{\mathrm{iceIh}}=G_{\mathrm{vapor}},
+\]
+
+but they do not define equilibrium because
+
+\[
+G_{\mathrm{liquid}}<G_{\mathrm{iceIh}}=G_{\mathrm{vapor}}.
+\]
+
+Thus equality of two candidate Gibbs energies is necessary for a transition
+between those phases, but it is not sufficient when a third phase lies below
+both. The Ice Ih and vapor branches at this temperature are comparison-only
+tangent extensions, so the crossing is `extension-derived`: it is a property
+of the reduced model, not a physical metastable Ice Ih–vapor boundary.
+
+The fact that this worked with no reader changes is also conceptually
+important. Names such as `iceIh`, `liquid`, and `vapor` identify phases; they do
+not encode whether a phase is stable. The lower-envelope calculation supplies
+that thermodynamic classification.
 
 ## Sources and further reading
 

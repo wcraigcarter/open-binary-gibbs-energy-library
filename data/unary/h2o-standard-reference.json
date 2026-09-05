@@ -423,14 +423,14 @@
         "selectionNote": "Restricted to the supported stable vapor branch; compact fits spanning the near-spinodal metastable branch failed strongly and were rejected."
       }
     ],
-    "transitionConstraintPolicy": "Neither the source phase boundaries nor any rounded transition temperatures were imposed as fitting or stitching constraints. The encoded crossings are predictions of the independently reduced branches plus, where identified, explicit tangent extensions.",
+    "transitionConstraintPolicy": "Neither the source phase boundaries nor any rounded transition temperatures were imposed as fitting or stitching constraints. The encoded crossings are derived outcomes of the independently reduced branches plus, where identified, explicit tangent extensions. Because the reduced model was constructed from the IAPWS formulations and assessed against their melting and boiling boundaries, recovery of those two reference transitions is an implementation/reduction check, not an independent physical prediction.",
     "metastableExtensionRule": "Within systemValidity, Ice Ih above 273.1525192653757 K and vapor below 373.12429584768444 K use first-order endpoint tangents preserving G and dG/dT at the attachment temperature. These segments support comparison only and do not enlarge function-level validity.",
     "canonicalOutsideSystemExtrapolation": "None. OBGEL supplies no implicit model beyond 250-500 K."
   },
   "verification": {
     "dataRole": "derived-non-model-defining",
     "reproducibilityRule": "Computed values are consequences of the encoded functions and must be reproducible without using verification metadata as model input.",
-    "overallStatus": "reduced-fit-diagnostics-reviewed-and-encoded-representation-independently-verified",
+    "overallStatus": "reduced-fit-diagnostics-reviewed-and-unchanged-generic-mathematica-reader-verified",
     "implementationAdapterChecks": {
       "status": "passed against published IAPWS verification tables",
       "maximumReportedAbsoluteError": 4.7959378690620724e-9,
@@ -509,7 +509,7 @@
           "condition": "G_iceIh(T) = G_liquid(T)",
           "sourceBoundaryShift": 0.003329207055628558,
           "sourceBoundaryShiftUnit": "K",
-          "note": "The crossing lies just above the adopted Ice Ih model-validity endpoint and therefore uses the explicit Ice Ih tangent extension. It was not imposed."
+          "note": "The crossing lies just above the adopted Ice Ih model-validity endpoint and therefore uses the explicit Ice Ih tangent extension. It was not imposed, but its agreement with the IAPWS construction-source boundary is an implementation/reduction check rather than an independent physical prediction."
         }
       },
       {
@@ -526,7 +526,7 @@
           "condition": "G_liquid(T) = G_vapor(T)",
           "sourceBoundaryShift": -0.0018449308186632152,
           "sourceBoundaryShiftUnit": "K",
-          "note": "The crossing lies just below the adopted vapor model-validity endpoint and therefore uses the explicit vapor tangent extension. It was not imposed."
+          "note": "The crossing lies just below the adopted vapor model-validity endpoint and therefore uses the explicit vapor tangent extension. It was not imposed, but its agreement with the IAPWS construction-source boundary is an implementation/reduction check rather than an independent physical prediction."
         }
       },
       {
@@ -545,6 +545,50 @@
         }
       }
     ],
+    "readerValidation": {
+      "status": "passed-without-reader-modification",
+      "reader": "generic Mathematica unary reader",
+      "systemScope": {
+        "minimumTemperature": 250.0,
+        "maximumTemperature": 500.0,
+        "unit": "K",
+        "basis": "intentionalDatasetScope",
+        "pressure": 101325,
+        "pressureUnit": "Pa"
+      },
+      "phaseKeysEvaluated": [
+        "iceIh",
+        "liquid",
+        "vapor"
+      ],
+      "reportedResults": [
+        {
+          "phasePair": ["iceIh", "liquid"],
+          "temperature": 273.156,
+          "unit": "K",
+          "type": "stable-envelope-transition",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Rounded reader reproduction of the encoded crossing and a reduction check against the IAPWS construction-source melting boundary; not an independent physical prediction."
+        },
+        {
+          "phasePair": ["liquid", "vapor"],
+          "temperature": 373.122,
+          "unit": "K",
+          "type": "stable-envelope-transition",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Rounded reader reproduction of the encoded crossing and a reduction check against the IAPWS construction-source boiling boundary; not an independent physical prediction."
+        },
+        {
+          "phasePair": ["iceIh", "vapor"],
+          "temperature": 350.882,
+          "unit": "K",
+          "type": "metastable-phase-crossing",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Pairwise equality of the two comparison-only tangent extensions. Liquid has lower Gibbs energy, so this is not an equilibrium transition or an IAPWS metastable phase boundary."
+        }
+      ],
+      "conclusion": "The no-change result validates phase-identity function keys and determination of stability from the lower Gibbs-energy envelope."
+    },
     "readerStructure": {
       "semanticFunctionKeys": [
         "iceIh",

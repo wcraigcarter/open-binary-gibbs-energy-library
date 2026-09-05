@@ -2,7 +2,7 @@
   "schemaVersion": "0.1-development",
   "artifactType": "unarySourceModelScaffold",
   "status": "source-planning-record-superseded-by-canonical-reduced-model",
-  "canonicalDataStatus": "non-executable planning artifact; canonical executable model is data/unary/h2o-pure-substance-unary.json",
+  "canonicalDataStatus": "non-executable planning artifact; canonical executable model is data/unary/h2o-standard-reference.json",
   "identity": {
     "substanceName": "water",
     "chemicalFormula": "H2O",
@@ -90,6 +90,6 @@
       "define phase-level model-validity intervals and any explicit metastable extensions",
       "audit continuity, derivatives, phase crossings, units, and reference-state alignment"
     ],
-    "interpretation": "This scaffold remains a non-executable record of the original source and modeling plan. The completed derivation, audit qualifications, coefficients, and verification metadata are recorded in data/unary/h2o-pure-substance-unary.json and sources/unary/H2O_Pure_Substance_Unary.md; this scaffold itself must not be treated as canonical executable data."
+    "interpretation": "This scaffold remains a non-executable record of the original source and modeling plan. The completed derivation, audit qualifications, coefficients, and verification metadata are recorded in data/unary/h2o-standard-reference.json and sources/unary/H2O_Pure_Substance_Unary.md; this scaffold itself must not be treated as canonical executable data."
   }
 }

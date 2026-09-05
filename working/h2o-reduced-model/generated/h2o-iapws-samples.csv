@@ -1,0 +1,532 @@
+phase,temperature_K,pressure_Pa,density_kg_m3,gibbs_J_mol,cp_J_mol_K,region_status,source_model,note
+iceIh,250.0,101325.0,919.9963944337112,-544.4642780409886,34.71235420368495,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,251.0,101325.0,919.8600287106233,-519.3334675649878,34.84383043108535,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,252.0,101325.0,919.7231838311009,-494.34147717346735,34.97537770667898,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,253.0,101325.0,919.585862754966,-469.4882780054025,35.1069950195372,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,254.0,101325.0,919.4480684200482,-444.77384170475824,35.23868137092968,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,255.0,101325.0,919.3098037422894,-420.198140410588,35.37043577435382,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,256.0,101325.0,919.1710716158533,-395.76114674734504,35.50225725555177,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,257.0,101325.0,919.031874913238,-371.4628338153903,35.634144852515895,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,258.0,101325.0,918.8922164853922,-347.30317518168397,35.76609761548332,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,259.0,101325.0,918.7520991618333,-323.2821448706886,35.89811460692026,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,260.0,101325.0,918.6115257507696,-299.39971735544447,36.030194901496955,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,261.0,101325.0,918.4704990392247,-275.6558675488379,36.1623375860535,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,262.0,101325.0,918.3290217931634,-252.0505707950433,36.29454175955765,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,263.0,101325.0,918.1870967576212,-228.58380286114772,36.42680653305477,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,264.0,101325.0,918.0447266568351,-205.25553992894476,36.55913102961058,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,265.0,101325.0,917.9019141943761,-182.06575858690627,36.69151438424737,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,266.0,101325.0,917.7586620532849,-159.01443582230175,36.82395574387397,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,267.0,101325.0,917.6149728962068,-136.1015490135087,36.95645426721,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,268.0,101325.0,917.4708493655305,-113.32707592245517,37.0890091247049,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,269.0,101325.0,917.3262940835268,-90.69099468723734,37.22161949845207,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,270.0,101325.0,917.1813096524884,-68.19328381487753,37.35428458209856,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,271.0,101325.0,917.0358986548723,-45.833922174249004,37.48700358075064,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,272.0,101325.0,916.8900636534414,-23.61288898912366,37.61977571087565,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,273.0,101325.0,916.7438071914073,-1.5301638313898014,37.75260020020047,stable,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+iceIh,273.1525192653757,101325.0,916.7214633802105,1.8257224696089476,37.772863047476804,phase-boundary,IAPWS R10-06(2009),Ice Ih Gibbs formulation evaluated directly at fixed pressure.
+liquid,250.0,101325.0,991.2418382713945,-75.8635248579788,80.70554480374275,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,251.0,101325.0,992.0407136453512,-69.15035079881473,80.19828124972119,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,252.0,101325.0,992.7825867487905,-62.75671253809902,79.74716597900597,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,253.0,101325.0,993.4714132444614,-56.679549398360095,79.34497886934008,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,254.0,101325.0,994.1107673530578,-50.91601862415878,78.98546355164767,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,255.0,101325.0,994.7038801606099,-45.463468139678355,78.6632162721968,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,256.0,101325.0,995.2536753624194,-40.31941307608136,78.37357885095297,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,257.0,101325.0,995.7628020327688,-35.48151558233347,78.1125396082787,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,258.0,101325.0,996.2336642887512,-30.947567470750183,77.87664410193987,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,259.0,101325.0,996.6684479004717,-26.715475287898744,77.66291619364958,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,260.0,101325.0,997.0691440085485,-22.783247476801133,77.46878916492088,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,261.0,101325.0,997.4375701699827,-19.148983305246254,77.2920461636007,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,262.0,101325.0,997.7753889791456,-15.810863312953332,77.13076905812429,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,263.0,101325.0,998.0841245135672,-12.767141045520363,76.98329471671644,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,264.0,101325.0,998.3651768458029,-10.016135883227426,76.84817775285389,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,265.0,101325.0,998.6198348459075,-7.556226809582791,76.7241588468399,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,266.0,101325.0,998.8492874789297,-5.3858469747380795,76.6101378434339,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,267.0,101325.0,999.0546337820477,-3.503478941706843,76.5051509191189,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,268.0,101325.0,999.2368916839503,-1.9076505141832172,76.40835120687275,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,269.0,101325.0,999.3970058111445,-0.5969310638591965,76.31899235042187,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,270.0,101325.0,999.5358544074343,0.4300717089371517,76.23641453793068,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,271.0,101325.0,999.654255477182,1.1747146526426107,76.16003263200633,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,272.0,101325.0,999.7529722486319,1.6383217169640563,76.08932607173554,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,273.0,101325.0,999.8327180414295,1.8221862321711453,76.02383027248926,metastable-source-formulation-derived,IAPWS R6-95(2018),Subcooled liquid; IAPWS-95 calls this an extrapolation and notes a separate supercooled-water guideline gives a better representation.
+liquid,273.1525192653757,101325.0,999.8432561236771,1.8257224697997612,76.01427205387795,phase-boundary,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,274.0,101325.0,999.8941606110159,1.727572952307513,75.96312929246633,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,275.0,101325.0,999.937926033804,1.3557198848890173,75.9068495704807,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,276.0,101325.0,999.9646021878771,0.707839944476076,75.85465457109294,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,277.0,101325.0,999.974741877723,-0.2148775532402791,75.80624019789478,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,278.0,101325.0,999.9688656443835,-1.4112655380933643,75.76133085897581,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,279.0,101325.0,999.9474642978795,-2.8801779514820884,75.7196760852243,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,280.0,101325.0,999.9110012033934,-4.620488624024686,75.68104761892809,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,281.0,101325.0,999.8599143492432,-6.631090244891313,75.64523690226903,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,282.0,101325.0,999.7946182207994,-8.91089341652885,75.61205290618638,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,283.0,101325.0,999.7155055017192,-11.458825788385306,75.58132024990334,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,284.0,101325.0,999.6229486211058,-14.273831255142095,75.55287756805087,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,285.0,101325.0,999.5173011631385,-17.354869215085348,75.52657608989989,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,286.0,101325.0,999.398899153433,-20.70091388594962,75.50227839971467,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,287.0,101325.0,999.2680622350248,-24.310953670265196,75.47985735262903,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,288.0,101325.0,999.1250947451897,-28.18399055906664,75.45919512379778,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,289.0,101325.0,998.9702867028899,-32.31903958587119,75.44018237221137,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,290.0,101325.0,998.8039147159279,-36.71512830937313,75.422717503043,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,291.0,101325.0,998.6262428153634,-41.37129633493035,75.40670601511215,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,292.0,101325.0,998.4375232242327,-46.286594865863655,75.39205992169992,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,293.0,101325.0,998.2379970668813,-51.4600862808858,75.3786972349079,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,294.0,101325.0,998.0278950241559,-56.89084374170167,75.36654150496544,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,295.0,101325.0,997.8074379396512,-62.577950821528454,75.35552140745519,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,296.0,101325.0,997.5768373812156,-68.52050115812922,75.34557037192528,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,297.0,101325.0,997.3362961618063,-74.7175981262462,75.33662624691796,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,298.0,101325.0,997.0860088231034,-81.16835452966859,75.32863099655488,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,299.0,101325.0,996.826162085212,-87.87189231300252,75.32153042496623,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,300.0,101325.0,996.5569352652028,-94.8273422866445,75.31527392504363,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,301.0,101325.0,996.2785006671259,-102.0338438702357,75.30981424868092,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,302.0,101325.0,995.9910239458402,-109.49054485042392,75.30510729605997,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,303.0,101325.0,995.6946644467572,-117.19660115001535,75.30111192162661,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,304.0,101325.0,995.3895755233773,-125.15117661431444,75.29778975515681,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,305.0,101325.0,995.0759048344529,-133.3534428030828,75.2951050360372,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,306.0,101325.0,994.7537946222548,-141.8025788003479,75.29302445955307,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,307.0,101325.0,994.4233819733954,-150.49777102988787,75.29151703384413,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,308.0,101325.0,994.0847990635435,-159.43821308481034,75.29055394657719,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,309.0,101325.0,993.7381733872465,-168.62310556063048,75.29010844024806,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,310.0,101325.0,993.3836279738655,-178.05165590376635,75.29015569554143,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,311.0,101325.0,993.0212815906583,-187.7230782638219,75.29067272182937,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,312.0,101325.0,992.6512489339644,-197.63659335551836,75.29163825427348,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,313.0,101325.0,992.273640809275,-207.7914283259178,75.29303265704051,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,314.0,101325.0,991.8885643009327,-218.18681663231152,75.2948378320581,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,315.0,101325.0,991.4961229322652,-228.82199792230315,75.29703713290908,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,316.0,101325.0,991.0964168166822,-239.6962179234626,75.29961528354049,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,317.0,101325.0,990.6895428003879,-250.8087283354229,75.30255830137517,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,318.0,101325.0,990.2755945973192,-262.15878673116913,75.30585342460076,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,319.0,101325.0,989.8546629166741,-273.74565646087564,75.30948904326247,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,320.0,101325.0,989.4268355836331,-285.5686065598622,75.31345463403775,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,321.0,101325.0,988.9921976536355,-297.6269116646943,75.31774069839757,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,322.0,101325.0,988.550831520655,-309.9198519286889,75.32233870392608,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,323.0,101325.0,988.1028170197908,-322.446712946641,75.32724102873675,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,324.0,101325.0,987.6482315245812,-335.20678567824586,75.33244090867414,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,325.0,101325.0,987.1871500393271,-348.19936637917675,75.33793238725227,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,326.0,101325.0,986.7196452867088,-361.4237565330744,75.34371026813596,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,327.0,101325.0,986.2457877910308,-374.87926278775234,75.34977007006094,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,328.0,101325.0,985.7656459572689,-388.56519689444895,75.35610798404281,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,329.0,101325.0,985.2792861462689,-402.48087564843445,75.36272083279239,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,330.0,101325.0,984.7867727461858,-416.6256208344946,75.36960603223393,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,331.0,101325.0,984.2881682404851,-430.99875917318167,75.37676155495697,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,332.0,101325.0,983.7835332726762,-445.5996222700438,75.38418589563004,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,333.0,101325.0,983.2729267079086,-460.4275465669438,75.39187803816648,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,334.0,101325.0,982.7564056916534,-475.48187329527116,75.39983742465044,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,335.0,101325.0,982.2340257056107,-490.76194843184965,75.40806392588142,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,336.0,101325.0,981.7058406210266,-506.2671226549893,75.41655781350696,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,337.0,101325.0,981.171902749464,-521.9967513042544,75.4253197336351,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,338.0,101325.0,980.6322628912932,-537.9501943407228,75.4343506819094,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,339.0,101325.0,980.0869703819083,-554.1268163083525,75.44365197991358,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,340.0,101325.0,979.5360731358596,-570.525986297734,75.45322525290076,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,341.0,101325.0,978.9796176889546,-587.1470779111106,75.46307240877532,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,342.0,101325.0,978.4176492384933,-603.9894692272537,75.47319561825498,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,343.0,101325.0,977.8502116816807,-621.0525427697626,75.48359729617238,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,344.0,101325.0,977.2773476523129,-638.335685474062,75.49428008385179,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,345.0,101325.0,976.6990985558466,-655.838288657587,75.50524683254936,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,346.0,101325.0,976.1155046029404,-673.5597479891098,75.51650058785357,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,347.0,101325.0,975.526604841467,-691.4994634607957,75.52804457504625,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,348.0,101325.0,974.9324371871791,-709.6568393587095,75.53988218536037,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,349.0,101325.0,974.333038452995,-728.0312842371786,75.55201696308924,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,350.0,101325.0,973.7284443770476,-746.6222108907394,75.56445259353391,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,351.0,101325.0,973.1186896494861,-765.429036329395,75.57719289171123,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,352.0,101325.0,972.5038079381412,-784.4511817531046,75.5902417918112,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,353.0,101325.0,971.883831913077,-803.6880725270854,75.60360333738873,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,354.0,101325.0,971.2587932701022,-823.1391381577673,75.6172816721813,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,355.0,101325.0,970.6287227532397,-842.8038122700174,75.63128103162313,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,356.0,101325.0,969.9936501762843,-862.6815325838883,75.64560573494323,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,357.0,101325.0,969.3536044433927,-882.771740891925,75.66026017785086,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,358.0,101325.0,968.708613568837,-903.0738830374411,75.67524882577763,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,359.0,101325.0,968.058704695866,-923.5874088936376,75.6905762076529,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,360.0,101325.0,967.4039041148195,-944.3117723418667,75.70624691017707,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,361.0,101325.0,966.7442372804177,-965.2464312509372,75.72226557257214,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,362.0,101325.0,966.0797288283516,-986.3908474572763,75.7386368817853,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,363.0,101325.0,965.4104025911308,-1007.7444867449141,75.7553655681423,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,364.0,101325.0,964.7362816132825,-1029.3068188252369,75.77245640136731,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,365.0,101325.0,964.0573881658722,-1051.0773173187335,75.78991418704629,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,366.0,101325.0,963.3737437604138,-1073.0554597352675,75.80774376342298,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,367.0,101325.0,962.6853691621659,-1095.2407274558445,75.8259499985527,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,368.0,101325.0,961.9922844028582,-1117.6326057140836,75.84453778780687,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,369.0,101325.0,961.2945087928653,-1140.2305835775946,75.86351205166667,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,370.0,101325.0,960.5920609328138,-1163.0341539315284,75.88287773384634,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,371.0,101325.0,959.8849587247254,-1186.0428134592403,75.90263979967065,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,372.0,101325.0,959.1732193826106,-1209.2560626261763,75.92280323474958,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,373.0,101325.0,958.4568594426139,-1232.67340566262,75.94337304389228,stable,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,373.12429584768444,101325.0,958.3674968154636,-1235.5983203617586,75.94595842852546,phase-boundary,IAPWS R6-95(2018),IAPWS-95 liquid root at fixed pressure.
+liquid,374.0,101325.0,957.7358947726925,-1256.294350546293,75.96435425027178,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,375.0,101325.0,957.0103405818363,-1280.118408986158,75.98575189482027,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,376.0,101325.0,956.2802114288675,-1304.145096405873,76.00757103583118,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,377.0,101325.0,955.5455212308144,-1328.3739319278347,76.0298167487942,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,378.0,101325.0,954.8062832708973,-1352.8044383568974,76.0524941263949,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,379.0,101325.0,954.0625102061047,-1377.4361421646358,76.07560827873714,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,380.0,101325.0,953.3142140744029,-1402.2685734739568,76.09916433370094,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,381.0,101325.0,952.5614063015719,-1427.3012660436705,76.12316743750976,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,382.0,101325.0,951.8040977076897,-1452.5337572536673,76.14762275543578,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,383.0,101325.0,951.0422985132739,-1477.965588089582,76.17253547265565,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,384.0,101325.0,950.2760183450763,-1503.5963031281747,76.19791079526055,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,385.0,101325.0,949.505266241566,-1529.4254505228994,76.2237539514021,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,386.0,101325.0,948.730050658072,-1555.4525819898947,76.25007019256253,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,387.0,101325.0,947.9503794716475,-1581.677252793353,76.27686479495956,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,388.0,101325.0,947.1662599855964,-1608.099021732083,76.30414306106425,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,389.0,101325.0,946.3776989337342,-1634.71745112559,76.33191032123482,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,390.0,101325.0,945.5847024843409,-1661.532106800817,76.36017193546103,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,391.0,101325.0,944.7872762438457,-1688.542558078754,76.38893329521167,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,392.0,101325.0,943.985425260221,-1715.748377761652,76.41819982538436,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,393.0,101325.0,943.1791540261219,-1743.149142119762,76.44797698634903,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,394.0,101325.0,942.3684664817472,-1770.7444308792824,76.47827027609033,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,395.0,101325.0,941.5533660174451,-1798.5338272097856,76.50908523243358,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,396.0,101325.0,940.7338554760638,-1826.5169177117791,76.5404274353627,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,397.0,101325.0,939.9099371550476,-1854.693292405381,76.57230250942281,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,398.0,101325.0,939.0816128082838,-1883.0625447184325,76.60471612620157,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,399.0,101325.0,938.2488836477086,-1911.6242714746118,76.63767400689618,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,400.0,101325.0,937.4117503446661,-1940.3780728829379,76.67118192495292,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,401.0,101325.0,936.5702130310316,-1969.323552526303,76.70524570878976,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,402.0,101325.0,935.724271300092,-1998.4603173511116,76.73987124459526,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,403.0,101325.0,934.8739242072063,-2027.7879776565942,76.77506447919721,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,404.0,101325.0,934.0191702702161,-2057.3061470846856,76.81083142300993,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,405.0,101325.0,933.1600074696316,-2087.0144426099723,76.8471781530571,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,406.0,101325.0,932.2964332485933,-2116.9124845303622,76.88411081606434,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,407.0,101325.0,931.4284445126,-2146.9998964571814,76.92163563162816,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,408.0,101325.0,930.5560376290068,-2177.2763053063513,76.95975889546064,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,409.0,101325.0,929.6792084262993,-2207.741341289539,76.99848698270492,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,410.0,101325.0,928.7979521931414,-2238.394637905218,77.03782635133082,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,411.0,101325.0,927.9122636771918,-2269.2358319309656,77.07778354560085,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,412.0,101325.0,927.0221370836946,-2300.2645634148876,77.11836519962148,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,413.0,101325.0,926.1275660738488,-2331.480475668141,77.15957804096648,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,414.0,101325.0,925.2285437629365,-2362.883215257622,77.20142889438311,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,415.0,101325.0,924.3250627182291,-2394.4724319984853,77.24392468558042,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,416.0,101325.0,923.417114956663,-2426.247778948164,77.28707244510429,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,417.0,101325.0,922.5046919422792,-2458.2089123986566,77.33087931229161,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,418.0,101325.0,921.5877845834298,-2490.355491871472,77.37535253932289,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,419.0,101325.0,920.6663832297462,-2522.687180111396,77.42049949536326,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,420.0,101325.0,919.7404776688721,-2555.2036430808216,77.46632767078478,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,421.0,101325.0,918.8100571229473,-2587.9045499547897,77.51284468151509,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,422.0,101325.0,917.8751102448567,-2620.789573116388,77.56005827345142,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,423.0,101325.0,916.9356251142202,-2653.8583881518543,77.60797632701087,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,424.0,101325.0,915.9915892331449,-2687.110673846907,77.65660686176662,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,425.0,101325.0,915.0429895217068,-2720.546112182561,77.7059580412071,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,426.0,101325.0,914.0898123131808,-2754.1643883323277,77.75603817760869,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,427.0,101325.0,913.1320433490125,-2787.96519065886,77.80685573702954,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,428.0,101325.0,912.1696677735059,-2821.9482107115664,77.85841934443033,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,429.0,101325.0,911.2026701282549,-2856.1131432241564,77.9107377889217,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,430.0,101325.0,910.2310343462836,-2890.459686113254,77.96382002915288,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,431.0,101325.0,909.2547437459085,-2924.9875404767627,78.01767519884146,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,432.0,101325.0,908.2737810243038,-2959.6964105929196,78.07231261244647,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,433.0,101325.0,907.2881282507769,-2994.5860039199997,78.12774177099845,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,434.0,101325.0,906.2977668597331,-3029.656031095818,78.18397236809545,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,435.0,101325.0,905.3026776433366,-3064.9062059384614,78.2410142960545,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,436.0,101325.0,904.3028407438424,-3100.3362454469893,78.29887765224801,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,437.0,101325.0,903.298235645612,-3135.9458698025483,78.35757274561973,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,438.0,101325.0,902.2888411667877,-3171.73480237046,78.41711010338892,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,439.0,101325.0,901.2746354506219,-3207.70276970207,78.47750047795364,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,440.0,101325.0,900.2555959564618,-3243.8495015376225,78.5387548540072,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,441.0,101325.0,899.2316994503551,-3280.1747308096706,78.60088445586469,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,442.0,101325.0,898.2029219952968,-3316.6781936464367,78.66390075501694,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,443.0,101325.0,897.1692389410903,-3353.3596293765045,78.72781547792702,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,444.0,101325.0,896.130624913799,-3390.218780533056,78.792640614069,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,445.0,101325.0,895.0870538048022,-3427.255392859998,78.85838842422689,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,446.0,101325.0,894.0384987594325,-3464.469215317085,78.92507144906601,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,447.0,101325.0,892.9849321651684,-3501.860000086877,78.99270251798707,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,448.0,101325.0,891.9263256393905,-3539.42750258179,79.06129475827183,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,449.0,101325.0,890.8626500166678,-3577.171481451534,79.13086160454904,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,450.0,101325.0,889.7938753355675,-3615.0916985916406,79.20141680857444,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,451.0,101325.0,888.719970824979,-3653.1879191521684,79.27297444935846,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,452.0,101325.0,887.64090488992,-3691.459911547577,79.34554894363997,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,453.0,101325.0,886.5566450968157,-3729.9074474666163,79.41915505674656,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,454.0,101325.0,885.4671581582307,-3768.530301883502,79.49380791383115,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,455.0,101325.0,884.3724099170453,-3807.328253069341,79.56952301152485,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,456.0,101325.0,883.2723653300313,-3846.301082604516,79.64631623001824,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,457.0,101325.0,882.1669884508265,-3885.4485753919967,79.72420384558535,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,458.0,101325.0,881.0562424122868,-3924.770519670515,79.80320254358743,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,459.0,101325.0,879.940089408168,-3964.2667070299426,79.88332943196356,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,460.0,101325.0,878.8184906741483,-4003.9369324259474,79.96460205524224,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,461.0,101325.0,877.6914064681307,-4043.780994196604,80.04703840909079,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,462.0,101325.0,876.5587960498247,-4083.7986940793626,80.13065695544454,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,463.0,101325.0,875.4206176595596,-4123.989837228919,80.21547663822692,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,464.0,101325.0,874.2768284963198,-4164.354232235824,80.30151689969406,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,465.0,101325.0,873.1273846949366,-4204.891691146408,80.38879769745746,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,466.0,101325.0,871.9722413024508,-4245.602029483316,80.47733952217357,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,467.0,101325.0,870.8113522535656,-4286.485066267092,80.56716341598575,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,468.0,101325.0,869.6446703451801,-4327.540624038691,80.65829099171751,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,469.0,101325.0,868.4721472099562,-4368.768528883356,80.75074445287844,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,470.0,101325.0,867.2937332888779,-4410.168610454917,80.84454661451312,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,471.0,101325.0,866.1093778027607,-4451.740702001938,80.93972092494836,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,472.0,101325.0,864.9190287226635,-4493.484640394224,81.03629148846885,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,473.0,101325.0,863.722632739169,-4535.40026615138,81.13428308899174,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,474.0,101325.0,862.520135230458,-4577.487423471536,81.23372121477323,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,475.0,101325.0,861.3114802291409,-4619.745960262077,81.33463208422377,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,476.0,101325.0,860.0966103877885,-4662.175728171472,81.43704267286451,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,477.0,101325.0,858.8754669431124,-4704.776582622367,81.54098074151764,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,478.0,101325.0,857.647989678705,-4747.548382845904,81.64647486577528,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,479.0,101325.0,856.4141168862982,-4790.490991917724,81.75355446683066,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,480.0,101325.0,855.1737853254693,-4833.604276795299,81.86224984373906,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,481.0,101325.0,853.92693018171,-4876.888108356806,81.9725922071978,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,482.0,101325.0,852.6734850227853,-4920.342361441525,82.08461371492383,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,483.0,101325.0,851.4133817533076,-4963.966914891916,82.19834750872381,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,484.0,101325.0,850.1465505674236,-5007.761651597383,82.31382775335511,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,485.0,101325.0,848.872919899544,-5051.726458539922,82.43108967728085,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,486.0,101325.0,847.5924163729971,-5095.86122684112,82.55016961542411,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,487.0,101325.0,846.3049647465111,-5140.165851811759,82.67110505405485,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,488.0,101325.0,845.0104878584257,-5184.640233002677,82.79393467791871,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,489.0,101325.0,843.7089065685003,-5229.284274258174,82.91869841975327,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,490.0,101325.0,842.400139697216,-5274.097883771259,83.04543751233886,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,491.0,101325.0,841.0841039624052,-5319.080974141207,83.17419454322601,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,492.0,101325.0,839.7607139131246,-5364.233462433395,83.30501351232101,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,493.0,101325.0,838.4298818605662,-5409.555270241421,83.43793989249862,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,494.0,101325.0,837.0915178058907,-5455.04632375201,83.57302069343272,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,495.0,101325.0,835.7455293648014,-5500.706553811982,83.71030452885073,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,496.0,101325.0,834.39182168868,-5546.535895998483,83.84984168743581,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,497.0,101325.0,833.0302973820855,-5592.534290691681,83.99168420760712,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,498.0,101325.0,831.6608564164507,-5638.701683150516,84.13588595643226,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,499.0,101325.0,830.2833960397113,-5685.038023591476,84.28250271295008,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+liquid,500.0,101325.0,828.897810681678,-5731.543267270459,84.43159225619169,metastable-source-formulation-derived,IAPWS R6-95(2018),Superheated liquid; positive-pressure IAPWS-95 extrapolation.
+vapor,250.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,251.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,252.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,253.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,254.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,255.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,256.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,257.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,258.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,259.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,260.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,261.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,262.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,263.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,264.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,265.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,266.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,267.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,268.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,269.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,270.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,271.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,272.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,273.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,274.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,275.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,276.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,277.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,278.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,279.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,280.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,281.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,282.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,283.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,284.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,285.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,286.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,287.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,288.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,289.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,290.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,291.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,292.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,293.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,294.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,295.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,296.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,297.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,298.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,299.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,300.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,301.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,302.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,303.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,304.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,305.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,306.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,307.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,308.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,309.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,310.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,311.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,312.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,313.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,314.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,315.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,316.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,317.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,318.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,319.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,320.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,321.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,322.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,323.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,324.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,325.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,326.0,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,326.4066776778635,101325.0,,,,unsupported-no-mechanically-stable-root,IAPWS R6-95(2018),At 1 atm the low-density root is absent or at the vapor spinodal; the low-temperature ideal-gas extension does not change this.
+vapor,327.0,101325.0,0.7674680116256969,4725.719076047554,1121.38613478632,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,328.0,101325.0,0.7419404660500659,4605.193165706959,580.8002604123737,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,329.0,101325.0,0.726788100332351,4482.823275439195,398.60438490919466,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,330.0,101325.0,0.7158797396210865,4359.221652863377,300.9343052685599,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,331.0,101325.0,0.7073529552841953,4234.699277911527,238.97309677670256,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,332.0,101325.0,0.700355513112691,4109.450153676437,196.05950609308985,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,333.0,101325.0,0.6944182883386629,3983.607570427892,164.70819576070488,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,334.0,101325.0,0.6892533986250728,3857.2684387212175,140.9755984204606,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,335.0,101325.0,0.6846710168468306,3730.505877581034,122.55370337815631,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,336.0,101325.0,0.6805394346106839,3603.3765064320332,107.98689946234565,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,337.0,101325.0,0.6767637541627316,3475.9250141061807,96.30459489981297,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,338.0,101325.0,0.673273596994417,3348.1871916492964,86.83127068928975,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,339.0,101325.0,0.6700155733624877,3220.1920358624243,79.08063869265881,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,340.0,101325.0,0.6669484416968929,3091.9632593048013,72.69304135425891,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,341.0,101325.0,0.6640398727630304,2963.520404307162,67.39657752630093,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,342.0,101325.0,0.6612642150850119,2834.8796832167636,62.9819603544218,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,343.0,101325.0,0.658600909049183,2706.0546237029043,59.28568652400831,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,344.0,101325.0,0.6560333349672497,2577.0565717812947,56.178431447965934,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,345.0,101325.0,0.653547959602637,2447.89508880342,53.55684044388905,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,346.0,101325.0,0.6511336929775094,2318.578268013846,51.33759124946007,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,347.0,101325.0,0.6487813964941382,2189.1129891706946,49.453014820273204,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,348.0,101325.0,0.6464835019825431,2059.505124854443,47.84780968132321,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,349.0,101325.0,0.6442337134117836,1929.7597086759286,46.47653939787603,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,350.0,101325.0,0.6420267711027817,1799.8810731502388,45.3017011472653,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,351.0,101325.0,0.6398582638084203,1669.8729632262427,44.2922176450686,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,352.0,101325.0,0.6377244778697838,1539.7386301368724,43.42224755974106,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,353.0,101325.0,0.6356222753796982,1409.4809092505625,42.67023872310274,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,354.0,101325.0,0.6335489952411706,1279.102284843991,42.018168651339586,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,355.0,101325.0,0.6315023724374891,1148.604944137177,41.45093112269426,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,356.0,101325.0,0.629480471888121,1017.990822476942,40.955837736932565,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,357.0,101325.0,0.627481634056972,887.2616411992943,40.52221076766896,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,358.0,101325.0,0.6255044300802883,756.4189394178238,40.141049050667675,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,359.0,101325.0,0.6235476246417042,625.4641007596493,39.804752696794345,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,360.0,101325.0,0.6216101451779396,494.39837588900116,39.50689546684805,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,361.0,101325.0,0.6196910562764597,363.22290151089123,39.24203596801885,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,362.0,101325.0,0.6177895383449258,231.9387164287487,39.00556061915734,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,363.0,101325.0,0.6159048698053928,100.54677513164715,38.79355272065205,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,364.0,101325.0,0.6140364122042515,-30.95204069329106,38.60268305283659,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,365.0,101325.0,0.6121835977396388,-162.55691239287222,38.43011828628743,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,366.0,101325.0,0.610345918797299,-294.2670760491231,38.273444171100365,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,367.0,101325.0,0.6085229191581806,-426.08181541915036,38.130601019749086,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,368.0,101325.0,0.6067141865998593,-558.0004559203983,37.99982943917147,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,369.0,101325.0,0.6049193466618842,-690.0223594995141,37.87962462490533,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,370.0,101325.0,0.6031380573844596,-822.1469202481056,37.7686978207413,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,371.0,101325.0,0.6013700048621773,-954.3735606515746,37.66594378488783,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,372.0,101325.0,0.5996148994811147,-1086.7017283739126,37.57041329850614,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,373.0,101325.0,0.5978724727295798,-1219.1308934976914,37.48128991288553,metastable-source-formulation-derived-caution,IAPWS R6-95(2018),"Subcooled vapor. IAPWS reports no experimental data, recommends its Helmholtz equation only close to saturation, and points to an alternative gas equation farther away."
+vapor,373.12429584768444,101325.0,0.5976567696510956,-1235.5983203617782,37.470624020821795,phase-boundary,IAPWS R6-95(2018),IAPWS-95 vapor root at liquid-vapor coexistence.
+vapor,374.0,101325.0,0.5961424744909466,-1351.6605461502916,37.39787026398759,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,375.0,101325.0,0.5944246707420985,-1484.2901944585813,37.319547392763546,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,376.0,101325.0,0.5927188415934899,-1617.019362783168,37.24579660068424,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,377.0,101325.0,0.5910247796172479,-1749.8475901906231,37.17616344565056,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,378.0,101325.0,0.589342288418392,-1882.7744291286824,37.11025354657335,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,379.0,101325.0,0.5876711814114758,-2015.7994442748118,37.04772391761625,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,380.0,101325.0,0.5860112807709867,-2148.9222115326234,36.988275597175154,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,381.0,101325.0,0.5843624165288812,-2282.14231715519,36.93164737358614,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,382.0,101325.0,0.5827244257968497,-2415.4593569767067,36.8776104405166,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,383.0,101325.0,0.5810971520944426,-2548.8729357372144,36.825963840993786,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,384.0,101325.0,0.5794804447671495,-2682.38266648739,36.77653058087974,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,385.0,101325.0,0.5778741584810099,-2815.988170061751,36.729154310993316,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,386.0,101325.0,0.576278152782419,-2949.689074611428,36.68369649257095,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,387.0,101325.0,0.5746922917135545,-3083.485015187858,36.64003397381705,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,388.0,101325.0,0.5731164434753162,-3217.3756333704728,36.59805691631468,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,389.0,101325.0,0.5715504801309227,-3351.3605769328196,36.5576670193718,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,390.0,101325.0,0.5699942773443462,-3485.439499541801,36.51877599824132,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,391.0,101325.0,0.5684477141486628,-3619.612060485573,36.48130427880348,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,392.0,101325.0,0.5669106727401231,-3753.8779244267466,36.445179876925266,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,393.0,101325.0,0.565383038294393,-3888.2367611773316,36.41033743547718,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,394.0,101325.0,0.5638646988019349,-4022.6882454930446,36.376717396025015,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,395.0,101325.0,0.5623555449199531,-4157.232056884215,36.34426528563702,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,396.0,101325.0,0.560855469838707,-4291.86787944173,36.312931102151154,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,397.0,101325.0,0.5593643691603177,-4426.595401675938,36.28266878371182,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,398.0,101325.0,0.5578821407884634,-4561.414316367045,36.253435750479,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,399.0,101325.0,0.5564086848275955,-4696.324320426014,36.22519250819186,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,400.0,101325.0,0.5549439034904986,-4831.325114764275,36.19790230478073,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,401.0,101325.0,0.5534877010131888,-4966.416404171875,36.17153083250911,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,402.0,101325.0,0.5520399835762808,-5101.597897202872,36.146045969221355,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,403.0,101325.0,0.550600659232082,-5236.869306067199,36.12141755320515,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,404.0,101325.0,0.5491696378367683,-5372.2303465286,36.09761718697178,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,405.0,101325.0,0.5477468309870871,-5507.680737808001,36.074618065934914,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,406.0,101325.0,0.5463321519611077,-5643.220202491544,36.05239482854615,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,407.0,101325.0,0.5449255156626012,-5778.84846644331,36.03092342493841,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,408.0,101325.0,0.5435268385686886,-5914.565258722032,36.010181001549064,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,409.0,101325.0,0.5421360386804407,-6050.370311501478,35.99014579955456,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,410.0,101325.0,0.5407530354761575,-6186.263359994604,35.970797065254516,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,411.0,101325.0,0.5393777498670798,-6322.244142380425,35.95211497080722,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,412.0,101325.0,0.5380101041553284,-6458.312399734277,35.93408054394188,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,413.0,101325.0,0.5366500219938809,-6594.46787596058,35.91667560546617,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,414.0,101325.0,0.5352974283484208,-6730.71031772829,35.89988271355178,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,415.0,101325.0,0.5339522494609171,-6867.039474408691,35.883685113922205,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,416.0,101325.0,0.5326144128148034,-7003.4550980156155,35.868066695187366,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,417.0,101325.0,0.5312838471016387,-7139.956943147391,35.853011948673995,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,418.0,101325.0,0.5299604821891538,-7276.544766931363,35.83850593218957,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,419.0,101325.0,0.5286442490905845,-7413.218328969634,35.824534237233436,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,420.0,101325.0,0.5273350799352124,-7549.977391287316,35.81108295923566,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,421.0,101325.0,0.5260329079400384,-7686.821718281883,35.79813867045917,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,422.0,101325.0,0.5247376673825205,-7823.751076674342,35.785688395250475,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,423.0,101325.0,0.523449293574313,-7960.765235462148,35.773719587365356,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,424.0,101325.0,0.5221677228359572,-8097.863965873198,35.762220109132066,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,425.0,101325.0,0.5208928924724628,-8235.047041321584,35.751178212245804,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,426.0,101325.0,0.5196247407497426,-8372.314237364386,35.74058252001462,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,427.0,101325.0,0.5183632068718511,-8509.665331659933,35.730422010900305,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,428.0,101325.0,0.5171082309589904,-8647.100103927201,35.720686003217395,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,429.0,101325.0,0.5158597540262448,-8784.618335906414,35.71136414087116,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,430.0,101325.0,0.5146177179630123,-8922.219811320856,35.70244638002959,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,431.0,101325.0,0.5133820655130976,-9059.904315839483,35.693922976638085,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,432.0,101325.0,0.5121527402554417,-9197.671637040936,35.6857844746961,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,433.0,101325.0,0.5109296865854555,-9335.521564378301,35.678021695225,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,434.0,101325.0,0.5097128496969359,-9473.453889144997,35.67062572586466,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,435.0,101325.0,0.5085021755645376,-9611.468404441452,35.66358791104373,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,436.0,101325.0,0.5072976109267776,-9749.564905142686,35.65689984267461,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,437.0,101325.0,0.506099103269553,-9887.743187867016,35.65055335133009,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,438.0,101325.0,0.5049066008101489,-10026.003050945166,35.64454049786301,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,439.0,101325.0,0.5037200524817198,-10164.34429439055,35.63885356543476,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,440.0,101325.0,0.5025394079182249,-10302.766719870151,35.633485051921895,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,441.0,101325.0,0.5013646174398002,-10441.270130676188,35.62842766267383,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,442.0,101325.0,0.5001956320385511,-10579.854331698494,35.62367430359653,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,443.0,101325.0,0.4990324033647498,-10718.519129397755,35.61921807454052,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,444.0,101325.0,0.4978748837134245,-10857.26433177899,35.615052262973,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,445.0,101325.0,0.49672302601132184,-10996.089748366445,35.61117033791626,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,446.0,101325.0,0.49557678380423503,-11134.995190178235,35.607565944135644,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,447.0,101325.0,0.49443611124467934,-11273.980469702336,35.60423289656277,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,448.0,101325.0,0.4933009630799069,-11413.045400872741,35.60116517493989,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,449.0,101325.0,0.49217129464024584,-11552.189799046417,35.598356918673254,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,450.0,101325.0,0.4910470618277557,-11691.413480980593,35.595802421884144,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,451.0,101325.0,0.4899282211051851,-11830.716264811026,35.593496128647026,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,452.0,101325.0,0.488814729485224,-11970.097970030232,35.591432628405244,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,453.0,101325.0,0.4877065445200393,-12109.558417466622,35.589606651555286,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,454.0,101325.0,0.4866036242910852,-12249.097429264071,35.58801306519158,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,455.0,101325.0,0.48550592739917803,-12388.714828861794,35.586646869003935,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,456.0,101325.0,0.4844134129548283,-12528.410440974936,35.585503191320676,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,457.0,101325.0,0.48332604056882045,-12668.184091575444,35.58457728529077,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,458.0,101325.0,0.4822437703430332,-12808.035607873448,35.58386452519878,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,459.0,101325.0,0.48116656286149184,-12947.964818298953,35.583360402906784,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,460.0,101325.0,0.48009437918164594,-13087.971552484236,35.58306052441788,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,461.0,101325.0,0.4790271808258647,-13228.055641246194,35.582960606556085,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,462.0,101325.0,0.47796492977314337,-13368.216916569589,35.583056473757864,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,463.0,101325.0,0.47690758845101444,-13508.455211590335,35.58334405497069,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,464.0,101325.0,0.4758551197276558,-13648.770360579163,35.583819380654305,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,465.0,101325.0,0.4748074869041926,-13789.16219892585,35.58447857988072,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,466.0,101325.0,0.47376465370718335,-13929.630563123597,35.585317877529064,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,467.0,101325.0,0.4727265842812873,-14070.175290753887,35.586333591571396,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,468.0,101325.0,0.4716932431821072,-14210.796220471535,35.58752213044643,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,469.0,101325.0,0.4706645953692,-14351.493191990174,35.588879990517455,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,470.0,101325.0,0.46964060619925424,-14492.266046068027,35.59040375361155,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,471.0,101325.0,0.46862124141942524,-14633.114624493923,35.592090084636936,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,472.0,101325.0,0.46760646716082555,-14774.038770073705,35.59393572927579,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,473.0,101325.0,0.4665962499321669,-14915.038326616803,35.59593751174956,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,474.0,101325.0,0.46559055661354654,-15056.113138923221,35.598092332654275,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,475.0,101325.0,0.464589354450376,-15197.263052770697,35.60039716686346,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,476.0,101325.0,0.4635926110474473,-15338.487914902125,35.60284906149599,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,477.0,101325.0,0.46260029436313255,-15479.78757301336,35.60544513394686,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,478.0,101325.0,0.46161237270371364,-15621.16187574106,35.60818256997857,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,479.0,101325.0,0.46062881471783756,-15762.610672651035,35.61105862187085,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,480.0,101325.0,0.4596495893910944,-15904.13381422654,35.61407060662715,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,481.0,101325.0,0.45867466604071494,-16045.731151857055,35.617215904235394,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,482.0,101325.0,0.4577040143103822,-16187.40253782718,35.62049195598152,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,483.0,101325.0,0.45673760416515785,-16329.147825305692,35.62389626281397,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,484.0,101325.0,0.45577540588651405,-16470.966868334934,35.62742638375727,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,485.0,101325.0,0.45481739006748073,-16612.859521820348,35.631079934373105,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,486.0,101325.0,0.4538635276078835,-16754.825641520172,35.63485458526738,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,487.0,101325.0,0.45291378970969054,-16896.865084035493,35.63874806064167,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,488.0,101325.0,0.4519681478724553,-17038.9777068002,35.64275813688754,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,489.0,101325.0,0.4510265738888544,-17181.163368071542,35.6468826412224,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,490.0,101325.0,0.4500890398403189,-17323.421926920422,35.65111945036548,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,491.0,101325.0,0.4491555180927539,-17465.753243222214,35.655466489252674,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,492.0,101325.0,0.4482259812923481,-17608.15717764753,35.65992172978889,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,493.0,101325.0,0.44730040236146734,-17750.633591653354,35.664483189636776,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,494.0,101325.0,0.4463787544946324,-17893.18234747418,35.669148931040525,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,495.0,101325.0,0.44546101115457665,-18035.803308113256,35.67391705968381,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,496.0,101325.0,0.4445471460683841,-18178.496337334316,35.678785723580596,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,497.0,101325.0,0.443637133223703,-18321.2612996531,35.683753111997824,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,498.0,101325.0,0.44273094686508585,-18464.098060328717,35.688817454409,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,499.0,101325.0,0.44182856149014993,-18607.00648535753,35.69397701947745,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.
+vapor,500.0,101325.0,0.4409299518463128,-18749.986441462454,35.69923011406898,stable,IAPWS R6-95(2018),IAPWS-95 vapor root at fixed pressure.

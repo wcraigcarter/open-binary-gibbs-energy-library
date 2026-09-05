@@ -5,7 +5,7 @@
 This record establishes the scope, terminology, pressure convention, primary
 authorities, and reduction history for the fixed-compound unary model of pure
 H2O. The executable canonical model is
-`data/unary/h2o-pure-substance-unary.json`. The companion
+`data/unary/h2o-standard-reference.json`. The companion
 `h2o-pure-substance-unary-scaffold.json` remains the earlier, non-executable
 source/model-planning record.
 
@@ -185,3 +185,40 @@ the source-formulation boundaries by only millikelvin, but both lie just inside
 an extension segment and are therefore correctly labeled `extension-derived`.
 The Ice-Ih/vapor tangent-extension crossing is also labeled
 `extension-derived` and is not presented as a physical metastable equilibrium.
+
+## Completed generic-reader validation
+
+The unchanged generic Mathematica unary reader successfully evaluated the
+fixed-compound H2O model at 101325 Pa over its intentional 250–500 K system
+scope. It consumed the phase-identity function keys `iceIh`, `liquid`, and
+`vapor` without any reader modification and recovered, to the reader's
+reported precision:
+
+- Ice Ih–liquid at 273.156 K;
+- liquid–vapor at 373.122 K; and
+- the pairwise Ice Ih–vapor crossing at 350.882 K.
+
+The first two crossings change the minimum-Gibbs-energy phase and are therefore
+stable-envelope equilibrium transitions. They closely reproduce the IAPWS
+melting and boiling reference boundaries used to assess the reduction, so they
+are implementation/reduction checks rather than independent predictions of
+those physical reference transitions. Their encoded roots fall just inside the
+comparison-only tangent segments and retain the canonical
+`extension-derived` classification.
+
+The 350.882 K result is different. It is a pairwise equality,
+
+\[
+G_{\mathrm{iceIh}}=G_{\mathrm{vapor}},
+\]
+
+but the liquid Gibbs energy is lower at the same temperature. It is therefore
+not an equilibrium transition. Because both equal branches are the explicit
+tangent extensions there, the crossing is an `extension-derived` property of
+the reduced model, not an IAPWS metastable Ice Ih–vapor equilibrium or an
+experimentally validated phase boundary.
+
+This no-change reader result validates two intended conventions at once:
+function keys identify phases rather than pre-declaring stability, and phase
+stability is determined by the lower envelope of all candidate Gibbs-energy
+branches.
