@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "0.1-development",
+  "artifactType": "unarySourceModelScaffold",
+  "status": "source-planning-record-superseded-by-canonical-reduced-model",
+  "canonicalDataStatus": "non-executable planning artifact; canonical executable model is data/unary/h2o-pure-substance-unary.json",
+  "identity": {
+    "substanceName": "water",
+    "chemicalFormula": "H2O",
+    "unaryClassification": "fixedCompound"
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 101325,
+      "unit": "Pa",
+      "interpretation": "thermodynamic pressure of the pure substance"
+    }
+  },
+  "systemValidity": {
+    "minimumTemperature": 250.0,
+    "maximumTemperature": 500.0,
+    "unit": "K",
+    "basis": "intentionalDatasetScope",
+    "rationale": "Deliberately reduced 1-atm OBGEL scope selected to include the familiar Ice Ih, liquid-water, and water-vapor regimes; the underlying IAPWS formulations have broader validity and the 250 K and 500 K bounds are not IAPWS validity limits."
+  },
+  "pressureScope": {
+    "pureVaporInterpretation": "For the pure H2O vapor phase, the thermodynamic pressure is also p_H2O.",
+    "excludedContexts": [
+      "external multicomponent or inert-gas atmospheres",
+      "independently specified total pressure and H2O partial pressure",
+      "chemical reactions or dissociation"
+    ]
+  },
+  "plannedPhases": [
+    {
+      "phaseIdentifier": "iceIh",
+      "phaseName": "Ice Ih",
+      "primaryAuthority": "iapws-r10-06-2009"
+    },
+    {
+      "phaseIdentifier": "liquid",
+      "phaseName": "liquid water",
+      "primaryAuthority": "iapws-r6-95-2018"
+    },
+    {
+      "phaseIdentifier": "vapor",
+      "phaseName": "water vapor",
+      "primaryAuthority": "iapws-r6-95-2018"
+    }
+  ],
+  "sourceAuthorities": [
+    {
+      "identifier": "iapws-r6-95-2018",
+      "organization": "International Association for the Properties of Water and Steam",
+      "title": "Revised Release on the IAPWS Formulation 1995 for the Thermodynamic Properties of Ordinary Water Substance for General and Scientific Use",
+      "designation": "IAPWS R6-95(2018)",
+      "url": "https://iapws.org/relguide/IAPWS95-2018.pdf",
+      "role": "primary authority for liquid and vapor thermodynamics"
+    },
+    {
+      "identifier": "iapws-r10-06-2009",
+      "organization": "International Association for the Properties of Water and Steam",
+      "title": "Revised Release on the Equation of State 2006 for H2O Ice Ih",
+      "designation": "IAPWS R10-06(2009)",
+      "url": "https://iapws.org/relguide/Ice-2009.html",
+      "role": "primary authority for Ice Ih thermodynamics"
+    },
+    {
+      "identifier": "iapws-r14-08-2011",
+      "organization": "International Association for the Properties of Water and Steam",
+      "title": "Revised Release on the Pressure along the Melting and Sublimation Curves of Ordinary Water Substance",
+      "designation": "IAPWS R14-08(2011)",
+      "url": "https://iapws.org/relguide/MeltSub.html",
+      "role": "phase-boundary corroboration"
+    },
+    {
+      "identifier": "nist-chemistry-webbook-water",
+      "organization": "National Institute of Standards and Technology",
+      "title": "NIST Chemistry WebBook: Water",
+      "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7732185&Mask=1",
+      "role": "corroborating and convenient thermochemical data only; not the primary model authority"
+    }
+  ],
+  "modelConstruction": {
+    "target": "reduced molar Gibbs-energy functions G_i(T; 101325 Pa) compatible with the existing OBGEL unary basis vocabulary",
+    "status": "historical plan completed and audited separately before canonical promotion",
+    "historicalDevelopmentTasks": [
+      "derive liquid and vapor branches at 101325 Pa from IAPWS-95",
+      "derive the Ice Ih branch at 101325 Pa from IAPWS R10-06(2009)",
+      "choose and document reduced functional forms and fitting or reduction tolerances",
+      "define phase-level model-validity intervals and any explicit metastable extensions",
+      "audit continuity, derivatives, phase crossings, units, and reference-state alignment"
+    ],
+    "interpretation": "This scaffold remains a non-executable record of the original source and modeling plan. The completed derivation, audit qualifications, coefficients, and verification metadata are recorded in data/unary/h2o-pure-substance-unary.json and sources/unary/H2O_Pure_Substance_Unary.md; this scaffold itself must not be treated as canonical executable data."
+  }
+}

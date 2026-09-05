@@ -25,6 +25,13 @@
     },
     "energyReference": "H_SER(Mg), the enthalpy of Mg in its Standard Element Reference state"
   },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 3000.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "The interval is the range attributed to the adopted SGTE/Dinsdale Mg functions in the existing Mg extraction and corroborating development record. Direct audit of these validity limits against Dinsdale (1991) remains pending, so this provenance assignment is provisional."
+  },
   "units": {
     "temperature": "K",
     "molarGibbsEnergy": "J/mol"
@@ -40,7 +47,7 @@
     ],
     "termEvaluation": "coefficient * basis(T)",
     "segmentIntervals": "Endpoint inclusion is specified explicitly on every segment.",
-    "outsideValidity": "undefined",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
     "coefficientInterpretation": "Each function evaluates to J/mol when T is supplied in K.",
     "baseFunctionSemantics": "Mathematical dependency only; baseFunction does not indicate phase stability or reference-state status."
   },

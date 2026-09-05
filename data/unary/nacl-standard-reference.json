@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "canonical-analytic-conversion-implementation-verified",
+  "identity": {
+    "substanceName": "sodium chloride",
+    "chemicalFormula": "NaCl",
+    "unaryClassification": "fixedCompound"
+  },
+  "dataRole": "canonical pure-substance unary model analytically converted from NIST-JANAF Shomate thermochemistry, with explicit mathematical extensions and separately identified derived verification",
+  "referenceState": {
+    "name": "NIST-JANAF standard-state condensed-phase thermochemical reference",
+    "referenceConditions": {
+      "pressure": {
+        "value": 100000,
+        "unit": "Pa"
+      },
+      "enthalpyReferenceTemperature": {
+        "value": 298.15,
+        "unit": "K"
+      }
+    },
+    "energyReference": "The encoded molar Gibbs energies use H(T)-T S(T), where H(T) is anchored to the NIST-JANAF standard enthalpy of formation at 298.15 K and S(T) is the NIST-JANAF standard molar entropy. The source standard-state pressure is 0.1 MPa. The same condensed-phase values are adopted at the requested 101325 Pa system pressure without a P*deltaV correction; no phase transition was forced by an energy shift."
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 101325,
+      "unit": "Pa",
+      "interpretation": "thermodynamic pressure of pure NaCl"
+    },
+    "excludedContexts": [
+      "external multicomponent or inert-gas atmospheres",
+      "independently specified total pressure and NaCl partial pressure",
+      "vapor-phase NaCl",
+      "chemical reactions, decomposition, association, dissociation, or speciation"
+    ]
+  },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 1700.0,
+    "unit": "K",
+    "basis": "intentionalDatasetScope",
+    "rationale": "This interval has mixed bound provenance under the current singular-basis schema. The 298.15 K lower bound is source/model motivated by the adopted room-temperature reference and the NIST solid Shomate interval beginning at 298 K. The 1700 K upper bound is an intentional OBGEL dataset-scope choice inside the liquid source interval, stopping before the normal boiling region because vapor chemistry and speciation are outside this fixed-compound unary object. Complete two-branch comparison uses explicit endpoint-tangent extensions within, but never beyond, this interval."
+  },
+  "units": {
+    "temperature": "K",
+    "pressure": "Pa",
+    "molarGibbsEnergy": "J/mol",
+    "molarHeatCapacity": "J/(mol*K)"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Each source-converted segment includes its attachment endpoint; an adjacent tangent-extension segment excludes the shared endpoint so exactly one expression is selected within a function.",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
+    "coefficientInterpretation": "Each Gibbs-energy expression evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "Both phase functions are independently converted on the common NIST-JANAF reference convention; neither uses baseFunction. Function keys identify phases rather than asserting stability."
+  },
+  "functions": {
+    "rockSalt": {
+      "name": "gRockSaltNaCl",
+      "phase": "rock-salt NaCl",
+      "thermodynamicRole": "Rock-salt molar Gibbs-energy branch at the adopted fixed pressure",
+      "quantity": "G(NaCl,rock salt,T) = H(T)-T S(T) on the NIST-JANAF standard-state reference",
+      "validity": {
+        "minimumTemperature": 298.0,
+        "maximumTemperature": 1073.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1073.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -427211.5},
+            {"basis": "temperature", "coefficient": 270.7148089180092},
+            {"basis": "temperatureLogTemperature", "coefficient": -50.72389},
+            {"basis": "temperaturePower", "coefficient": -0.0033361335, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 4.195278333333334e-7, "exponent": 3},
+            {"basis": "temperaturePower", "coefficient": -8.466116666666667e-10, "exponent": 4},
+            {"basis": "temperaturePower", "coefficient": 100337.5, "exponent": -1}
+          ]
+        },
+        {
+          "minimumTemperature": 1073.0,
+          "maximumTemperature": 1700.0,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -366426.6058768064},
+            {"basis": "temperature", "coefficient": -143.9522104487952}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceModel": "NIST Chemistry WebBook SRD 69 Shomate equation; Chase, 1998, NIST-JANAF Thermochemical Tables, Fourth Edition",
+        "sourceValidity": {
+          "minimumTemperature": 298.0,
+          "maximumTemperature": 1073.0,
+          "unit": "K"
+        },
+        "sourcePhaseLabel": "solid",
+        "obgelPhaseIdentity": "rockSalt",
+        "shomateCoefficients": {
+          "A": 50.72389,
+          "B": 6.672267,
+          "C": -2.517167,
+          "D": 10.15934,
+          "E": -0.200675,
+          "F": -427.2115,
+          "G": 130.3973,
+          "H": -411.1203
+        },
+        "modelValidityStatus": "source-transcribed and analytically converted over the published solid interval; only the portion at and above systemValidity is encoded as a source segment",
+        "extension": {
+          "status": "explicit-mathematical-extension",
+          "provenanceCategory": "extension-derived",
+          "interval": {
+            "minimumTemperature": 1073.0,
+            "maximumTemperature": 1700.0,
+            "unit": "K"
+          },
+          "construction": "first-order tangent to the analytically converted rock-salt Gibbs energy at 1073 K",
+          "attachmentValue": {
+            "gibbsEnergy": -520887.3276883637,
+            "gibbsEnergyUnit": "J/mol",
+            "temperatureDerivative": -143.9522104487952,
+            "temperatureDerivativeUnit": "J/(mol*K)"
+          },
+          "interpretation": "Provided only so the generic reader can compare both candidate phases across systemValidity; it is a mathematical/model assumption and does not assert physical rock-salt metastability or extend source validity.",
+          "impliedHeatCapacity": {
+            "value": 0.0,
+            "unit": "J/(mol*K)",
+            "status": "extension-derived mathematical consequence, not a physical heat-capacity claim"
+          }
+        }
+      }
+    },
+    "liquid": {
+      "name": "gLiquidNaCl",
+      "phase": "liquid NaCl",
+      "thermodynamicRole": "Liquid-NaCl molar Gibbs-energy branch at the adopted fixed pressure",
+      "quantity": "G(NaCl,liquid,T) = H(T)-T S(T) on the NIST-JANAF standard-state reference",
+      "validity": {
+        "minimumTemperature": 1074.0,
+        "maximumTemperature": 2500.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1074.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": -338179.32115180255},
+            {"basis": "temperature", "coefficient": -170.25730078464454}
+          ]
+        },
+        {
+          "minimumTemperature": 1074.0,
+          "maximumTemperature": 1700.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -305561.0},
+            {"basis": "temperature", "coefficient": -426.73071453117797},
+            {"basis": "temperatureLogTemperature", "coefficient": 42.4478},
+            {"basis": "temperaturePower", "coefficient": -0.056763, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 7.274433333333334e-6, "exponent": 3},
+            {"basis": "temperaturePower", "coefficient": -4.913858333333334e-10, "exponent": 4},
+            {"basis": "temperaturePower", "coefficient": -19569300.0, "exponent": -1}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceModel": "NIST Chemistry WebBook SRD 69 Shomate equation; Chase, 1998, NIST-JANAF Thermochemical Tables, Fourth Edition",
+        "sourceValidity": {
+          "minimumTemperature": 1074.0,
+          "maximumTemperature": 2500.0,
+          "unit": "K"
+        },
+        "shomateCoefficients": {
+          "A": -42.4478,
+          "B": 113.526,
+          "C": -43.6466,
+          "D": 5.89663,
+          "E": 39.1386,
+          "F": -305.561,
+          "G": 91.0639,
+          "H": -385.923
+        },
+        "modelValidityStatus": "source-transcribed and analytically converted over the published liquid interval; the encoded source segment is clipped at the intentional 1700 K system boundary",
+        "extension": {
+          "status": "explicit-mathematical-extension",
+          "provenanceCategory": "extension-derived",
+          "interval": {
+            "minimumTemperature": 298.15,
+            "maximumTemperature": 1074.0,
+            "unit": "K"
+          },
+          "construction": "first-order tangent to the analytically converted liquid Gibbs energy at 1074 K",
+          "attachmentValue": {
+            "gibbsEnergy": -521035.6621945108,
+            "gibbsEnergyUnit": "J/mol",
+            "temperatureDerivative": -170.25730078464454,
+            "temperatureDerivativeUnit": "J/(mol*K)"
+          },
+          "interpretation": "Provided only so the generic reader can compare both candidate phases across systemValidity; it is a mathematical/model assumption and does not assert physical liquid metastability or extend source validity.",
+          "impliedHeatCapacity": {
+            "value": 0.0,
+            "unit": "J/(mol*K)",
+            "status": "extension-derived mathematical consequence, not a physical heat-capacity claim"
+          }
+        }
+      }
+    }
+  },
+  "sourceProvenance": {
+    "primarySource": {
+      "title": "NIST Chemistry WebBook, SRD 69: sodium chloride condensed-phase thermochemistry",
+      "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7647145&Mask=E",
+      "underlyingCompilation": "M. W. Chase, Jr., NIST-JANAF Thermochemical Tables, Fourth Edition, Journal of Physical and Chemical Reference Data Monograph 9 (1998)",
+      "auditStatus": "source-transcription-audited",
+      "auditNote": "Published intervals, Shomate definitions, all eight coefficients for each condensed phase, and standard-state annotations were checked directly against NIST."
+    },
+    "transitionComparisonSource": {
+      "title": "NIST-JANAF sodium chloride crystal-liquid table",
+      "url": "https://janaf.nist.gov/tables/Cl-054.html",
+      "reportedTransitionTemperature": 1073.8,
+      "unit": "K",
+      "pressure": {
+        "value": 100000,
+        "unit": "Pa"
+      },
+      "status": "source-observed-tabulation"
+    }
+  },
+  "modelConstruction": {
+    "conversion": "The NIST Shomate H(T) and S(T) expressions were combined analytically as G(T)=H(T)-T*S(T), with t=T/1000 and conversion of kJ/mol to J/mol. The resulting coefficients are: constant=1000 F; temperature=A(1+ln(1000))-G; temperatureLogTemperature=-A; T^2=-B/2000; T^3=-C/6000000; T^4=-D/12000000000; T^-1=-500000 E.",
+    "sourceIntervalPolicy": "Published source validity is retained in function validity and metadata. Encoded source-converted segments are intersected with systemValidity; explicit tangent segments provide common-domain evaluation outside source validity.",
+    "transitionConstraintPolicy": "The NIST-JANAF crystal-liquid transition temperature was not inserted as a coefficient, energy shift, or explicit stitching constraint. Nevertheless, the crossing is derived from source-converted branches whose published intervals bracket fusion and from the deliberate endpoint-tangent extension construction; it is therefore a reader/model result, not an independent prediction.",
+    "metastableExtensionRule": "Within systemValidity, rockSalt above 1073 K and liquid below 1074 K use first-order endpoint tangents preserving G and dG/dT at their nearest source-valid endpoints. The extensions bridge the 1073-1074 K source gap and continue only to the system bounds.",
+    "pressureAdoption": "The NIST-JANAF source standard state is 0.1 MPa. At the requested 101325 Pa system pressure, its condensed-phase functions are adopted without a pressure correction. This is an explicit model approximation, not a change to source provenance.",
+    "canonicalOutsideSystemExtrapolation": "None. OBGEL supplies no implicit model below 298.15 K or above 1700 K."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "Computed values are consequences of the encoded functions and must be reproducible without using verification metadata as model input.",
+    "overallStatus": "source-transcription-audited-and-encoded-representation-implementation-verified-with-unchanged-reader",
+    "analyticConversionChecks": [
+      {
+        "phase": "rockSalt",
+        "temperatures": [298.15, 685.575, 1073.0],
+        "unit": "K",
+        "maximumAbsoluteDifference": 5.820766091346741e-11,
+        "differenceUnit": "J/mol",
+        "status": "passed",
+        "method": "direct evaluation of the original Shomate H(T)-T*S(T) equations compared with the encoded OBGEL basis sum"
+      },
+      {
+        "phase": "liquid",
+        "temperatures": [1074.0, 1387.0, 1700.0],
+        "unit": "K",
+        "maximumAbsoluteDifference": 1.1641532182693481e-10,
+        "differenceUnit": "J/mol",
+        "status": "passed",
+        "method": "direct evaluation of the original Shomate H(T)-T*S(T) equations compared with the encoded OBGEL basis sum"
+      }
+    ],
+    "extensionContinuityChecks": [
+      {
+        "phase": "rockSalt",
+        "attachmentTemperature": 1073.0,
+        "unit": "K",
+        "gibbsEnergyDifference": 0.0,
+        "gibbsEnergyDifferenceUnit": "J/mol",
+        "derivativeDifference": 0.0,
+        "derivativeDifferenceUnit": "J/(mol*K)",
+        "continuityClass": "C1",
+        "status": "passed"
+      },
+      {
+        "phase": "liquid",
+        "attachmentTemperature": 1074.0,
+        "unit": "K",
+        "gibbsEnergyDifference": 1.7462298274040222e-10,
+        "gibbsEnergyDifferenceUnit": "J/mol",
+        "derivativeDifference": 5.684341886080802e-14,
+        "derivativeDifferenceUnit": "J/(mol*K)",
+        "continuityClass": "C1",
+        "status": "passed"
+      }
+    ],
+    "phaseCrossings": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "rockSalt",
+          "highTemperaturePhase": "liquid",
+          "type": "stable-envelope-transition"
+        },
+        "computedValue": {
+          "temperature": 1073.83,
+          "unit": "K",
+          "status": "extension-derived",
+          "provenance": "derived unchanged-reader/model result",
+          "reportedPrecision": 0.01,
+          "reportedPrecisionUnit": "K",
+          "underlyingAnalyticalTemperature": 1073.8334050314077,
+          "underlyingAnalyticalTemperatureUnit": "K",
+          "method": "stable-envelope transition returned by the unchanged generic Mathematica unary reader; corroborated by the analytical root of the equal encoded linear endpoint-tangent extensions and direct evaluation",
+          "condition": "G_rockSalt(T) = G_liquid(T)",
+          "commonGibbsEnergy": -521007.29818483396,
+          "commonGibbsEnergyUnit": "J/mol",
+          "independentMathematicaEqualityResidual": 1.1641532182693481e-10,
+          "independentMathematicaEqualityResidualUnit": "J/mol",
+          "sourceValueDifference": 0.03340503140772766,
+          "sourceValueDifferenceUnit": "K",
+          "note": "The reader reports 1073.83 K. The crossing lies in the 1073-1074 K source gap, so both branch values come from explicit endpoint-tangent extensions. It was not inserted as a transition constraint, but it depends on the adopted source functions, source intervals, and extension construction and is therefore not an independent prediction."
+        },
+        "sourceValue": {
+          "temperature": 1073.8,
+          "unit": "K",
+          "pressure": {
+            "value": 100000,
+            "unit": "Pa"
+          },
+          "status": "NIST-JANAF-tabulated crystal-liquid transition"
+        }
+      }
+    ],
+    "readerStructure": {
+      "validationStatus": "passed-with-unchanged-generic-reader",
+      "reportedStableEnvelopeTransitionTemperature": 1073.83,
+      "reportedStableEnvelopeTransitionTemperatureUnit": "K",
+      "semanticFunctionKeys": ["rockSalt", "liquid"],
+      "vaporFunctionAbsentByDesign": true,
+      "functionNamesPresent": true,
+      "baseFunctionsAbsentByDesign": true,
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "endpointInclusionExplicit": true,
+      "systemValidityPresent": true,
+      "allFunctionsCoverSystemValidityWithTemperatureSegments": true,
+      "basisVocabularyLimitedToGenericUnaryReader": true
+    }
+  }
+}

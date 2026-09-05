@@ -25,6 +25,13 @@
     },
     "energyReference": "H_SER(Pb), the enthalpy of Pb in its Standard Element Reference state"
   },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 2100.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "The encoded interval follows the Dinsdale (1991) SGTE Pb functions and validity limits audited for this canonical entry; OBGEL does not extend those source functions beyond 2100 K."
+  },
   "units": {
     "temperature": "K",
     "molarGibbsEnergy": "J/mol"
@@ -40,7 +47,7 @@
     ],
     "termEvaluation": "coefficient * basis(T)",
     "segmentIntervals": "lower-inclusive and upper-exclusive, except that the final segment is upper-inclusive",
-    "outsideValidity": "undefined",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
     "coefficientInterpretation": "Each expression evaluates to J/mol when T is supplied in K."
   },
   "functions": {

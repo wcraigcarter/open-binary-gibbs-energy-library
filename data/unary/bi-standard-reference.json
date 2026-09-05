@@ -25,6 +25,13 @@
     },
     "energyReference": "H_SER(Bi), the enthalpy of Bi in its Standard Element Reference state"
   },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 3000.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "The interval is the range attributed to the adopted SGTE/Dinsdale Bi functions in the existing OBGEL Pb-Bi development transcription. Direct audit of these validity limits against Dinsdale (1991) remains pending, so this provenance assignment is provisional."
+  },
   "units": {
     "temperature": "K",
     "molarGibbsEnergy": "J/mol"
@@ -40,7 +47,7 @@
     ],
     "termEvaluation": "coefficient * basis(T)",
     "segmentIntervals": "Endpoint inclusion is specified explicitly on every segment.",
-    "outsideValidity": "undefined",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
     "coefficientInterpretation": "Each function evaluates to J/mol when T is supplied in K.",
     "baseFunctionSemantics": "Mathematical dependency only; baseFunction does not indicate phase stability or reference-state status."
   },
