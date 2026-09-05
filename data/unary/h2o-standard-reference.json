@@ -1,0 +1,608 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "canonical-reduced-model-implementation-verified",
+  "identity": {
+    "substanceName": "water",
+    "chemicalFormula": "H2O",
+    "unaryClassification": "fixedCompound"
+  },
+  "dataRole": "canonical reduced pure-substance unary model with source-formulation fits, explicit mathematical extensions, and separately identified derived verification",
+  "referenceState": {
+    "name": "Mutually compatible IAPWS-95 and IAPWS Ice Ih formulation reference",
+    "referenceConditions": {
+      "pressure": {
+        "value": 101325,
+        "unit": "Pa"
+      }
+    },
+    "energyReference": "The encoded molar Gibbs energies retain the mutually compatible reference convention of IAPWS-95 and IAPWS R10-06(2009). They are not standard Gibbs energies of formation and have not been shifted to force either phase transition."
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 101325,
+      "unit": "Pa",
+      "interpretation": "thermodynamic pressure of pure H2O; for the pure vapor this is also p_H2O"
+    },
+    "excludedContexts": [
+      "external multicomponent or inert-gas atmospheres",
+      "independently specified total pressure and H2O partial pressure",
+      "chemical reactions or dissociation"
+    ]
+  },
+  "systemValidity": {
+    "minimumTemperature": 250.0,
+    "maximumTemperature": 500.0,
+    "unit": "K",
+    "basis": "intentionalDatasetScope",
+    "rationale": "Deliberately reduced 1-atm OBGEL scope containing the Ice Ih, liquid-water, and water-vapor stable regimes. The bounds are not limits of the underlying IAPWS formulations. Complete three-branch comparison over this scope uses explicit tangent extensions for Ice Ih above its adopted model-validity endpoint and vapor below its adopted model-validity endpoint."
+  },
+  "units": {
+    "temperature": "K",
+    "pressure": "Pa",
+    "molarGibbsEnergy": "J/mol",
+    "molarHeatCapacity": "J/(mol*K)"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Each source-fit segment includes its adopted model-validity endpoint; an adjacent tangent-extension segment excludes the shared endpoint so exactly one expression is selected within a function.",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
+    "coefficientInterpretation": "Each Gibbs-energy expression evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "All three phase functions are independent reductions on the common IAPWS reference convention; none uses baseFunction. Function keys identify phases rather than asserting stability."
+  },
+  "functions": {
+    "iceIh": {
+      "name": "gIceIhH2O",
+      "phase": "Ice Ih",
+      "thermodynamicRole": "Ice Ih molar Gibbs-energy branch at 101325 Pa",
+      "quantity": "G(H2O,Ice Ih,T; P=101325 Pa) on the IAPWS formulation reference",
+      "validity": {
+        "minimumTemperature": 250.0,
+        "maximumTemperature": 273.1525192653757,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 273.1525192653757,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -11572.141985216274
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 79.6286523575084
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -3.743195664596474
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -0.05813112546238227,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -5.0760255995164084e-6,
+              "exponent": 3
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 273.1525192653757,
+          "maximumTemperature": 500.0,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -6005.477498904443
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 21.99248697751473
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceModel": "IAPWS R10-06(2009)",
+        "fitIdentifier": "ice-standard5",
+        "fitDomain": {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 273.1525192653757,
+          "unit": "K"
+        },
+        "modelValidityStatus": "source-formulation-derived reduced fit over the adopted stable Ice Ih interval",
+        "extension": {
+          "status": "explicit-mathematical-extension",
+          "provenanceCategory": "extension-derived",
+          "interval": {
+            "minimumTemperature": 273.1525192653757,
+            "maximumTemperature": 500.0,
+            "unit": "K"
+          },
+          "construction": "first-order tangent to the fitted Ice Ih Gibbs energy at 273.1525192653757 K",
+          "interpretation": "Provided only so the generic reader can compare all candidate phases across systemValidity; it does not assert physical Ice Ih metastability or extend function-level model validity.",
+          "impliedHeatCapacity": {
+            "value": 0.0,
+            "unit": "J/(mol*K)",
+            "status": "extension-derived mathematical consequence, not a physical Ice Ih heat-capacity claim"
+          }
+        }
+      }
+    },
+    "liquid": {
+      "name": "gLiquidH2O",
+      "phase": "liquid water",
+      "thermodynamicRole": "Liquid-water molar Gibbs-energy branch at 101325 Pa",
+      "quantity": "G(H2O,liquid,T; P=101325 Pa) on the IAPWS formulation reference",
+      "validity": {
+        "minimumTemperature": 250.0,
+        "maximumTemperature": 500.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 500.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": -260661.42983701185
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 4754.7960010356355
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -763.5854364519747
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 0.9937320988484256,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -0.0002904069422608951,
+              "exponent": 3
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 21006176.772254232,
+              "exponent": -1
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -980124075.6391963,
+              "exponent": -2
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceModel": "IAPWS R6-95(2018)",
+        "fitIdentifier": "liquid-standard7",
+        "fitDomain": {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 500.0,
+          "unit": "K"
+        },
+        "modelValidityStatus": "source-formulation-derived reduced fit with positive-stiffness liquid roots throughout the adopted interval",
+        "sourceScopeIntervals": [
+          {
+            "minimumTemperature": 250.0,
+            "maximumTemperature": 273.1525192653757,
+            "unit": "K",
+            "status": "metastable-source-formulation-derived-with-caution",
+            "note": "Subcooled liquid. IAPWS-95 describes this as extrapolation and notes that a separate supercooled-water guideline gives a better representation."
+          },
+          {
+            "minimumTemperature": 273.1525192653757,
+            "maximumTemperature": 373.12429584768444,
+            "unit": "K",
+            "status": "stable-source-formulation-derived"
+          },
+          {
+            "minimumTemperature": 373.12429584768444,
+            "maximumTemperature": 500.0,
+            "unit": "K",
+            "status": "metastable-source-formulation-derived",
+            "note": "Superheated positive-stiffness liquid root from IAPWS-95."
+          }
+        ]
+      }
+    },
+    "vapor": {
+      "name": "gVaporH2O",
+      "phase": "water vapor",
+      "thermodynamicRole": "Water-vapor molar Gibbs-energy branch at 101325 Pa",
+      "quantity": "G(H2O,vapor,T; P=101325 Pa) on the IAPWS formulation reference",
+      "validity": {
+        "minimumTemperature": 373.12429584768444,
+        "maximumTemperature": 500.0,
+        "unit": "K"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 373.12429584768444,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 48199.81367256599
+            },
+            {
+              "basis": "temperature",
+              "coefficient": -132.49063621927766
+            }
+          ]
+        },
+        {
+          "minimumTemperature": 373.12429584768444,
+          "maximumTemperature": 500.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {
+              "basis": "constant",
+              "coefficient": 27924.174943709793
+            },
+            {
+              "basis": "temperature",
+              "coefficient": 372.7940311445068
+            },
+            {
+              "basis": "temperatureLogTemperature",
+              "coefficient": -81.6042075991533
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": 0.10010814977325791,
+              "exponent": 2
+            },
+            {
+              "basis": "temperaturePower",
+              "coefficient": -3.6232660671868757e-5,
+              "exponent": 3
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceModel": "IAPWS R6-95(2018)",
+        "fitIdentifier": "vapor-stable-standard5",
+        "fitDomain": {
+          "minimumTemperature": 373.12429584768444,
+          "maximumTemperature": 500.0,
+          "unit": "K"
+        },
+        "modelValidityStatus": "source-formulation-derived reduced fit restricted to the stable vapor branch",
+        "spinodal": {
+          "temperature": 326.4066776778635,
+          "unit": "K",
+          "pressure": 101325,
+          "pressureUnit": "Pa",
+          "density": 0.8195234679344346,
+          "densityUnit": "kg/m^3",
+          "status": "source-formulation-derived fixed-pressure mechanical-stability limit",
+          "interpretation": "The positive-stiffness low-density IAPWS-95 root ends here. No physically or source-formulation-valid vapor branch is claimed at lower temperature."
+        },
+        "unadoptedSourceFormulationRegion": {
+          "minimumTemperature": 326.4066776778635,
+          "maximumTemperature": 373.12429584768444,
+          "unit": "K",
+          "status": "metastable-source-formulation-derived-with-caution-not-represented-by-the-canonical-fit",
+          "reason": "Near-spinodal heat-capacity divergence prevents a useful single compact reduction, and IAPWS cautions that the subcooled-vapor extrapolation is reasonable only close to saturation."
+        },
+        "unsupportedSourceRegion": {
+          "minimumTemperature": 250.0,
+          "maximumTemperature": 326.4066776778635,
+          "unit": "K",
+          "status": "unsupported-no-mechanically-stable-iapws95-vapor-root"
+        },
+        "extension": {
+          "status": "explicit-mathematical-extension",
+          "provenanceCategory": "extension-derived",
+          "interval": {
+            "minimumTemperature": 250.0,
+            "maximumTemperature": 373.12429584768444,
+            "unit": "K"
+          },
+          "construction": "first-order tangent to the fitted stable-vapor Gibbs energy at 373.12429584768444 K",
+          "interpretation": "Provided only so the generic reader can compare all candidate phases across systemValidity. It replaces neither the cautioned IAPWS-95 metastable root above the spinodal nor the absent root below the spinodal, and it does not assert physical vapor metastability anywhere below the attachment temperature.",
+          "impliedHeatCapacity": {
+            "value": 0.0,
+            "unit": "J/(mol*K)",
+            "status": "extension-derived mathematical consequence, not a physical vapor heat-capacity claim"
+          }
+        }
+      }
+    }
+  },
+  "sourceProvenance": {
+    "sourceFamily": "IAPWS reference formulations reduced to the OBGEL unary temperature basis at fixed pressure",
+    "references": [
+      {
+        "identifier": "iapws-r6-95-2018",
+        "organization": "International Association for the Properties of Water and Steam",
+        "title": "Revised Release on the IAPWS Formulation 1995 for the Thermodynamic Properties of Ordinary Water Substance for General and Scientific Use",
+        "designation": "IAPWS R6-95(2018)",
+        "url": "https://iapws.org/relguide/IAPWS95-2018.pdf",
+        "useInThisExemplar": "Primary authority for liquid and vapor thermodynamics and the fixed-pressure vapor-spinodal finding."
+      },
+      {
+        "identifier": "iapws-r10-06-2009",
+        "organization": "International Association for the Properties of Water and Steam",
+        "title": "Revised Release on the Equation of State 2006 for H2O Ice Ih",
+        "designation": "IAPWS R10-06(2009)",
+        "url": "https://www.iapws.org/relguide/Ice-2009.html",
+        "useInThisExemplar": "Primary authority for Ice Ih Gibbs energy and heat capacity."
+      },
+      {
+        "identifier": "iapws-r14-08-2011",
+        "organization": "International Association for the Properties of Water and Steam",
+        "title": "Revised Release on the Pressure along the Melting and Sublimation Curves of Ordinary Water Substance",
+        "designation": "IAPWS R14-08(2011)",
+        "url": "https://www.iapws.org/relguide/MeltSub.html",
+        "useInThisExemplar": "Reference-quality corroboration for Ice Ih phase-boundary behavior."
+      },
+      {
+        "identifier": "nist-chemistry-webbook-water",
+        "organization": "National Institute of Standards and Technology",
+        "title": "NIST Chemistry WebBook: Water",
+        "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7732185&Mask=1",
+        "useInThisExemplar": "Secondary corroboration only; not used to construct the encoded coefficients."
+      }
+    ],
+    "numericalImplementationAdapter": {
+      "package": "iapws",
+      "version": "1.5.4",
+      "role": "Numerical evaluator used to sample the published formulations; not the scientific authority.",
+      "molarMassUsed": 18.015268,
+      "molarMassUnit": "g/mol"
+    },
+    "provenanceRule": "Source-formulation values, reduced-fit quantities, and extension-derived quantities remain distinct. The explicit tangent extensions are OBGEL constructions and are not attributed to IAPWS."
+  },
+  "modelConstruction": {
+    "status": "reduced-model-implementation-verified",
+    "pressure": {
+      "value": 101325,
+      "unit": "Pa"
+    },
+    "sampling": "The IAPWS formulations were sampled at 1 K spacing with exact computed phase-boundary and vapor-spinodal rows added.",
+    "fittingMethod": "For each candidate basis, curvature-bearing coefficients were least-squares fitted to Cp = -T d^2G/dT^2; constant and linear integration terms were then least-squares fitted to molar Gibbs energy.",
+    "selectionTargets": {
+      "maximumAbsoluteGibbsResidual": {
+        "value": 0.25,
+        "unit": "J/mol"
+      },
+      "maximumAbsoluteHeatCapacityResidual": {
+        "value": 1.0,
+        "unit": "J/(mol*K)"
+      },
+      "scope": "development candidate selection only; not a repository-wide canonical acceptance standard"
+    },
+    "selectedFits": [
+      {
+        "phase": "iceIh",
+        "identifier": "ice-standard5",
+        "basisTermCount": 5,
+        "domain": [250.0, 273.1525192653757]
+      },
+      {
+        "phase": "liquid",
+        "identifier": "liquid-standard7",
+        "basisTermCount": 7,
+        "domain": [250.0, 500.0],
+        "selectionNote": "The five- and six-term candidates failed the heat-capacity target; adding T^-1 and T^-2 was the smallest tested basis meeting both targets."
+      },
+      {
+        "phase": "vapor",
+        "identifier": "vapor-stable-standard5",
+        "basisTermCount": 5,
+        "domain": [373.12429584768444, 500.0],
+        "selectionNote": "Restricted to the supported stable vapor branch; compact fits spanning the near-spinodal metastable branch failed strongly and were rejected."
+      }
+    ],
+    "transitionConstraintPolicy": "Neither the source phase boundaries nor any rounded transition temperatures were imposed as fitting or stitching constraints. The encoded crossings are derived outcomes of the independently reduced branches plus, where identified, explicit tangent extensions. Because the reduced model was constructed from the IAPWS formulations and assessed against their melting and boiling boundaries, recovery of those two reference transitions is an implementation/reduction check, not an independent physical prediction.",
+    "metastableExtensionRule": "Within systemValidity, Ice Ih above 273.1525192653757 K and vapor below 373.12429584768444 K use first-order endpoint tangents preserving G and dG/dT at the attachment temperature. These segments support comparison only and do not enlarge function-level validity.",
+    "canonicalOutsideSystemExtrapolation": "None. OBGEL supplies no implicit model beyond 250-500 K."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "Computed values are consequences of the encoded functions and must be reproducible without using verification metadata as model input.",
+    "overallStatus": "reduced-fit-diagnostics-reviewed-and-unchanged-generic-mathematica-reader-verified",
+    "implementationAdapterChecks": {
+      "status": "passed against published IAPWS verification tables",
+      "maximumReportedAbsoluteError": 4.7959378690620724e-9,
+      "note": "The individual checked quantities use their respective published units and tolerances; complete values remain in working/h2o-reduced-model/generated/h2o-fit-diagnostics.json."
+    },
+    "fitResiduals": [
+      {
+        "phase": "iceIh",
+        "fitIdentifier": "ice-standard5",
+        "domain": [250.0, 273.1525192653757],
+        "maximumAbsoluteGibbsResidual": 1.6847285451149219e-6,
+        "rmsGibbsResidual": 1.1059550697741168e-6,
+        "gibbsResidualUnit": "J/mol",
+        "maximumAbsoluteHeatCapacityResidual": 8.620807869164082e-5,
+        "rmsHeatCapacityResidual": 4.0217092683452816e-5,
+        "heatCapacityResidualUnit": "J/(mol*K)",
+        "status": "source-fit-domain-diagnostic"
+      },
+      {
+        "phase": "liquid",
+        "fitIdentifier": "liquid-standard7",
+        "domain": [250.0, 500.0],
+        "maximumAbsoluteGibbsResidual": 0.16704924424348633,
+        "rmsGibbsResidual": 0.08603972905030798,
+        "gibbsResidualUnit": "J/mol",
+        "maximumAbsoluteHeatCapacityResidual": 0.9135660948291786,
+        "rmsHeatCapacityResidual": 0.1245119376836189,
+        "heatCapacityResidualUnit": "J/(mol*K)",
+        "status": "source-fit-domain-diagnostic"
+      },
+      {
+        "phase": "vapor",
+        "fitIdentifier": "vapor-stable-standard5",
+        "domain": [373.12429584768444, 500.0],
+        "maximumAbsoluteGibbsResidual": 0.06335280192251957,
+        "rmsGibbsResidual": 0.033046113720465335,
+        "gibbsResidualUnit": "J/mol",
+        "maximumAbsoluteHeatCapacityResidual": 0.30573779278115154,
+        "rmsHeatCapacityResidual": 0.0808806859229888,
+        "heatCapacityResidualUnit": "J/(mol*K)",
+        "status": "source-fit-domain-diagnostic"
+      }
+    ],
+    "sourceBoundaries": {
+      "iceLiquid": {
+        "temperature": 273.1525192653757,
+        "unit": "K",
+        "status": "source-formulation-derived",
+        "method": "numerical root of IAPWS Ice Ih Gibbs energy minus IAPWS-95 liquid Gibbs energy at 101325 Pa"
+      },
+      "liquidVapor": {
+        "temperature": 373.12429584768444,
+        "unit": "K",
+        "status": "source-formulation-derived",
+        "method": "numerical root of IAPWS-95 liquid Gibbs energy minus IAPWS-95 vapor Gibbs energy at 101325 Pa"
+      },
+      "vaporSpinodal": {
+        "temperature": 326.4066776778635,
+        "unit": "K",
+        "status": "source-formulation-derived",
+        "method": "simultaneous fixed-pressure solution of P(T,rho)=101325 Pa and (partial P/partial rho)_T=0 for the low-density IAPWS-95 root"
+      }
+    },
+    "phaseCrossings": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "iceIh",
+          "highTemperaturePhase": "liquid",
+          "type": "stable-envelope-transition"
+        },
+        "computedValue": {
+          "temperature": 273.15584847243133,
+          "unit": "K",
+          "status": "extension-derived",
+          "method": "numerical root of equal encoded Gibbs energies",
+          "condition": "G_iceIh(T) = G_liquid(T)",
+          "sourceBoundaryShift": 0.003329207055628558,
+          "sourceBoundaryShiftUnit": "K",
+          "note": "The crossing lies just above the adopted Ice Ih model-validity endpoint and therefore uses the explicit Ice Ih tangent extension. It was not imposed, but its agreement with the IAPWS construction-source boundary is an implementation/reduction check rather than an independent physical prediction."
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "liquid",
+          "highTemperaturePhase": "vapor",
+          "type": "stable-envelope-transition"
+        },
+        "computedValue": {
+          "temperature": 373.1224509168658,
+          "unit": "K",
+          "status": "extension-derived",
+          "method": "numerical root of equal encoded Gibbs energies",
+          "condition": "G_liquid(T) = G_vapor(T)",
+          "sourceBoundaryShift": -0.0018449308186632152,
+          "sourceBoundaryShiftUnit": "K",
+          "note": "The crossing lies just below the adopted vapor model-validity endpoint and therefore uses the explicit vapor tangent extension. It was not imposed, but its agreement with the IAPWS construction-source boundary is an implementation/reduction check rather than an independent physical prediction."
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "iceIh",
+          "highTemperaturePhase": "vapor",
+          "type": "metastable-phase-crossing"
+        },
+        "computedValue": {
+          "temperature": 350.88163709908684,
+          "unit": "K",
+          "status": "extension-derived",
+          "method": "analytical root of equal encoded linear tangent extensions, independently checked numerically",
+          "condition": "G_iceIh(T) = G_vapor(T)",
+          "note": "Both branches use explicit tangent extensions at this temperature, and liquid is the stable lower-envelope phase. This value is not an IAPWS metastable ice-vapor equilibrium and makes no claim of physical vapor metastability beyond the spinodal."
+        }
+      }
+    ],
+    "readerValidation": {
+      "status": "passed-without-reader-modification",
+      "reader": "generic Mathematica unary reader",
+      "systemScope": {
+        "minimumTemperature": 250.0,
+        "maximumTemperature": 500.0,
+        "unit": "K",
+        "basis": "intentionalDatasetScope",
+        "pressure": 101325,
+        "pressureUnit": "Pa"
+      },
+      "phaseKeysEvaluated": [
+        "iceIh",
+        "liquid",
+        "vapor"
+      ],
+      "reportedResults": [
+        {
+          "phasePair": ["iceIh", "liquid"],
+          "temperature": 273.156,
+          "unit": "K",
+          "type": "stable-envelope-transition",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Rounded reader reproduction of the encoded crossing and a reduction check against the IAPWS construction-source melting boundary; not an independent physical prediction."
+        },
+        {
+          "phasePair": ["liquid", "vapor"],
+          "temperature": 373.122,
+          "unit": "K",
+          "type": "stable-envelope-transition",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Rounded reader reproduction of the encoded crossing and a reduction check against the IAPWS construction-source boiling boundary; not an independent physical prediction."
+        },
+        {
+          "phasePair": ["iceIh", "vapor"],
+          "temperature": 350.882,
+          "unit": "K",
+          "type": "metastable-phase-crossing",
+          "provenanceCategory": "extension-derived",
+          "interpretation": "Pairwise equality of the two comparison-only tangent extensions. Liquid has lower Gibbs energy, so this is not an equilibrium transition or an IAPWS metastable phase boundary."
+        }
+      ],
+      "conclusion": "The no-change result validates phase-identity function keys and determination of stability from the lower Gibbs-energy envelope."
+    },
+    "readerStructure": {
+      "semanticFunctionKeys": [
+        "iceIh",
+        "liquid",
+        "vapor"
+      ],
+      "functionNamesPresent": true,
+      "baseFunctionsAbsentByDesign": true,
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "endpointInclusionExplicit": true,
+      "systemValidityPresent": true,
+      "allFunctionsCoverSystemValidityWithTemperatureSegments": true,
+      "basisVocabularyLimitedToGenericUnaryReader": true
+    }
+  }
+}

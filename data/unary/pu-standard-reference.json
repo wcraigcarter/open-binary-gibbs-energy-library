@@ -1,0 +1,716 @@
+{
+  "schemaVersion": "0.1-development",
+  "objectType": "unaryStandardReference",
+  "status": "source-transcription-audited-assumption-dependent-model-implementation-verified",
+  "identity": {
+    "elementName": "plutonium",
+    "elementSymbol": "Pu"
+  },
+  "dataRole": "source-transcription-audited-observations-with-separately-identified-assumption-dependent-model-and-extension-derived-diagnostics",
+  "referenceState": {
+    "name": "Arbitrary alpha-plutonium model reference",
+    "phase": {
+      "name": "alpha",
+      "role": "root function and arbitrary enthalpy-entropy zero"
+    },
+    "referenceConditions": {
+      "temperature": { "value": 298.15, "unit": "K" },
+      "pressure": { "value": 1, "unit": "bar" }
+    },
+    "energyReference": "H_alpha(298.15 K) = 0 and S_alpha(298.15 K) = 0; this is a model normalization, not an absolute Standard Element Reference datum."
+  },
+  "scope": {
+    "phases": [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "deltaPrime",
+      "epsilon",
+      "liquid"
+    ],
+    "sourceToRepositoryPhaseNames": [
+      { "sourceName": "alpha", "sourceSymbol": "α", "phaseName": "alpha" },
+      { "sourceName": "beta", "sourceSymbol": "β", "phaseName": "beta" },
+      { "sourceName": "gamma", "sourceSymbol": "γ", "phaseName": "gamma" },
+      { "sourceName": "delta", "sourceSymbol": "δ", "phaseName": "delta" },
+      { "sourceName": "delta prime", "sourceSymbol": "δ′", "phaseName": "deltaPrime" },
+      { "sourceName": "epsilon", "sourceSymbol": "ε", "phaseName": "epsilon" },
+      { "sourceName": "liquid", "sourceSymbol": "L", "phaseName": "liquid" }
+    ]
+  },
+  "systemValidity": {
+    "minimumTemperature": 260.15,
+    "maximumTemperature": 948.15,
+    "unit": "K",
+    "basis": "modelLimited",
+    "rationale": "The interval is the usable domain of the adopted assumption-dependent Wick (1967) Handbook-derived construction, bounded by the modeled alpha and liquid data range and completed internally with explicit tangent extensions; it is not asserted as a general validity range for plutonium thermodynamics."
+  },
+  "units": {
+    "sourceTemperature": "degree Celsius",
+    "sourceTransitionEnthalpy": "cal/g-atom",
+    "sourceTransitionEntropy": "cal/(deg*g-atom)",
+    "heatCapacity": "cal/(g-atom*K)",
+    "heatCapacityUnitAsPrinted": "cal/g-atom",
+    "heatCapacityUnitNote": "Table 3.12 labels the physical quantity Cp but prints cal/g-atom without an explicit degree denominator; the interpreted unit is recorded explicitly while the printed heading is preserved.",
+    "modelTemperature": "K",
+    "modelMolarGibbsEnergy": "J/mol",
+    "modelMolarEnthalpy": "J/mol",
+    "modelMolarEntropy": "J/(mol*K)",
+    "sourceToModelEnergyConversion": "1 cal/g-atom = 4.184 J/mol of atoms"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Each function model segment includes its model-validity endpoints; an adjacent extension segment excludes the shared endpoint so exactly one expression is selected within a function.",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
+    "coefficientInterpretation": "Each Gibbs-energy expression evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "Mathematical dependency only. Alpha is the single root required by the current generic Mathematica unary reader; every other branch is encoded as alpha plus an explicit phase-minus-alpha expression."
+  },
+  "sourceObservations": {
+    "transformationTemperatures": [
+      {
+        "lowTemperaturePhase": "alpha",
+        "highTemperaturePhase": "beta",
+        "temperature": { "value": 115, "unit": "degree Celsius", "sourceText": "115°C", "approximate": false }
+      },
+      {
+        "lowTemperaturePhase": "beta",
+        "highTemperaturePhase": "gamma",
+        "temperature": { "value": 185, "unit": "degree Celsius", "sourceText": "~185", "approximate": true }
+      },
+      {
+        "lowTemperaturePhase": "gamma",
+        "highTemperaturePhase": "delta",
+        "temperature": { "value": 310, "unit": "degree Celsius", "sourceText": "310", "approximate": false }
+      },
+      {
+        "lowTemperaturePhase": "delta",
+        "highTemperaturePhase": "deltaPrime",
+        "temperature": { "value": 452, "unit": "degree Celsius", "sourceText": "452", "approximate": false }
+      },
+      {
+        "lowTemperaturePhase": "deltaPrime",
+        "highTemperaturePhase": "epsilon",
+        "temperature": { "value": 480, "unit": "degree Celsius", "sourceText": "480", "approximate": false }
+      },
+      {
+        "lowTemperaturePhase": "epsilon",
+        "highTemperaturePhase": "liquid",
+        "temperature": { "value": 640, "unit": "degree Celsius", "sourceText": "640", "approximate": false }
+      }
+    ],
+    "transitionThermodynamics": [
+      {
+        "lowTemperaturePhase": "alpha",
+        "highTemperaturePhase": "beta",
+        "enthalpyChange": { "value": 900, "uncertainty": 20, "unit": "cal/g-atom", "sourceText": "900 ± 20" },
+        "entropyChange": { "value": 2.28, "unit": "cal/(deg*g-atom)", "sourceText": "2.28", "uncertaintyReported": false }
+      },
+      {
+        "lowTemperaturePhase": "beta",
+        "highTemperaturePhase": "gamma",
+        "enthalpyChange": { "value": 160, "uncertainty": 10, "unit": "cal/g-atom", "sourceText": "160 ± 10" },
+        "entropyChange": { "value": 0.33, "unit": "cal/(deg*g-atom)", "sourceText": "0.33", "uncertaintyReported": false }
+      },
+      {
+        "lowTemperaturePhase": "gamma",
+        "highTemperaturePhase": "delta",
+        "enthalpyChange": { "value": 148, "uncertainty": 15, "unit": "cal/g-atom", "sourceText": "148 ± 15" },
+        "entropyChange": { "value": 0.25, "unit": "cal/(deg*g-atom)", "sourceText": "0.25", "uncertaintyReported": false }
+      },
+      {
+        "lowTemperaturePhase": "delta",
+        "highTemperaturePhase": "deltaPrime",
+        "enthalpyChange": { "value": 10, "uncertainty": 10, "unit": "cal/g-atom", "sourceText": "10 ± 10" },
+        "entropyChange": { "value": 0.01, "unit": "cal/(deg*g-atom)", "sourceText": "0.01", "uncertaintyReported": false }
+      },
+      {
+        "lowTemperaturePhase": "deltaPrime",
+        "highTemperaturePhase": "epsilon",
+        "enthalpyChange": { "value": 444, "uncertainty": 10, "unit": "cal/g-atom", "sourceText": "444 ± 10" },
+        "entropyChange": { "value": 0.59, "unit": "cal/(deg*g-atom)", "sourceText": "0.59", "uncertaintyReported": false }
+      },
+      {
+        "lowTemperaturePhase": "epsilon",
+        "highTemperaturePhase": "liquid",
+        "enthalpyChange": { "value": 676, "uncertainty": 10, "unit": "cal/g-atom", "sourceText": "676 ± 10" },
+        "entropyChange": { "value": 0.74, "unit": "cal/(deg*g-atom)", "sourceText": "0.74", "uncertaintyReported": false }
+      }
+    ],
+    "heatCapacityByPhase": [
+      {
+        "phaseName": "alpha",
+        "observations": [
+          { "temperature": { "value": -13, "unit": "degree Celsius", "sourceText": "-13" }, "heatCapacity": { "value": 8.0, "unit": "cal/(g-atom*K)", "sourceText": "8.0" } },
+          { "temperature": { "value": 27, "unit": "degree Celsius", "sourceText": "27" }, "heatCapacity": { "value": 8.48, "unit": "cal/(g-atom*K)", "sourceText": "8.48" } },
+          { "temperature": { "value": 47, "unit": "degree Celsius", "sourceText": "47" }, "heatCapacity": { "value": 8.66, "unit": "cal/(g-atom*K)", "sourceText": "8.66" } },
+          { "temperature": { "value": 67, "unit": "degree Celsius", "sourceText": "67" }, "heatCapacity": { "value": 8.84, "unit": "cal/(g-atom*K)", "sourceText": "8.84" } }
+        ]
+      },
+      {
+        "phaseName": "beta",
+        "observations": [
+          { "temperature": { "value": 140, "unit": "degree Celsius", "sourceText": "140" }, "heatCapacity": { "value": 8.20, "unit": "cal/(g-atom*K)", "sourceText": "8.20" } },
+          { "temperature": { "value": 150, "unit": "degree Celsius", "sourceText": "150" }, "heatCapacity": { "value": 8.24, "unit": "cal/(g-atom*K)", "sourceText": "8.24" } },
+          { "temperature": { "value": 160, "unit": "degree Celsius", "sourceText": "160" }, "heatCapacity": { "value": 8.28, "unit": "cal/(g-atom*K)", "sourceText": "8.28" } },
+          { "temperature": { "value": 170, "unit": "degree Celsius", "sourceText": "170" }, "heatCapacity": { "value": 8.34, "unit": "cal/(g-atom*K)", "sourceText": "8.34" } },
+          { "temperature": { "value": 180, "unit": "degree Celsius", "sourceText": "180" }, "heatCapacity": { "value": 8.41, "unit": "cal/(g-atom*K)", "sourceText": "8.41" } },
+          { "temperature": { "value": 190, "unit": "degree Celsius", "sourceText": "190" }, "heatCapacity": { "value": 8.46, "unit": "cal/(g-atom*K)", "sourceText": "8.46" } }
+        ]
+      },
+      {
+        "phaseName": "gamma",
+        "observations": [
+          { "temperature": { "value": 230, "unit": "degree Celsius", "sourceText": "230" }, "heatCapacity": { "value": 8.58, "unit": "cal/(g-atom*K)", "sourceText": "8.58" } },
+          { "temperature": { "value": 240, "unit": "degree Celsius", "sourceText": "240" }, "heatCapacity": { "value": 8.62, "unit": "cal/(g-atom*K)", "sourceText": "8.62" } },
+          { "temperature": { "value": 250, "unit": "degree Celsius", "sourceText": "250" }, "heatCapacity": { "value": 8.67, "unit": "cal/(g-atom*K)", "sourceText": "8.67" } },
+          { "temperature": { "value": 260, "unit": "degree Celsius", "sourceText": "260" }, "heatCapacity": { "value": 8.76, "unit": "cal/(g-atom*K)", "sourceText": "8.76" } },
+          { "temperature": { "value": 270, "unit": "degree Celsius", "sourceText": "270" }, "heatCapacity": { "value": 8.85, "unit": "cal/(g-atom*K)", "sourceText": "8.85" } }
+        ]
+      },
+      {
+        "phaseName": "delta",
+        "observations": [
+          { "temperature": { "value": 327, "unit": "degree Celsius", "sourceText": "327" }, "heatCapacity": { "value": 9.0, "unit": "cal/(g-atom*K)", "sourceText": "9.0" } },
+          { "temperature": { "value": 377, "unit": "degree Celsius", "sourceText": "377" }, "heatCapacity": { "value": 9.0, "unit": "cal/(g-atom*K)", "sourceText": "9.0" } },
+          { "temperature": { "value": 427, "unit": "degree Celsius", "sourceText": "427" }, "heatCapacity": { "value": 9.0, "unit": "cal/(g-atom*K)", "sourceText": "9.0" } }
+        ]
+      },
+      {
+        "phaseName": "deltaPrime",
+        "observations": [
+          { "temperature": { "value": 455, "unit": "degree Celsius", "sourceText": "455" }, "heatCapacity": { "value": 13.2, "unit": "cal/(g-atom*K)", "sourceText": "13.2†", "sourceAnnotation": "dagger" } }
+        ]
+      },
+      {
+        "phaseName": "epsilon",
+        "observations": [
+          { "temperature": { "value": 500, "unit": "degree Celsius", "sourceText": "500" }, "heatCapacity": { "value": 8.4, "unit": "cal/(g-atom*K)", "sourceText": "8.4" } },
+          { "temperature": { "value": 600, "unit": "degree Celsius", "sourceText": "600" }, "heatCapacity": { "value": 8.4, "unit": "cal/(g-atom*K)", "sourceText": "8.4" } }
+        ]
+      },
+      {
+        "phaseName": "liquid",
+        "sourceAnnotation": "double dagger on the Liquid phase label",
+        "observations": [
+          { "temperature": { "value": 650, "unit": "degree Celsius", "sourceText": "650" }, "heatCapacity": { "value": 9.9, "unit": "cal/(g-atom*K)", "sourceText": "9.9" } },
+          { "temperature": { "value": 660, "unit": "degree Celsius", "sourceText": "660" }, "heatCapacity": { "value": 10.0, "unit": "cal/(g-atom*K)", "sourceText": "10.0" } },
+          { "temperature": { "value": 675, "unit": "degree Celsius", "sourceText": "675" }, "heatCapacity": { "value": 10.0, "unit": "cal/(g-atom*K)", "sourceText": "10.0" } }
+        ]
+      }
+    ]
+  },
+  "functions": {
+    "alpha": {
+      "name": "gAlphaPlutoniumWickHandbook",
+      "phase": "alpha",
+      "thermodynamicRole": "Handbook-derived alpha-plutonium Gibbs-energy root function",
+      "quantity": "G(Pu,alpha,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 260.15, "maximumTemperature": 388.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -8544.503934604858},
+            {"basis": "temperature", "coefficient": 161.05155118221586},
+            {"basis": "temperatureLogTemperature", "coefficient": -22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": -0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 3349.7378948571427},
+            {"basis": "temperature", "coefficient": -9.795277908700776}
+          ]
+        }
+      ],
+      "metadata": {
+        "equilibriumInterval": {"minimumTemperature": 260.15, "maximumTemperature": 388.15, "unit": "K"},
+        "implementationNote": "The alpha model is physically supported on its declared validity interval. Its second temperature segment is the explicit upper-endpoint linear-tangent extension used for comparisons within systemValidity, not an assertion of alpha-phase model validity."
+      }
+    },
+    "beta": {
+      "name": "gBetaPlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "beta",
+      "thermodynamicRole": "Handbook-derived beta-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,beta,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 388.15, "maximumTemperature": 458.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 15659.841829461997},
+            {"basis": "temperature", "coefficient": -180.5482331872711},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 458.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -7631.1342517993235},
+            {"basis": "temperature", "coefficient": 173.17196089539942},
+            {"basis": "temperatureLogTemperature", "coefficient": -25.02322289904758},
+            {"basis": "temperaturePower", "coefficient": -0.01117725714285719, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 458.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 6179.377493333335},
+            {"basis": "temperature", "coefficient": -15.415190027976895}
+          ]
+        }
+      ]
+    },
+    "gamma": {
+      "name": "gGammaPlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "gamma",
+      "thermodynamicRole": "Handbook-derived gamma-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,gamma,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 458.15, "maximumTemperature": 583.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 18743.05932279534},
+            {"basis": "temperature", "coefficient": -187.72319995486436},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 458.15,
+          "minimumInclusive": false,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 6848.817493333339},
+            {"basis": "temperature", "coefficient": -16.876370863947717}
+          ]
+        },
+        {
+          "minimumTemperature": 458.15,
+          "maximumTemperature": 583.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -5987.298129150668},
+            {"basis": "temperature", "coefficient": 149.39198218818643},
+            {"basis": "temperatureLogTemperature", "coefficient": -21.499818720000004},
+            {"basis": "temperaturePower", "coefficient": -0.0142256, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 583.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 11387.934493333325},
+            {"basis": "temperature", "coefficient": -25.619554867651708}
+          ]
+        }
+      ]
+    },
+    "delta": {
+      "name": "gDeltaPlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "delta",
+      "thermodynamicRole": "Handbook-derived delta-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,delta,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 583.15, "maximumTemperature": 725.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 23901.408322795367},
+            {"basis": "temperature", "coefficient": -197.52825826192083},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 583.15,
+          "minimumInclusive": false,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 12007.166493333367},
+            {"basis": "temperature", "coefficient": -26.68142917100419}
+          ]
+        },
+        {
+          "minimumTemperature": 583.15,
+          "maximumTemperature": 725.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -9951.929906666668},
+            {"basis": "temperature", "coefficient": 250.78471477976495},
+            {"basis": "temperatureLogTemperature", "coefficient": -37.656000000000006}
+          ]
+        },
+        {
+          "minimumTemperature": 725.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 17354.31849333333},
+            {"basis": "temperature", "coefficient": -34.887955146150766}
+          ]
+        }
+      ]
+    },
+    "deltaPrime": {
+      "name": "gDeltaPrimePlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "deltaPrime",
+      "thermodynamicRole": "Handbook-derived delta-prime-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,deltaPrime,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 725.15, "maximumTemperature": 753.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 29290.400322795347},
+            {"basis": "temperature", "coefficient": -205.79248264429356},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 725.15,
+          "minimumInclusive": false,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 17396.158493333347},
+            {"basis": "temperature", "coefficient": -34.94565355337692}
+          ]
+        },
+        {
+          "minimumTemperature": 725.15,
+          "maximumTemperature": 753.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -22653.005826666667},
+            {"basis": "temperature", "coefficient": 384.04092900463274},
+            {"basis": "temperatureLogTemperature", "coefficient": -55.2288}
+          ]
+        },
+        {
+          "minimumTemperature": 753.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 18942.56489333332},
+            {"basis": "temperature", "coefficient": -37.03804530582345}
+          ]
+        }
+      ]
+    },
+    "epsilon": {
+      "name": "gEpsilonPlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "epsilon",
+      "thermodynamicRole": "Handbook-derived epsilon-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,epsilon,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 753.15, "maximumTemperature": 913.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 32694.502722795303},
+            {"basis": "temperature", "coefficient": -210.3514428094068},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 753.15,
+          "minimumInclusive": false,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 20800.260893333303},
+            {"basis": "temperature", "coefficient": -39.504613718490155}
+          ]
+        },
+        {
+          "minimumTemperature": 753.15,
+          "maximumTemperature": 913.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -5669.647746666669},
+            {"basis": "temperature", "coefficient": 228.45473356998198},
+            {"basis": "temperatureLogTemperature", "coefficient": -35.1456}
+          ]
+        },
+        {
+          "minimumTemperature": 913.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": false,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 26423.55689333335},
+            {"basis": "temperature", "coefficient": -46.27491271573873}
+          ]
+        }
+      ]
+    },
+    "liquid": {
+      "name": "gLiquidPlutoniumWickHandbook",
+      "baseFunction": "gAlphaPlutoniumWickHandbook",
+      "phase": "liquid",
+      "thermodynamicRole": "Handbook-derived liquid-plutonium equilibrium-interval Gibbs-energy function",
+      "quantity": "G(Pu,liquid,T) on the arbitrary model reference",
+      "validity": {"minimumTemperature": 913.15, "maximumTemperature": 948.15, "unit": "K"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 260.15,
+          "maximumTemperature": 388.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": 41146.18272279535},
+            {"basis": "temperature", "coefficient": -220.21913434895401},
+            {"basis": "temperatureLogTemperature", "coefficient": 22.082512445714293},
+            {"basis": "temperaturePower", "coefficient": 0.02205565714285714, "exponent": 2}
+          ]
+        },
+        {
+          "minimumTemperature": 388.15,
+          "maximumTemperature": 913.15,
+          "minimumInclusive": false,
+          "maximumInclusive": false,
+          "terms": [
+            {"basis": "constant", "coefficient": 29251.940893333343},
+            {"basis": "temperature", "coefficient": -49.372305258037365}
+          ]
+        },
+        {
+          "minimumTemperature": 913.15,
+          "maximumTemperature": 948.15,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            {"basis": "constant", "coefficient": -2095.187227145642},
+            {"basis": "temperature", "coefficient": 178.0314041665634},
+            {"basis": "temperatureLogTemperature", "coefficient": -27.290580421052688},
+            {"basis": "temperaturePower", "coefficient": -0.007707368421052603, "exponent": 2}
+          ]
+        }
+      ]
+    }
+  },
+  "sourceProvenance": {
+    "references": [
+      {
+        "identifier": "wick-1967-plutonium-handbook",
+        "editors": ["Oswald J. Wick"],
+        "title": "Plutonium Handbook: A Guide to the Technology",
+        "publisher": "Gordon and Breach Science Publishers",
+        "year": 1967,
+        "libraryOfCongressControlNumber": "65027855",
+        "sourceLocations": ["Table 3.8", "Table 3.11", "Table 3.12"]
+      },
+      {
+        "identifier": "kay-loasby-1964",
+        "authors": ["A. E. Kay", "R. G. Loasby"],
+        "journal": "Philosophical Magazine",
+        "volume": 9,
+        "firstPage": 43,
+        "year": 1964,
+        "relationshipToData": "Cited by the asterisk note to Table 3.12 as the source of the principal specific-heat data."
+      }
+    ],
+    "unresolvedSourceNotes": [
+      {
+        "sourceReferenceNumber": 29,
+        "visibleAttribution": "Dean, Kay, and Loasby",
+        "relationshipToData": "Dagger-marked delta-prime heat-capacity value",
+        "status": "full bibliographic entry not visible in supplied screenshot"
+      },
+      {
+        "sourceReferenceNumber": 31,
+        "visibleAttribution": "Loasby",
+        "relationshipToData": "Double-dagger-marked liquid heat-capacity values",
+        "status": "full bibliographic entry not visible in supplied screenshot"
+      }
+    ],
+    "transcriptionBasis": [
+      "Supplied screenshot of Wick (1967), Table 3.8",
+      "Supplied screenshot of Wick (1967), Table 3.11",
+      "Supplied screenshot of Wick (1967), Table 3.12"
+    ]
+  },
+  "verification": {
+    "overallStatus": "source-transcription-audited-and-model-implementation-verified",
+    "sourceAuditStatus": "Literal values and visible annotations were checked against the supplied Handbook screenshots; volume/page locations and complete references 29 and 31 remain pending bibliographic audit.",
+    "modelImplementationStatus": "The encoded assumption-dependent model was checked for complete branch coverage, construction-transition recovery, all 21 pairwise crossings, and machine-precision root residuals.",
+    "checks": [
+      {
+        "check": "phase-name coverage",
+        "status": "verified",
+        "result": "Seven phase names are present: alpha, beta, gamma, delta, deltaPrime, epsilon, and liquid."
+      },
+      {
+        "check": "Table 3.8 transcription",
+        "status": "verified-against-supplied-screenshot",
+        "result": "Six transformation temperatures are present and the approximation mark on approximately 185 degree Celsius is retained."
+      },
+      {
+        "check": "Table 3.11 transcription",
+        "status": "verified-against-supplied-screenshot",
+        "result": "Six enthalpy changes, six printed enthalpy uncertainties, and six entropy changes are present."
+      },
+      {
+        "check": "Table 3.12 transcription",
+        "status": "verified-against-supplied-screenshot",
+        "result": "Twenty-four discrete heat-capacity observations and the visible dagger and double-dagger annotations are present."
+      },
+      {
+        "check": "bibliographic location audit",
+        "status": "pending",
+        "result": "Handbook volume and page locations and the complete references numbered 29 and 31 have not been independently audited."
+      }
+    ],
+    "dataRole": "source transcription checks and derived, non-model-defining verification",
+    "reproducibilityRule": "Computed values are consequences of the encoded Gibbs-energy functions. The six source temperatures and measured enthalpies are construction constraints and are not independent model predictions.",
+    "phaseTransitions": [
+      {
+        "transition": { "lowTemperaturePhase": "alpha", "highTemperaturePhase": "beta" },
+        "sourceValue": { "temperature": 388.15, "unit": "K", "sourceTemperature": 115, "sourceTemperatureUnit": "degree Celsius", "enthalpyChange": 900, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 2.28, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 388.15, "unit": "K", "derivedEntropyChange": 2.318691227618189, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_alpha(T) = G_beta(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": 0.03869122761818922, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": 1.697 },
+        "interpretation": "Recovered construction constraint, not an independent prediction."
+      },
+      {
+        "transition": { "lowTemperaturePhase": "beta", "highTemperaturePhase": "gamma" },
+        "sourceValue": { "temperature": 458.15, "unit": "K", "sourceTemperature": 185, "sourceTemperatureUnit": "degree Celsius", "sourceTemperatureApproximate": true, "enthalpyChange": 160, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 0.33, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 458.15, "unit": "K", "derivedEntropyChange": 0.3492306013314417, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_beta(T) = G_gamma(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": 0.019230601331441666, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": 5.827 },
+        "interpretation": "Recovered approximate construction constraint, not an independent prediction."
+      },
+      {
+        "transition": { "lowTemperaturePhase": "gamma", "highTemperaturePhase": "delta" },
+        "sourceValue": { "temperature": 583.15, "unit": "K", "sourceTemperature": 310, "sourceTemperatureUnit": "degree Celsius", "enthalpyChange": 148, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 0.25, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 583.15, "unit": "K", "derivedEntropyChange": 0.25379404955843266, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_gamma(T) = G_delta(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": 0.003794049558432655, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": 1.518 },
+        "interpretation": "Recovered construction constraint, not an independent prediction."
+      },
+      {
+        "transition": { "lowTemperaturePhase": "delta", "highTemperaturePhase": "deltaPrime" },
+        "sourceValue": { "temperature": 725.15, "unit": "K", "sourceTemperature": 452, "sourceTemperatureUnit": "degree Celsius", "enthalpyChange": 10, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 0.01, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 725.15, "unit": "K", "derivedEntropyChange": 0.01379025029304282, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_delta(T) = G_deltaPrime(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": 0.0037902502930428194, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": 37.903 },
+        "interpretation": "Recovered construction constraint, not an independent prediction; the large relative entropy difference reflects the very small reported transition enthalpy and entropy."
+      },
+      {
+        "transition": { "lowTemperaturePhase": "deltaPrime", "highTemperaturePhase": "epsilon" },
+        "sourceValue": { "temperature": 753.15, "unit": "K", "sourceTemperature": 480, "sourceTemperatureUnit": "degree Celsius", "enthalpyChange": 444, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 0.59, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 753.15, "unit": "K", "derivedEntropyChange": 0.589523999203346, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_deltaPrime(T) = G_epsilon(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": -0.00047600079665399697, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": -0.081 },
+        "interpretation": "Recovered construction constraint, not an independent prediction."
+      },
+      {
+        "transition": { "lowTemperaturePhase": "epsilon", "highTemperaturePhase": "liquid" },
+        "sourceValue": { "temperature": 913.15, "unit": "K", "sourceTemperature": 640, "sourceTemperatureUnit": "degree Celsius", "enthalpyChange": 676, "enthalpyChangeUnit": "cal/g-atom", "reportedEntropyChange": 0.74, "reportedEntropyChangeUnit": "cal/(deg*g-atom)" },
+        "computedValue": { "temperature": 913.15, "unit": "K", "derivedEntropyChange": 0.7402945846794065, "derivedEntropyChangeUnit": "cal/(g-atom*K)", "method": "pairwise numerical root of equal encoded Gibbs energies; entropy change from negative Gibbs-energy derivatives", "condition": "G_epsilon(T) = G_liquid(T)" },
+        "comparison": { "temperatureDifference": 0.0, "temperatureDifferenceUnit": "K", "entropyDifferenceFromWick": 0.00029458467940646216, "entropyDifferenceUnit": "cal/(g-atom*K)", "relativeEntropyDifferencePercent": 0.040 },
+        "interpretation": "Recovered construction constraint, not an independent prediction."
+      }
+    ],
+    "readerStructure": {
+      "status": "Function evaluation and transition recovery were verified with the generic Mathematica unary reader. A reader version that still infers the returned system range by intersecting function validity ranges must instead read systemValidity explicitly.",
+      "semanticFunctionKeys": ["alpha", "beta", "gamma", "delta", "deltaPrime", "epsilon", "liquid"],
+      "functionNamesPresent": true,
+      "singleRootFunction": "alpha",
+      "baseFunctionPlacement": "function level",
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "endpointInclusionExplicit": true,
+      "systemValidityPresent": true,
+      "allFunctionsCoverSystemValidityWithTemperatureSegments": true
+    }
+  },
+  "modelConstruction": {
+    "status": "assumption-dependent-implementation-verified",
+    "modelLabel": "Wick-1967 Handbook-derived Pu model",
+    "assessmentBoundary": "This is not a CALPHAD or SGTE assessment and does not establish a Standard Element Reference function for Pu.",
+    "temperatureConversion": "Source Celsius temperatures were converted by T_K = T_degreeCelsius + 273.15 before fitting or thermodynamic integration.",
+    "constraintRule": "Measured transition temperatures and measured Delta H values stitch adjacent H and S branches. Delta S_model = Delta H_measured/T_transition is derived and Wick's reported Delta S remains an independent validation observation.",
+    "referenceConvention": "H_alpha(298.15 K) = 0 J/mol and S_alpha(298.15 K) = 0 J/(mol*K).",
+    "heatCapacityModels": [
+      { "phase": "alpha", "form": "a + b*T", "a": 22.082512445714293, "b": 0.04411131428571428, "unit": "J/(mol*K)", "measuredRange": [260.15, 340.15], "equilibriumModelRange": [260.15, 388.15], "extrapolatedRanges": [[340.15, 388.15]] },
+      { "phase": "beta", "form": "a + b*T", "a": 25.02322289904758, "b": 0.02235451428571438, "unit": "J/(mol*K)", "measuredRange": [413.15, 463.15], "equilibriumModelRange": [388.15, 458.15], "extrapolatedRanges": [[388.15, 413.15]], "observationOutsideEquilibriumModelRange": [458.15, 463.15] },
+      { "phase": "gamma", "form": "a + b*T", "a": 21.49981872, "b": 0.0284512, "unit": "J/(mol*K)", "measuredRange": [503.15, 543.15], "equilibriumModelRange": [458.15, 583.15], "extrapolatedRanges": [[458.15, 503.15], [543.15, 583.15]] },
+      { "phase": "delta", "form": "constant", "a": 37.656, "b": 0.0, "unit": "J/(mol*K)", "measuredRange": [600.15, 700.15], "equilibriumModelRange": [583.15, 725.15], "extrapolatedRanges": [[583.15, 600.15], [700.15, 725.15]] },
+      { "phase": "deltaPrime", "form": "constant", "a": 55.2288, "b": 0.0, "unit": "J/(mol*K)", "measuredTemperatures": [728.15], "equilibriumModelRange": [725.15, 753.15], "extrapolationNote": "A single observation is assumed constant across the entire equilibrium interval." },
+      { "phase": "epsilon", "form": "constant", "a": 35.1456, "b": 0.0, "unit": "J/(mol*K)", "measuredRange": [773.15, 873.15], "equilibriumModelRange": [753.15, 913.15], "extrapolatedRanges": [[753.15, 773.15], [873.15, 913.15]] },
+      { "phase": "liquid", "form": "a + b*T", "a": 27.290580421052685, "b": 0.01541473684210525, "unit": "J/(mol*K)", "measuredRange": [923.15, 948.15], "equilibriumModelRange": [913.15, 948.15], "extrapolatedRanges": [[913.15, 923.15]] }
+    ],
+    "integrationEquations": {
+      "enthalpy": "H(T) = H(T0) + a*(T-T0) + (b/2)*(T^2-T0^2)",
+      "entropy": "S(T) = S(T0) + a*ln(T/T0) + b*(T-T0)",
+      "gibbsEnergy": "G(T) = H(T) - T*S(T)"
+    },
+    "phaseAnchors": [
+      { "phase": "alpha", "temperature": 298.15, "enthalpy": 0.0, "entropy": 0.0 },
+      { "phase": "beta", "temperature": 388.15, "enthalpy": 7115.3378948571435, "entropy": 19.49668200505527 },
+      { "phase": "gamma", "temperature": 458.15, "enthalpy": 10198.555388190474, "entropy": 26.67164877264845 },
+      { "phase": "delta", "temperature": 583.15, "enthalpy": 15356.904388190474, "entropy": 36.476707079704916 },
+      { "phase": "deltaPrime", "temperature": 725.15, "enthalpy": 20745.89638819048, "entropy": 44.74093146207762 },
+      { "phase": "epsilon", "temperature": 753.15, "enthalpy": 24149.998788190478, "entropy": 49.29989162719092 },
+      { "phase": "liquid", "temperature": 913.15, "enthalpy": 32601.67878819048, "entropy": 59.167583166738105 }
+    ],
+    "phaseAnchorUnits": { "temperature": "K", "enthalpy": "J/mol", "entropy": "J/(mol*K)" },
+    "validityNote": "systemValidity is 260.15-948.15 K. Each function validity records the physically supported phase-model interval, while its temperatureSegments provide complete evaluation coverage across systemValidity using explicit endpoint-tangent extensions where required. Extensions are mathematical assumptions for branch comparison, not assertions of physical metastability.",
+    "metastableExtensionRule": "Within systemValidity, extend each phase Gibbs-energy model outside its function-level validity interval by the first-order Taylor tangent at the nearest validity endpoint, preserving G and dG/dT at that endpoint.",
+    "canonicalOutsideSystemExtrapolation": "None. OBGEL supplies no implicit model beyond systemValidity; any such extrapolation is a consumer-level operation that must be explicit.",
+    "auditStatus": "Source-table transcription audited against supplied screenshots; encoded numerical implementation verified. Cp fits and extrapolations, transition-temperature and Delta H stitching, the arbitrary reference normalization, and tangent extensions remain documented modeling assumptions. Primary bibliographic page audit and comparison with a modern Pu assessment remain pending."
+  }
+}

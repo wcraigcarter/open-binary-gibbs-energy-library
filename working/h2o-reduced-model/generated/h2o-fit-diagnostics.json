@@ -1,0 +1,252 @@
+{
+  "development_targets": {
+    "max_abs_delta_cp_J_mol_K": 1.0,
+    "max_abs_delta_g_J_mol": 0.25,
+    "scope": "candidate-selection-only; not a canonical acceptance standard"
+  },
+  "fit_boundaries": {
+    "boiling_shift_K": -0.0018449323721938526,
+    "boiling_temperature_K": 373.12245091531224,
+    "melting_shift_K": 0.003329241897006341,
+    "melting_temperature_K": 273.1558485072727
+  },
+  "fits": [
+    {
+      "coefficients": {
+        "T2": -0.05813112546238227,
+        "T3": -5.0760255995164084e-06,
+        "TlnT": -3.743195664596474,
+        "constant": -11572.141985216274,
+        "temperature": 79.6286523575084
+      },
+      "domain_K": [
+        250.0,
+        273.1525192653757
+      ],
+      "max_abs_delta_cp_J_mol_K": 8.620807869164082e-05,
+      "max_abs_delta_g_J_mol": 1.6847285451149219e-06,
+      "name": "ice-standard5",
+      "phase": "iceIh",
+      "rms_delta_cp_J_mol_K": 4.0217092683452816e-05,
+      "rms_delta_g_J_mol": 1.1059550697741168e-06,
+      "selected": true,
+      "selection_note": "The initial five-term basis already exceeds the development targets.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3"
+      ]
+    },
+    {
+      "coefficients": {
+        "T2": 0.11183663382060711,
+        "T3": -5.517417582950855e-05,
+        "TlnT": -113.03626426137583,
+        "constant": -24790.1873941619,
+        "temperature": 698.4692369076589
+      },
+      "domain_K": [
+        250.0,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 2.897281516604778,
+      "max_abs_delta_g_J_mol": 0.7993474409493331,
+      "name": "liquid-standard5",
+      "phase": "liquid",
+      "rms_delta_cp_J_mol_K": 0.43170148045428414,
+      "rms_delta_g_J_mol": 0.4811438052431498,
+      "selected": false,
+      "selection_note": "Rejected: the Cp endpoint residual exceeds the development target.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3"
+      ]
+    },
+    {
+      "coefficients": {
+        "T-1": -423961.80721209117,
+        "T2": 0.03620334215538652,
+        "T3": -2.9796798899938747e-05,
+        "TlnT": -71.73247632144883,
+        "constant": -15004.804780319388,
+        "temperature": 455.3790389124181
+      },
+      "domain_K": [
+        250.0,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 2.3341621417232403,
+      "max_abs_delta_g_J_mol": 0.9003424630967629,
+      "name": "liquid-standard6",
+      "phase": "liquid",
+      "rms_delta_cp_J_mol_K": 0.3969396376277023,
+      "rms_delta_g_J_mol": 0.5186269827060507,
+      "selected": false,
+      "selection_note": "Rejected: one inverse-power term does not meet both targets.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3",
+        "T-1"
+      ]
+    },
+    {
+      "coefficients": {
+        "T-1": 21006176.772254232,
+        "T-2": -980124075.6391963,
+        "T2": 0.9937320988484256,
+        "T3": -0.0002904069422608951,
+        "TlnT": -763.5854364519747,
+        "constant": -260661.42983701185,
+        "temperature": 4754.7960010356355
+      },
+      "domain_K": [
+        250.0,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 0.9135660948291786,
+      "max_abs_delta_g_J_mol": 0.16704924424348633,
+      "name": "liquid-standard7",
+      "phase": "liquid",
+      "rms_delta_cp_J_mol_K": 0.1245119376836189,
+      "rms_delta_g_J_mol": 0.08603972905030798,
+      "selected": true,
+      "selection_note": "Smallest tested basis meeting the stated development targets.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3",
+        "T-1",
+        "T-2"
+      ]
+    },
+    {
+      "coefficients": {
+        "T2": 7.273961099422076,
+        "T3": -0.0028004534939711895,
+        "TlnT": -3155.902517145499,
+        "constant": -407120.362335135,
+        "temperature": 17452.66653154958
+      },
+      "domain_K": [
+        327.0,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 925.9560267217862,
+      "max_abs_delta_g_J_mol": 70.59831088704686,
+      "name": "vapor-evaluable-standard5-diagnostic",
+      "phase": "vapor",
+      "rms_delta_cp_J_mol_K": 85.92165214197884,
+      "rms_delta_g_J_mol": 30.97226171833803,
+      "selected": false,
+      "selection_note": "Diagnostic only: near-spinodal Cp divergence makes one compact fit unusable.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3"
+      ]
+    },
+    {
+      "coefficients": {
+        "T-1": -400608342447.95874,
+        "T-2": 43868706301500.29,
+        "T-3": -2242180364141200.5,
+        "T2": -4510.907278857247,
+        "T3": 0.8999606112270396,
+        "TlnT": 4690640.951106848,
+        "constant": 2590395254.227705,
+        "temperature": -31013501.158098113
+      },
+      "domain_K": [
+        327.0,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 540.3687608617108,
+      "max_abs_delta_g_J_mol": 12.635066944231767,
+      "name": "vapor-evaluable-standard8-diagnostic",
+      "phase": "vapor",
+      "rms_delta_cp_J_mol_K": 51.786000177054326,
+      "rms_delta_g_J_mol": 7.100158156823088,
+      "selected": false,
+      "selection_note": "Diagnostic only: added complexity still fails badly near the spinodal.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3",
+        "T-1",
+        "T-2",
+        "T-3"
+      ]
+    },
+    {
+      "coefficients": {
+        "T2": 0.10010814977325791,
+        "T3": -3.6232660671868757e-05,
+        "TlnT": -81.6042075991533,
+        "constant": 27924.174943709793,
+        "temperature": 372.7940311445068
+      },
+      "domain_K": [
+        373.12429584768444,
+        500.0
+      ],
+      "max_abs_delta_cp_J_mol_K": 0.30573779278115154,
+      "max_abs_delta_g_J_mol": 0.06335280192251957,
+      "name": "vapor-stable-standard5",
+      "phase": "vapor",
+      "rms_delta_cp_J_mol_K": 0.0808806859229888,
+      "rms_delta_g_J_mol": 0.033046113720465335,
+      "selected": true,
+      "selection_note": "The initial basis meets the development targets on the supported stable branch.",
+      "terms": [
+        "TlnT",
+        "T2",
+        "T3"
+      ]
+    }
+  ],
+  "implementation": {
+    "package": "iapws",
+    "verification_absolute_errors": {
+      "iapws95_cv_kJ_kg_K": 3.2595646182187465e-09,
+      "iapws95_entropy_kJ_kg_K": 4.57786564211915e-09,
+      "iapws95_phi0": 4.7959378690620724e-09,
+      "iapws95_phir": 3.184410068968191e-09,
+      "iapws95_pressure_MPa": 9.222880237302888e-10,
+      "ice_a_kJ_kg": 8.500075643347316e-13,
+      "ice_cp_kJ_kg_K": 4.5567993822714925e-12,
+      "ice_u_kJ_kg": 9.526957001071423e-11
+    },
+    "version": "1.5.4"
+  },
+  "molar_mass_g_mol_used_by_iapws_adapter": 18.015268,
+  "pressure_Pa": 101325.0,
+  "source_boundaries": {
+    "boiling_temperature_K": 373.12429584768444,
+    "melting_temperature_K": 273.1525192653757,
+    "vapor_spinodal_density_kg_m3": 0.8195234679344346,
+    "vapor_spinodal_temperature_at_1atm_K": 326.4066776778635
+  },
+  "status": "development-only-not-canonical",
+  "vapor_domain_finding": {
+    "low_temperature_guideline_note": "IAPWS G9-12 changes the ideal-gas term below 130 K (down to 50 K). It is not activated in the requested 250-500 K interval and does not cure the fixed-pressure spinodal limitation.",
+    "metastable_iapws95_root_with_caution_K": [
+      326.4066776778635,
+      373.12429584768444
+    ],
+    "reason": "No mechanically stable IAPWS-95 vapor root exists below the 1-atm spinodal. Near it Cp diverges and IAPWS cautions that its subcooled-vapor extrapolation is only reasonable close to saturation.",
+    "requested_domain_K": [
+      250.0,
+      500.0
+    ],
+    "selected_fit_domain_K": [
+      373.12429584768444,
+      500.0
+    ],
+    "unsupported_at_1atm_K": [
+      250.0,
+      326.4066776778635
+    ]
+  }
+}
