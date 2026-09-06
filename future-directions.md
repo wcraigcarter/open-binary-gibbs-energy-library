@@ -13,5 +13,6 @@ This file records ideas that are intentionally deferred while the first public-p
 - Establish a persistent scholarly citation mechanism such as a DOI.
 - Prepare a software/data publication or arXiv preprint after the collection has sufficient scientific substance.
 - Extend the information model to additional phase-model classes as justified by real examples.
+- Consider a first-class `contributions` mechanism for additive physical terms such as magnetism. The Fe unary test preserves the Hillert-Jarl/Inden model in provenance but temporarily expands it into ordinary temperature-basis terms so the existing generic reader remains unchanged.
 
 The project should resist adding infrastructure merely because it is technically possible. New capabilities should solve a demonstrated need or substantially improve scientific reproducibility or pedagogy.

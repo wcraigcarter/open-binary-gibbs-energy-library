@@ -1,0 +1,626 @@
+{
+  "schemaVersion": "0.2.0",
+  "objectType": "unaryStandardReference",
+  "status": "source-transcription-audited-implementation-verified",
+  "identity": {
+    "elementName": "iron",
+    "elementSymbol": "Fe"
+  },
+  "dataRole": "primary-source-audited SGTE unary functions with the source magnetic contribution analytically expanded into the existing OBGEL temperature basis",
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {
+      "name": "BCC-A2",
+      "role": "stable reference phase at 298.15 K"
+    },
+    "referenceConditions": {
+      "temperature": {
+        "value": 298.15,
+        "unit": "K"
+      },
+      "pressure": {
+        "value": 1,
+        "unit": "bar"
+      }
+    },
+    "energyReference": "H_SER(Fe), the enthalpy of Fe in its Standard Element Reference state"
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 1,
+      "unit": "bar",
+      "treatment": "The temperature-only unary test omits Dinsdale's Gpres term. Dinsdale states that the pressure contribution can be ignored for applications at low or moderate pressure."
+    }
+  },
+  "scope": {
+    "phases": [
+      "bcc",
+      "fcc",
+      "hcp",
+      "liquid"
+    ],
+    "sourceToRepositoryPhaseNames": [
+      {
+        "sourceName": "BCC_A2",
+        "phaseName": "bcc",
+        "identityNote": "One crystallographic phase across the full modeled interval; the Curie point is not a phase-key boundary."
+      },
+      {
+        "sourceName": "FCC_A1",
+        "phaseName": "fcc"
+      },
+      {
+        "sourceName": "HCP_A3",
+        "phaseName": "hcp"
+      },
+      {
+        "sourceName": "LIQUID",
+        "phaseName": "liquid"
+      }
+    ],
+    "hcpInclusionRationale": "Dinsdale explicitly supplies an HCP_A3 Fe function. Although HCP is not stable on the computed 1 bar lower envelope, retaining it is scientifically useful as an audited allotrope candidate and verifies that the reader does not promote a high-pressure-relevant phase at the fixed ambient pressure."
+  },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 6000.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "The interval follows the common 298.15-6000 K range printed by Dinsdale (1991) for the temperature-only BCC_A2, FCC_A1, HCP_A3, and LIQUID Fe functions. OBGEL evaluates the finite limiting values at the two endpoints as the closed canonical domain and does not extrapolate beyond it."
+  },
+  "units": {
+    "temperature": "K",
+    "molarGibbsEnergy": "J/mol",
+    "gasConstant": "J/(mol K)"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": [
+      "constant",
+      "temperature",
+      "temperatureLogTemperature",
+      "temperaturePower"
+    ],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "Endpoint inclusion is explicit. Adjacent source or magnetic branches are lower-inclusive and upper-exclusive; final branches are upper-inclusive.",
+    "outsideValidity": "No canonical value is supplied outside systemValidity; consumer-level extrapolation must be explicit.",
+    "coefficientInterpretation": "Each function evaluates to J/mol when T is supplied in K.",
+    "baseFunctionSemantics": "No baseFunction is used in this entry. Every phase is encoded directly as its absolute G-H_SER expression so the generic reader can compare phase-identity keys without magnetic-reference cancellation."
+  },
+  "functions": {
+    "bcc": {
+      "name": "gBccIronDinsdale",
+      "phase": "BCC-A2",
+      "thermodynamicRole": "BCC-A2 Gibbs-energy function and Standard Element Reference phase",
+      "quantity": "G(Fe,BCC-A2,T) - H_SER(Fe)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 6000.0,
+        "unit": "K",
+        "basis": "source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1043.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "source nonmagnetic BCC expression plus analytically expanded tau <= 1 magnetic branch",
+          "terms": [
+            { "basis": "constant", "coefficient": -7954.863933511205 },
+            { "basis": "temperature", "coefficient": 133.8568330078446 },
+            { "basis": "temperatureLogTemperature", "coefficient": -23.5143 },
+            { "basis": "temperaturePower", "coefficient": -0.00439752, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -5.89269e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 77358.5, "exponent": -1 },
+            { "basis": "temperaturePower", "coefficient": -1.3111579814807738e-9, "exponent": 4 },
+            { "basis": "temperaturePower", "coefficient": -4.5265430418603135e-29, "exponent": 10 },
+            { "basis": "temperaturePower", "coefficient": -7.911217451179016e-48, "exponent": 16 }
+          ]
+        },
+        {
+          "minimumTemperature": 1043.0,
+          "maximumTemperature": 1811.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "source nonmagnetic BCC expression plus analytically expanded tau > 1 magnetic branch",
+          "terms": [
+            { "basis": "constant", "coefficient": 1225.7 },
+            { "basis": "temperature", "coefficient": 124.134 },
+            { "basis": "temperatureLogTemperature", "coefficient": -23.5143 },
+            { "basis": "temperaturePower", "coefficient": -0.00439752, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -5.89269e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 77358.5, "exponent": -1 },
+            { "basis": "temperaturePower", "coefficient": -7.701361841501686e14, "exponent": -4 },
+            { "basis": "temperaturePower", "coefficient": -3.7247751332730464e43, "exponent": -14 },
+            { "basis": "temperaturePower", "coefficient": -1.1916876491777889e73, "exponent": -24 }
+          ]
+        },
+        {
+          "minimumTemperature": 1811.0,
+          "maximumTemperature": 6000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "high-temperature source BCC expression plus analytically expanded tau > 1 magnetic branch",
+          "terms": [
+            { "basis": "constant", "coefficient": -25383.581 },
+            { "basis": "temperature", "coefficient": 299.31255 },
+            { "basis": "temperatureLogTemperature", "coefficient": -46.0 },
+            { "basis": "temperaturePower", "coefficient": 2.2960305e31, "exponent": -9 },
+            { "basis": "temperaturePower", "coefficient": -7.701361841501686e14, "exponent": -4 },
+            { "basis": "temperaturePower", "coefficient": -3.7247751332730464e43, "exponent": -14 },
+            { "basis": "temperaturePower", "coefficient": -1.1916876491777889e73, "exponent": -24 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourcePhaseIdentifier": "BCC_A2",
+        "sourceDataLocation": "pages 351-353",
+        "auditStatus": "direct-primary-source-audited",
+        "magneticContribution": {
+          "present": true,
+          "modelName": "Hillert-Jarl/Inden magnetic model",
+          "sourceAttribution": "Dinsdale attributes the definition to Hillert and Jarl following Inden.",
+          "criticalTemperature": { "value": 1043.0, "unit": "K" },
+          "criticalTemperatureType": "Curie temperature",
+          "betaZeroAverageMagneticMomentPerAtom": 2.22,
+          "structureParameterP": 0.4,
+          "normalizationD": {
+            "sourcePrintedValue": 1.55828482,
+            "computedFromSourceFormula": 1.5582848200312989
+          },
+          "gasConstant": { "value": 8.31451, "unit": "J/(mol K)" },
+          "unexpandedSourceRelationship": "Gmag = R*T*ln(beta0 + 1)*g(tau), tau = T/Tstar; g(tau) = 1 - [79*tau^-1/(140*p) + (474/497)*(1/p - 1)*(tau^3/6 + tau^9/135 + tau^15/600)]/D for tau <= 1, and g(tau) = -[tau^-5/10 + tau^-15/315 + tau^-25/1500]/D for tau > 1; D = 518/1125 + (11692/15975)*(1/p - 1).",
+          "expandedBasisStrategy": "Multiplication by T converts the low branch to constant, T, T^4, T^10, and T^16 terms and the high branch to T^-4, T^-14, and T^-24 terms. These coefficients are added to the corresponding nonmagnetic source segment.",
+          "phaseIdentityRule": "The 1043 K branch boundary changes only the magnetic expression. Both sides remain the single bcc phase function."
+        }
+      }
+    },
+    "fcc": {
+      "name": "gFccIronDinsdale",
+      "phase": "FCC-A1",
+      "thermodynamicRole": "FCC-A1 Gibbs-energy function",
+      "quantity": "G(Fe,FCC-A1,T) - H_SER(Fe)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 6000.0,
+        "unit": "K",
+        "basis": "source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1811.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "source FCC expression plus analytically expanded tau > 1 magnetic branch; the 67 K Neel point lies below systemValidity",
+          "terms": [
+            { "basis": "constant", "coefficient": -236.7 },
+            { "basis": "temperature", "coefficient": 132.416 },
+            { "basis": "temperatureLogTemperature", "coefficient": -24.6643 },
+            { "basis": "temperaturePower", "coefficient": -0.00375752, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -5.89269e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 77358.5, "exponent": -1 },
+            { "basis": "temperaturePower", "coefficient": -2.5429013017053e8, "exponent": -4 },
+            { "basis": "temperaturePower", "coefficient": -1.4715227384102559e25, "exponent": -14 },
+            { "basis": "temperaturePower", "coefficient": -5.632929283446668e42, "exponent": -24 }
+          ]
+        },
+        {
+          "minimumTemperature": 1811.0,
+          "maximumTemperature": 6000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "high-temperature source FCC expression plus analytically expanded tau > 1 magnetic branch",
+          "terms": [
+            { "basis": "constant", "coefficient": -27097.396 },
+            { "basis": "temperature", "coefficient": 300.25256 },
+            { "basis": "temperatureLogTemperature", "coefficient": -46.0 },
+            { "basis": "temperaturePower", "coefficient": 2.78854e31, "exponent": -9 },
+            { "basis": "temperaturePower", "coefficient": -2.5429013017053e8, "exponent": -4 },
+            { "basis": "temperaturePower", "coefficient": -1.4715227384102559e25, "exponent": -14 },
+            { "basis": "temperaturePower", "coefficient": -5.632929283446668e42, "exponent": -24 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourcePhaseIdentifier": "FCC_A1",
+        "sourceDataLocation": "pages 351 and 353",
+        "auditStatus": "direct-primary-source-audited",
+        "magneticContribution": {
+          "present": true,
+          "modelName": "Hillert-Jarl/Inden magnetic model",
+          "sourceAttribution": "Dinsdale attributes the definition to Hillert and Jarl following Inden.",
+          "criticalTemperature": { "value": 67.0, "unit": "K" },
+          "criticalTemperatureType": "Neel temperature",
+          "betaZeroAverageMagneticMomentPerAtom": 0.7,
+          "structureParameterP": 0.28,
+          "normalizationD": {
+            "sourcePrintedValue": 2.342456517,
+            "computedFromSourceFormula": 2.342456516879052
+          },
+          "gasConstant": { "value": 8.31451, "unit": "J/(mol K)" },
+          "unexpandedSourceRelationship": "The same Dinsdale Hillert-Jarl/Inden relationship used for BCC applies with Tstar = TN = 67 K, beta0 = 0.7, and p = 0.28.",
+          "expandedBasisStrategy": "Because all of systemValidity is above 67 K, only the tau > 1 branch is needed; multiplication by T gives T^-4, T^-14, and T^-24 terms added to both source FCC segments."
+        }
+      }
+    },
+    "hcp": {
+      "name": "gHcpIronDinsdale",
+      "phase": "HCP-A3",
+      "thermodynamicRole": "metastable HCP-A3 Gibbs-energy candidate at fixed ambient pressure",
+      "quantity": "G(Fe,HCP-A3,T) - H_SER(Fe)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 6000.0,
+        "unit": "K",
+        "basis": "source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1811.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            { "basis": "constant", "coefficient": -2480.08 },
+            { "basis": "temperature", "coefficient": 136.725 },
+            { "basis": "temperatureLogTemperature", "coefficient": -24.6643 },
+            { "basis": "temperaturePower", "coefficient": -0.00375752, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -5.89269e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 77358.5, "exponent": -1 }
+          ]
+        },
+        {
+          "minimumTemperature": 1811.0,
+          "maximumTemperature": 6000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            { "basis": "constant", "coefficient": -29340.78 },
+            { "basis": "temperature", "coefficient": 304.56206 },
+            { "basis": "temperatureLogTemperature", "coefficient": -46.0 },
+            { "basis": "temperaturePower", "coefficient": 2.78854e31, "exponent": -9 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourcePhaseIdentifier": "HCP_A3",
+        "sourceDataLocation": "pages 351 and 353",
+        "auditStatus": "direct-primary-source-audited",
+        "magneticContribution": {
+          "present": false
+        }
+      }
+    },
+    "liquid": {
+      "name": "gLiquidIronDinsdale",
+      "phase": "LIQUID",
+      "thermodynamicRole": "liquid Gibbs-energy function",
+      "quantity": "G(Fe,LIQUID,T) - H_SER(Fe)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 6000.0,
+        "unit": "K",
+        "basis": "source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1811.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "terms": [
+            { "basis": "constant", "coefficient": 13265.87 },
+            { "basis": "temperature", "coefficient": 117.57557 },
+            { "basis": "temperatureLogTemperature", "coefficient": -23.5143 },
+            { "basis": "temperaturePower", "coefficient": -0.00439752, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -5.89269e-8, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 77358.5, "exponent": -1 },
+            { "basis": "temperaturePower", "coefficient": -3.6751551e-21, "exponent": 7 }
+          ]
+        },
+        {
+          "minimumTemperature": 1811.0,
+          "maximumTemperature": 6000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "terms": [
+            { "basis": "constant", "coefficient": -10838.83 },
+            { "basis": "temperature", "coefficient": 291.302 },
+            { "basis": "temperatureLogTemperature", "coefficient": -46.0 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "dinsdale-1991",
+        "sourcePhaseIdentifier": "LIQUID",
+        "sourceDataLocation": "pages 351 and 353",
+        "auditStatus": "direct-primary-source-audited",
+        "magneticContribution": {
+          "present": false
+        }
+      }
+    }
+  },
+  "modelConstruction": {
+    "phaseIdentityDecision": "The functions object is keyed by phase identity. BCC-A2 is represented by the single key bcc throughout systemValidity. Ferromagnetic and paramagnetic states are not separate phases.",
+    "magneticCompatibilityDecision": "The generic reader is unchanged. Magnetic Gibbs energies are analytically expanded into ordinary temperaturePower terms in each applicable temperature segment.",
+    "physicalModelPreservation": "The unexpanded Hillert-Jarl/Inden relationship and all Dinsdale Fe magnetic parameters are retained in phase metadata so the expanded coefficients remain traceable to the physical contribution.",
+    "extensions": {
+      "used": false,
+      "statement": "Every candidate function is supplied by Dinsdale over the complete systemValidity interval; no mathematical extension is encoded and no extrapolation is permitted outside systemValidity."
+    },
+    "pressureTreatment": "Gpres is not encoded for this fixed 1 bar unary test, following Dinsdale's statement that the pressure contribution can be ignored for low or moderate pressures."
+  },
+  "sourceProvenance": {
+    "sourceFamily": "SGTE unary data",
+    "primarySource": {
+      "identifier": "dinsdale-1991",
+      "authors": ["A. T. Dinsdale"],
+      "title": "SGTE data for pure elements",
+      "journal": "CALPHAD",
+      "volume": 15,
+      "issue": 4,
+      "year": 1991,
+      "pages": "317-425",
+      "doi": "10.1016/0364-5916(91)90030-N",
+      "generalModelLocation": "pages 319-321",
+      "transitionTableLocation": "page 323",
+      "ironDataLocation": "pages 351-353",
+      "auditStatus": "directly inspected primary-source reproduction"
+    },
+    "sourceOfDinsdaleIronAssessment": {
+      "citationAsPrinted": "A. Fernandez Guillermet and P. Gustafson, High Temperatures-High Pressures, 1985, 16, 591-610",
+      "phasesAsPrinted": ["BCC_A2", "FCC_A1", "HCP_A3", "LIQUID"],
+      "role": "Dinsdale's stated underlying source for the four retained Fe phase assessments; the canonical coefficients are transcribed from Dinsdale (1991)."
+    },
+    "provenanceRule": "The numerical functions and transition constraints in this entry are tied specifically to the inspected Dinsdale (1991) reproduction. Later SGTE database revisions are not silently substituted."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "reproducibilityRule": "All computed values are consequences of the encoded functions and are not model inputs.",
+    "implementation": {
+      "primaryLanguage": "Wolfram Language",
+      "gasConstantUsedForExpansion": 8.31451,
+      "gasConstantUnit": "J/(mol K)",
+      "note": "The source writes R symbolically; 8.31451 J/(mol K), the SGTE-era conventional value, is recorded explicitly so the expanded representation is reproducible."
+    },
+    "sourceExpressionEquivalence": {
+      "status": "symbolically-derived-and-numerically-verified",
+      "bcc": "Each expanded magnetic branch was obtained by Expand of the recorded source relationship after substituting Tstar, beta0, p, D, and R, then added termwise to the source BCC expression.",
+      "fcc": "The tau > 1 magnetic branch was expanded and added termwise to both FCC source expressions; TN = 67 K is outside systemValidity.",
+      "condition": "encoded phase expression equals Dinsdale nonmagnetic expression plus the unexpanded Gmag expression on every applicable segment",
+      "sampleTemperatures": [298.15, 400.0, 1042.999, 1043.0, 1200.0, 1810.999, 1811.0, 2500.0, 6000.0],
+      "maximumAbsoluteResiduals": {
+        "bcc": 5.820766091346741e-11,
+        "fcc": 2.3283064365386963e-10,
+        "hcp": 2.3283064365386963e-10,
+        "liquid": 0.0,
+        "unit": "J/mol"
+      }
+    },
+    "continuity": {
+      "status": "verified with source-rounding residuals reported",
+      "checks": [
+        {
+          "phase": "bcc",
+          "temperature": 1043.0,
+          "boundaryType": "magnetic branch boundary",
+          "c0UpperMinusLower": -3.410605131648481e-13,
+          "c1UpperMinusLower": -1.7763568394002505e-15,
+          "c0Unit": "J/mol",
+          "c1Unit": "J/(mol K)",
+          "interpretation": "C0 and C1 continuous to numerical precision; this is a magnetic critical point, not a phase transition."
+        },
+        {
+          "phase": "bcc",
+          "temperature": 1811.0,
+          "boundaryType": "source polynomial boundary",
+          "c0UpperMinusLower": -0.006398787212674506,
+          "c1UpperMinusLower": -3.5633974562188087e-6,
+          "c0Unit": "J/mol",
+          "c1Unit": "J/(mol K)",
+          "interpretation": "Small residual from printed coefficient precision."
+        },
+        {
+          "phase": "fcc",
+          "temperature": 1811.0,
+          "boundaryType": "source polynomial boundary",
+          "c0UpperMinusLower": -0.003358100401769093,
+          "c1UpperMinusLower": -1.944994593827687e-6,
+          "c0Unit": "J/mol",
+          "c1Unit": "J/(mol K)",
+          "interpretation": "Small residual from printed coefficient precision."
+        },
+        {
+          "phase": "hcp",
+          "temperature": 1811.0,
+          "boundaryType": "source polynomial boundary",
+          "c0UpperMinusLower": 0.898141899597249,
+          "c1UpperMinusLower": 0.0004980550054067834,
+          "c0Unit": "J/mol",
+          "c1Unit": "J/(mol K)",
+          "interpretation": "Finite residual retained from the printed source coefficients; no coefficient was adjusted to force continuity."
+        },
+        {
+          "phase": "liquid",
+          "temperature": 1811.0,
+          "boundaryType": "source polynomial boundary",
+          "c0UpperMinusLower": 0.013890239493022704,
+          "c1UpperMinusLower": 2.7482552794610985e-6,
+          "c0Unit": "J/mol",
+          "c1Unit": "J/(mol K)",
+          "interpretation": "Small residual from printed coefficient precision."
+        }
+      ]
+    },
+    "phaseTransitions": [
+      {
+        "transition": {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "fcc"
+        },
+        "sourceValue": {
+          "temperature": 1184.8,
+          "unit": "K",
+          "reference": "Dinsdale 1991 transition table, page 323",
+          "auditStatus": "direct-primary-source-audited",
+          "role": "authoritative assessment constraint"
+        },
+        "computedValue": {
+          "temperature": 1184.8145692963758,
+          "unit": "K",
+          "status": "derived-from-encoded-functions",
+          "method": "numerical root of equal encoded Gibbs energies",
+          "condition": "G_bcc(T) = G_fcc(T)",
+          "differenceFromSource": 0.014569296375805286,
+          "differenceUnit": "K"
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "fcc",
+          "highTemperaturePhase": "bcc"
+        },
+        "sourceValue": {
+          "temperature": 1667.5,
+          "unit": "K",
+          "reference": "Dinsdale 1991 transition table, page 323",
+          "auditStatus": "direct-primary-source-audited",
+          "role": "authoritative assessment constraint"
+        },
+        "computedValue": {
+          "temperature": 1667.4686799588721,
+          "unit": "K",
+          "status": "derived-from-encoded-functions",
+          "method": "numerical root of equal encoded Gibbs energies",
+          "condition": "G_fcc(T) = G_bcc(T)",
+          "differenceFromSource": -0.03132004112784914,
+          "differenceUnit": "K"
+        }
+      },
+      {
+        "transition": {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "liquid"
+        },
+        "sourceValue": {
+          "temperature": 1811.0,
+          "unit": "K",
+          "reference": "Dinsdale 1991 transition table, page 323",
+          "auditStatus": "direct-primary-source-audited",
+          "role": "authoritative assessment constraint"
+        },
+        "computedValue": {
+          "temperature": 1810.9548255026448,
+          "unit": "K",
+          "status": "derived-from-encoded-functions",
+          "method": "numerical root of equal encoded Gibbs energies on the lower source branches",
+          "condition": "G_bcc(T) = G_liquid(T)",
+          "differenceFromSource": -0.04517449735524681,
+          "differenceUnit": "K",
+          "boundaryNote": "The root lies 0.045 K below the 1811 K source polynomial boundary because the printed coefficients are rounded."
+        }
+      }
+    ],
+    "stableEnvelope": {
+      "status": "derived-from-encoded-functions-and-verified-with-unchanged-generic-reader",
+      "phaseSequence": ["bcc", "fcc", "bcc", "liquid"],
+      "transitionTemperatures": [1184.8145692963758, 1667.4686799588721, 1810.9548255026448],
+      "unit": "K",
+      "candidatePhases": ["bcc", "fcc", "hcp", "liquid"],
+      "hcpResult": "HCP is never the minimum-Gibbs-energy phase over systemValidity at 1 bar.",
+      "reentrantPhaseResult": "The same bcc phase key and the same BCC Gibbs function are stable below the FCC region and again above it; no separate alpha-BCC and delta-BCC phase identities are introduced."
+    },
+    "unchangedReaderValidation": {
+      "status": "completed",
+      "reader": "generic Mathematica unary reader",
+      "readerModifiedForFe": false,
+      "resultType": "derived implementation validation; not an independent thermodynamic prediction",
+      "sourceComparisonRule": "Dinsdale/SGTE transition-table temperatures are audited authoritative assessment constraints. The reader results and numerical equality roots are consequences of the encoded functions and must not be described as independent predictions.",
+      "stableEnvelopeTransitions": [
+        {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "fcc",
+          "reportedTemperature": 1184,
+          "unit": "K",
+          "sourceTemperature": 1184.8,
+          "readerMinusSource": -0.8,
+          "precisionNote": "Retained exactly as reported by the completed reader run."
+        },
+        {
+          "lowTemperaturePhase": "fcc",
+          "highTemperaturePhase": "bcc",
+          "reportedTemperature": 1667.47,
+          "unit": "K",
+          "sourceTemperature": 1667.5,
+          "readerMinusSource": -0.03
+        },
+        {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "liquid",
+          "reportedTemperature": 1810.95,
+          "unit": "K",
+          "sourceTemperature": 1811.0,
+          "readerMinusSource": -0.05
+        }
+      ],
+      "phaseIdentity": "One bcc phase identity is retained. Its re-entrant stability is recovered with the same BCC Gibbs function stable below the FCC interval and again above it.",
+      "magneticOrderingResult": "The 1043 K BCC Curie transition remains an internal magnetic-ordering contribution to the BCC Gibbs function and is not reported as a crystallographic stable-envelope transition.",
+      "representationResult": "The Hillert-Jarl/Inden magnetic contribution is expanded into ordinary OBGEL basis terms for compatibility with the unchanged reader while its physical magnetic parameters, unexpanded relationship, and provenance remain recorded. A future first-class contributions mechanism remains deferred architecture, not a current reader requirement."
+    },
+    "magneticCriticalPoints": [
+      {
+        "phase": "bcc",
+        "temperature": 1043.0,
+        "unit": "K",
+        "type": "Curie temperature",
+        "sourceStatus": "direct-primary-source-audited",
+        "envelopeClassification": "not a phase transition",
+        "note": "The stable phase immediately below and above this temperature is bcc."
+      },
+      {
+        "phase": "fcc",
+        "temperature": 67.0,
+        "unit": "K",
+        "type": "Neel temperature",
+        "sourceStatus": "direct-primary-source-audited",
+        "domainClassification": "below systemValidity",
+        "envelopeClassification": "not evaluated as a stable-envelope transition"
+      }
+    ],
+    "readerStructure": {
+      "semanticFunctionKeys": ["bcc", "fcc", "hcp", "liquid"],
+      "functionNamesPresent": true,
+      "baseFunctionsAbsentByDesign": true,
+      "temperatureSegmentsAreArrays": true,
+      "termsAreArrays": true,
+      "endpointInclusionExplicit": true,
+      "systemValidityPresent": true,
+      "allFunctionsCoverSystemValidityWithTemperatureSegments": true,
+      "basisVocabularyLimitedToGenericUnaryReader": true,
+      "genericReaderModified": false,
+      "singleBccPhaseIdentityPreserved": true,
+      "reentrantBccStabilityRecovered": true,
+      "curiePointExcludedFromCrystallographicTransitions": true
+    },
+    "schemaValidation": {
+      "jsonSyntax": "passed",
+      "unarySchemaStatus": "The repository does not yet contain a formal JSON Schema for unaryStandardReference objects.",
+      "structuralConventionChecks": "passed",
+      "checks": [
+        "phase keys are exactly bcc, fcc, hcp, and liquid",
+        "temperatureSegments and terms are arrays",
+        "all basis identifiers are in the generic unary-reader vocabulary",
+        "every phase expression covers the complete systemValidity interval",
+        "segment endpoint inclusion is explicit",
+        "no baseFunction dependency is present"
+      ]
+    }
+  }
+}

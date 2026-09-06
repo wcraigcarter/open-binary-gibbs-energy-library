@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "0.1-development",
+  "schemaVersion": "0.2.0",
   "objectType": "unaryStandardReference",
   "status": "canonical-analytic-conversion-implementation-verified",
   "identity": {

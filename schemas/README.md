@@ -22,4 +22,10 @@ The JSON thermodynamic model is the source of truth. Human-readable TeX and PDF 
 
 ## Versioning
 
-The initial schema is versioned and should be treated as a frozen design baseline. Changes that alter field meaning or interoperability should increment the schema version rather than being silently introduced.
+Schema versions identify the grammar and semantics of an object family; they are
+independent of the repository release and of scientific revisions to individual
+datasets. Changes that alter field meaning or interoperability must increment the
+applicable schema-family version rather than being introduced silently.
+
+See [`VERSIONING.md`](VERSIONING.md) for the compatibility rules and
+[`CHANGELOG.md`](CHANGELOG.md) for schema history and migration notes.

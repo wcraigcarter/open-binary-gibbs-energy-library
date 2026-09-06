@@ -2,6 +2,10 @@
 
 This document defines conventions that OBGEL data readers may rely upon. It is a living schema contract and should grow only as conventions are explicitly decided.
 
+Schema-family versions and compatibility rules are defined in
+[`../schemas/VERSIONING.md`](../schemas/VERSIONING.md). Schema changes are
+recorded in [`../schemas/CHANGELOG.md`](../schemas/CHANGELOG.md).
+
 ## Collections
 
 Fields that represent collections are always JSON arrays, regardless of cardinality. Zero items are represented by an empty array where permitted, one item by an array containing one value, and multiple items by a longer array.
