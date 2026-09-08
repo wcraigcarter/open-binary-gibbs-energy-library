@@ -1,0 +1,407 @@
+{
+  "schemaVersion": "0.2.0",
+  "objectType": "unaryStandardReference",
+  "status": "staged-candidate-source-audited-automated-gates-passed-and-independently-verified-with-unchanged-reader",
+  "modelIdentifier": "hf-unary-dinsdale-1991",
+  "identity": {
+    "elementName": "hafnium",
+    "elementSymbol": "Hf"
+  },
+  "dataRole": "staged version-pinned transcription of the Hf model printed by Dinsdale (1991); not SGTE Unary Database v5",
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {
+      "name": "HCP-A3",
+      "role": "stable reference phase at 298.15 K"
+    },
+    "referenceConditions": {
+      "temperature": { "value": 298.15, "unit": "K" },
+      "pressure": { "value": 1, "unit": "bar" }
+    },
+    "energyReference": "H_SER(Hf), the enthalpy of HCP-A3 Hf at 298.15 K and 1 bar"
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 1,
+      "unit": "bar",
+      "treatment": "Temperature-only ambient-pressure unary model. The Dinsdale (1991) Hf entry prints no pressure contribution."
+    }
+  },
+  "physicalContributions": [],
+  "scope": {
+    "phases": ["hcp", "bcc", "liquid", "fcc"],
+    "sourceToRepositoryPhaseNames": [
+      { "sourceName": "HCP_A3", "phaseName": "hcp", "sourceDesignation": "HCP_A3" },
+      { "sourceName": "BCC_A2", "phaseName": "bcc", "sourceDesignation": "BCC_A2" },
+      { "sourceName": "LIQUID", "phaseName": "liquid", "sourceDesignation": "LIQUID" },
+      { "sourceName": "FCC_A1", "phaseName": "fcc", "sourceDesignation": "FCC_A1" }
+    ],
+    "sourceModelDesignation": "N Saunders and A T Dinsdale, Unpublished work"
+  },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 3000.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "Closed OBGEL evaluation domain formed from finite endpoint limits of the Dinsdale (1991) Hf expressions printed for 298.15 < T < 3000 K. No SGTE v5 3000-3001 K continuation and no extrapolation are included."
+  },
+  "units": {
+    "temperature": "K",
+    "molarGibbsEnergy": "J/mol"
+  },
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": ["constant", "temperature", "temperatureLogTemperature", "temperaturePower"],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "lower-inclusive and upper-exclusive, except final segment upper-inclusive; endpoint values are finite limiting values of the source expressions",
+    "outsideValidity": "No candidate value is supplied outside systemValidity.",
+    "baseFunctionSemantics": "gBcc, gLiquid, and gFcc are Dinsdale's printed Gibbs-energy differences relative to gHcp; no dependency flattening or fitting is applied."
+  },
+  "functions": {
+    "hcp": {
+      "name": "gHcp",
+      "phase": "HCP-A3",
+      "sourcePhaseDesignation": "HCP_A3",
+      "thermodynamicRole": "standard-element-reference solid Gibbs-energy function",
+      "quantity": "G(HCP_A3,Hf,T) - H_SER(Hf)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K",
+        "basis": "Dinsdale 1991 source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 2506.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "Dinsdale-1991 source expression",
+          "terms": [
+            { "basis": "constant", "coefficient": -6987.297 },
+            { "basis": "temperature", "coefficient": 110.744026 },
+            { "basis": "temperatureLogTemperature", "coefficient": -22.7075 },
+            { "basis": "temperaturePower", "coefficient": -0.004146145, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -4.77e-10, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -22590.0, "exponent": -1 }
+          ]
+        },
+        {
+          "minimumTemperature": 2506.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 source expression",
+          "terms": [
+            { "basis": "constant", "coefficient": -1446776.329 },
+            { "basis": "temperature", "coefficient": 6193.609991 },
+            { "basis": "temperatureLogTemperature", "coefficient": -787.5363829 },
+            { "basis": "temperaturePower", "coefficient": 0.1735215, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": -7.575759e-6, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": 501742495.0, "exponent": -1 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 357-358",
+        "sourceRepresentation": "G-HSER",
+        "transcriptionTreatment": "Literal basis-term transcription; decimal scientific notation is normalized analytically only."
+      }
+    },
+    "bcc": {
+      "name": "gBcc",
+      "baseFunction": "gHcp",
+      "phase": "BCC-A2",
+      "sourcePhaseDesignation": "BCC_A2",
+      "thermodynamicRole": "solid-phase Gibbs-energy candidate",
+      "quantity": "G(BCC_A2,Hf,T) - H_SER(Hf)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K",
+        "basis": "Dinsdale 1991 source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 2506.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 12358.0 },
+            { "basis": "temperature", "coefficient": -6.908 },
+            { "basis": "temperatureLogTemperature", "coefficient": -0.192 },
+            { "basis": "temperaturePower", "coefficient": -0.00006046, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 8.724e-7, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -1.446e-10, "exponent": 4 }
+          ]
+        },
+        {
+          "minimumTemperature": 2506.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 3359233.1 },
+            { "basis": "temperature", "coefficient": -14817.815721 },
+            { "basis": "temperatureLogTemperature", "coefficient": 1875.1505076 },
+            { "basis": "temperaturePower", "coefficient": -0.460378565, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 2.1003588e-5, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -1111827586.0, "exponent": -1 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, p. 358",
+        "sourceRepresentation": "G(BCC_A2)-G(HCP_A3)",
+        "absoluteExpressionCrosscheck": "Dinsdale 1991 also prints the corresponding G-HSER expression."
+      }
+    },
+    "liquid": {
+      "name": "gLiquid",
+      "baseFunction": "gHcp",
+      "phase": "LIQUID",
+      "sourcePhaseDesignation": "LIQUID",
+      "thermodynamicRole": "pure-liquid Gibbs-energy candidate",
+      "quantity": "G(LIQUID,Hf,T) - H_SER(Hf)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K",
+        "basis": "Dinsdale 1991 source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 1000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 27402.256 },
+            { "basis": "temperature", "coefficient": -10.953093 }
+          ]
+        },
+        {
+          "minimumTemperature": 1000.0,
+          "maximumTemperature": 2506.0,
+          "minimumInclusive": true,
+          "maximumInclusive": false,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 56718.796 },
+            { "basis": "temperature", "coefficient": -260.661416 },
+            { "basis": "temperatureLogTemperature", "coefficient": 34.824312 },
+            { "basis": "temperaturePower", "coefficient": -0.017115876, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 1.376943e-6, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -4427109.0, "exponent": -1 }
+          ]
+        },
+        {
+          "minimumTemperature": 2506.0,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 1442529.112 },
+            { "basis": "temperature", "coefficient": -5928.139468 },
+            { "basis": "temperatureLogTemperature", "coefficient": 743.5363829 },
+            { "basis": "temperaturePower", "coefficient": -0.1735215, "exponent": 2 },
+            { "basis": "temperaturePower", "coefficient": 7.575759e-6, "exponent": 3 },
+            { "basis": "temperaturePower", "coefficient": -501742495.0, "exponent": -1 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, p. 358",
+        "sourceRepresentation": "G(LIQUID)-G(HCP_A3)",
+        "absoluteExpressionCrosscheck": "Dinsdale 1991 also prints the corresponding G-HSER expression."
+      }
+    },
+    "fcc": {
+      "name": "gFcc",
+      "baseFunction": "gHcp",
+      "phase": "FCC-A1",
+      "sourcePhaseDesignation": "FCC_A1",
+      "thermodynamicRole": "metastable solid-phase Gibbs-energy candidate",
+      "quantity": "G(FCC_A1,Hf,T) - H_SER(Hf)",
+      "validity": {
+        "minimumTemperature": 298.15,
+        "maximumTemperature": 3000.0,
+        "unit": "K",
+        "basis": "Dinsdale 1991 source model"
+      },
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15,
+          "maximumTemperature": 3000.0,
+          "minimumInclusive": true,
+          "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 lattice stability relative to HCP_A3",
+          "terms": [
+            { "basis": "constant", "coefficient": 10000.0 },
+            { "basis": "temperature", "coefficient": -2.2 }
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, p. 358",
+        "sourceRepresentation": "G(FCC_A1)-G(HCP_A3)"
+      }
+    }
+  },
+  "sourceProvenance": {
+    "modelVersionPin": {
+      "identifier": "hf-unary-dinsdale-1991",
+      "assessment": "Dinsdale 1991 / corresponding SGTE-era Hf functions",
+      "policy": "Every model-defining coefficient and range in this object is transcribed from the 1991 Hf entry. Later SGTE coefficients are neither substituted nor blended."
+    },
+    "primarySource": {
+      "authors": ["A. T. Dinsdale"],
+      "title": "SGTE data for pure elements",
+      "journal": "CALPHAD",
+      "volume": 15,
+      "issue": 4,
+      "year": 1991,
+      "pages": "317-425",
+      "elementDataPages": [323, 357, 358],
+      "doi": "10.1016/0364-5916(91)90030-N",
+      "elementEntrySourceDesignation": "N Saunders and A T Dinsdale, Unpublished work"
+    },
+    "laterVersionContext": {
+      "database": "SGTE Unary Database",
+      "version": "5.0",
+      "date": "2009-06-02",
+      "sha256": "8e38dcefbeaad1f8ed83ed1f8ccceb0e1701fb584f1bf3798f217488253d4b3f",
+      "headerStatement": "Revised data for Hf HCP_A3, BCC_A2, FCC_A1",
+      "useInThisCandidate": "provenance comparison only; not a model-defining coefficient source",
+      "rangeDifference": "v5 includes short 3000-3001 K continuation segments; those are excluded from this Dinsdale-1991 object."
+    }
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "overallStatus": "source-transcription-audited-automated-gates-passed-and-independently-verified-with-unchanged-generic-reader",
+    "expectedPhaseTransitions": [
+      {
+        "transition": { "lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc" },
+        "sourceValue": { "temperature": 2016.0, "unit": "K", "reference": "Dinsdale 1991 transition table, p. 323", "auditStatus": "page-located" }
+      },
+      {
+        "transition": { "lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid" },
+        "sourceValue": { "temperature": 2506.0, "unit": "K", "reference": "Dinsdale 1991 transition table, p. 323", "auditStatus": "page-located" }
+      }
+    ],
+    "computedPhaseTransitions": [
+      {
+        "lowTemperaturePhase": "hcp",
+        "highTemperaturePhase": "bcc",
+        "temperature": 2016.028319650735,
+        "unit": "K",
+        "method": "numerical root of equal Gibbs energies",
+        "rootResidual": 0.0
+      },
+      {
+        "lowTemperaturePhase": "bcc",
+        "highTemperaturePhase": "liquid",
+        "temperature": 2506.0,
+        "unit": "K",
+        "method": "lower-envelope change at Dinsdale source segment boundary",
+        "rootResidual": 0.01044407719746232,
+        "interpretation": "The printed piecewise coefficients change the lower envelope at the tabulated 2506 K boundary; the small nonzero equality residual is retained as printed-coefficient rounding, not removed by coefficient adjustment."
+      }
+    ],
+    "expectedStableSequenceForUnchangedReader": ["hcp", "bcc", "liquid"],
+    "currentReaderCompatibility": {
+      "status": "supported-by-inspection-and-independent-evaluator",
+      "basis": ["constant", "temperature", "temperatureLogTemperature", "temperaturePower"],
+      "dependencyShape": "one root function gHcp with direct single-level dependents gBcc, gLiquid, and gFcc",
+      "readerFilesModified": false,
+      "independentUnchangedReaderRun": "passed"
+    },
+    "automatedValidation": {
+      "status": "passed",
+      "diagnosticFile": "working/unary-batch-0.2.0/diagnostics/hf-dinsdale-1991-validation.json",
+      "gatesPassed": 14,
+      "gatesTotal": 14,
+      "maximumAnalyticEquivalenceResidualJPerMol": 4.190951585769653e-9,
+      "maximumC0ResidualJPerMol": 0.011185161769390106,
+      "maximumC1ResidualJPerMolK": 0.000013410462997853756,
+      "rootResidualToleranceJPerMol": 0.02
+    },
+    "unchangedReaderValidation": {
+      "status": "completed",
+      "reader": "examples/mathematica/Unary-reference-reader.nb",
+      "readerModifiedForHf": false,
+      "evaluationMethod": "Existing definition cells were evaluated read-only from the notebook expression; the notebook was not opened, edited, or saved.",
+      "stableEnvelopeTransitions": [
+        {
+          "lowTemperaturePhase": "hcp",
+          "highTemperaturePhase": "bcc",
+          "reportedTemperature": 2016.0283196507369,
+          "unit": "K"
+        },
+        {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "liquid",
+          "reportedTemperature": 2505.9999999999645,
+          "unit": "K"
+        }
+      ],
+      "diagnostic": "The reader's existing FindRoot call emits a line-search warning at 2506 K because the lower-envelope change is located at a piecewise boundary with a 0.010444 J/mol printed-coefficient residual; it nevertheless returns the correct boundary and phase identities."
+    },
+    "userIndependentUnchangedReaderValidation": {
+      "status": "completed-pass",
+      "evidenceType": "project-owner report from the unchanged generic Mathematica unary reader",
+      "gibbsEnergyCurvesContinuous": true,
+      "stableEnvelopeTransitions": [
+        {
+          "lowTemperaturePhase": "hcp",
+          "highTemperaturePhase": "bcc",
+          "reportedTemperature": 2016.03,
+          "unit": "K"
+        },
+        {
+          "lowTemperaturePhase": "bcc",
+          "highTemperaturePhase": "liquid",
+          "reportedTemperature": 2506.0,
+          "unit": "K",
+          "correction": "An earlier metastable label was a user transcription error; this is an equilibrium lower-envelope transition."
+        }
+      ],
+      "inDomainMetastablePairwiseCrossings": [
+        {
+          "phases": ["fcc", "liquid"],
+          "reportedTemperature": 1951.42,
+          "unit": "K",
+          "classification": "legitimate metastable crossing within systemValidity; another phase has lower Gibbs energy"
+        },
+        {
+          "phases": ["hcp", "liquid"],
+          "reportedTemperature": 2419.63,
+          "unit": "K",
+          "classification": "legitimate metastable crossing within systemValidity; another phase has lower Gibbs energy"
+        }
+      ],
+      "rejectedOutOfDomainAnalyticRoots": [
+        {
+          "phases": ["bcc", "fcc"],
+          "reportedTemperature": -5310.28,
+          "unit": "K",
+          "classification": "rejected; below systemValidity"
+        },
+        {
+          "phases": ["fcc", "hcp"],
+          "reportedTemperature": 4545.45,
+          "unit": "K",
+          "classification": "rejected; above systemValidity"
+        }
+      ],
+      "domainRule": "A pairwise root outside systemValidity is not an OBGEL thermodynamic result, regardless of whether analytic extrapolation yields a mathematical root."
+    }
+  }
+}

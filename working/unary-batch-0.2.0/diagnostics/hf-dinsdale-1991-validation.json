@@ -1,0 +1,99 @@
+{
+  "elementSymbol": "Hf",
+  "modelIdentifier": "hf-unary-dinsdale-1991",
+  "candidatePath": "working/unary-batch-0.2.0/candidates/hf-dinsdale-1991-standard-reference-candidate.json",
+  "classification": "PASS - version-pinned candidate independently verified and promoted",
+  "validationGates": {
+    "jsonSyntax": true,
+    "schema020Structure": true,
+    "segmentEndpoints": true,
+    "modelSystemValidityConsistency": true,
+    "basisSupport": true,
+    "baseFunctionDependencyResolvability": true,
+    "finiteIndependentNumericalEvaluation": true,
+    "analyticEquivalenceToPrintedAbsoluteFunctions": true,
+    "c0Continuity": true,
+    "c1Continuity": true,
+    "lowerEnvelopeTopology": true,
+    "transitionComparisonToDinsdale1991": true,
+    "rootResiduals": true,
+    "provenanceAndStatus": true
+  },
+  "analyticEquivalenceMaximumResidualsJPerMol": {
+    "hcp": 1.862645149230957e-9,
+    "bcc": 4.190951585769653e-9,
+    "liquid": 2.6775524020195007e-9,
+    "fcc": 1.1059455573558807e-9
+  },
+  "continuity": {
+    "hcp": [
+      { "temperature": 2506.0, "c0Residual": -0.011185161769390106, "c1Residual": -0.000013410462997853756 }
+    ],
+    "bcc": [
+      { "temperature": 2506.0, "c0Residual": 0.009702343493700027, "c1Residual": 0.0000028932081477250904 }
+    ],
+    "liquid": [
+      { "temperature": 1000.0, "c0Residual": 0.000054921023547649384, "c1Residual": 5.492100285664492e-8 },
+      { "temperature": 2506.0, "c0Residual": -0.0015919158468022943, "c1Residual": -0.000002641849164319865 }
+    ],
+    "fcc": []
+  },
+  "stableSequence": ["hcp", "bcc", "liquid"],
+  "metastableEnvelopeCheck": {
+    "fccReachesLowerEnvelope": false,
+    "result": "pass"
+  },
+  "computedTransitions": [
+    {
+      "lowTemperaturePhase": "hcp",
+      "highTemperaturePhase": "bcc",
+      "temperature": 2016.028319650735,
+      "method": "numerical root of equal Gibbs energies",
+      "rootResidual": 0.0
+    },
+    {
+      "lowTemperaturePhase": "bcc",
+      "highTemperaturePhase": "liquid",
+      "temperature": 2506.0,
+      "method": "lower-envelope change at Dinsdale source segment boundary",
+      "rootResidual": 0.01044407719746232,
+      "note": "No coefficient was adjusted to remove the printed-coefficient residual."
+    }
+  ],
+  "sourceTransitionTemperaturesK": [2016.0, 2506.0],
+  "transitionToleranceK": 1.0,
+  "rootResidualToleranceJPerMol": 0.02,
+  "c0ToleranceJPerMol": 2.0,
+  "c1ToleranceJPerMolK": 0.01,
+  "validationImplementation": {
+    "language": "Wolfram Language",
+    "script": "work/hf-audit/validateHfCandidate.wl",
+    "readerFilesModified": false
+  },
+  "unchangedReaderValidation": {
+    "status": "passed",
+    "reader": "examples/mathematica/Unary-reference-reader.nb",
+    "readerModified": false,
+    "transitions": [
+      { "lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc", "temperature": 2016.0283196507369, "unit": "K" },
+      { "lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid", "temperature": 2505.9999999999645, "unit": "K" }
+    ],
+    "diagnostic": "The existing FindRoot emits a line-search warning at the 2506 K piecewise boundary but returns the correct boundary and phase identities."
+  },
+  "userIndependentValidation": {
+    "gibbsEnergyCurvesContinuous": true,
+    "stableEnvelopeTransitions": [
+      { "lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc", "temperature": 2016.03, "unit": "K" },
+      { "lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid", "temperature": 2506.0, "unit": "K", "classification": "equilibrium; earlier metastable label was a user transcription error" }
+    ],
+    "inDomainMetastablePairwiseCrossings": [
+      { "phases": ["fcc", "liquid"], "temperature": 1951.42, "unit": "K" },
+      { "phases": ["hcp", "liquid"], "temperature": 2419.63, "unit": "K" }
+    ],
+    "rejectedOutOfDomainAnalyticRoots": [
+      { "phases": ["bcc", "fcc"], "temperature": -5310.28, "unit": "K", "domainClassification": "below systemValidity" },
+      { "phases": ["fcc", "hcp"], "temperature": 4545.45, "unit": "K", "domainClassification": "above systemValidity" }
+    ],
+    "domainRule": "Pairwise roots outside systemValidity are rejected as OBGEL thermodynamic results regardless of analytic extrapolation."
+  }
+}
