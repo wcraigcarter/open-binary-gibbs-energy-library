@@ -84,6 +84,21 @@ A unary object describes one pure substance of fixed overall composition. The su
 
 When a unary model is evaluated at a fixed pressure, `systemConditions.pressure` records that thermodynamic pressure explicitly. For a pure-substance unary object, pressure is the thermodynamic pressure of the pure substance. For a pure vapor it is therefore also the vapor species' partial pressure (for pure H2O vapor, `p_H2O`). A multicomponent or inert-gas atmosphere would separate total pressure from species partial pressure and lies outside that unary object. Chemical reactions, dissociation, oxidation, and other externally imposed chemical environments likewise require a different model and must not be inferred from the unary pressure condition.
 
+## Phase Identity and Source Qualifications
+
+Function keys and other canonical phase identifiers describe phase or structure
+identity. Source-specific thermodynamic or model qualifications do not create a
+new phase identifier merely because the source prints the qualification beside
+the phase name. Those qualifications belong in source/model provenance
+metadata, where the source wording can be preserved without changing the
+canonical identity.
+
+For Zn, for example, Dinsdale's exact designation
+`HCP_A3 (Zn non ideal)` is retained as `sourcePhaseDesignation` and in the
+source-to-repository mapping, while the canonical function key remains `hcp`.
+This records both facts: the modeled structure is HCP, and the source applies a
+specific thermodynamic qualification to its Zn reference treatment.
+
 ## Verification Metadata
 
 Verification metadata records derived checks on a thermodynamic model. It is non-model-defining: coefficients, basis terms, dependencies, validity intervals, and other model data must be sufficient to evaluate the model without consulting verification results. Conversely, every computed verification result must be reproducible from the underlying model data.

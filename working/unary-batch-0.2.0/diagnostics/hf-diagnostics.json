@@ -1,0 +1,46 @@
+{
+	"elementSymbol":"Hf",
+	"elementName":"hafnium",
+	"classification":"REVIEW REQUIRED — SGTE v5 explicitly revises Hf HCP-A3, BCC-A2, and FCC-A1; a version-pinned Dinsdale-1991 transcription is required.",
+	"phasesFound":[],
+	"sourceValidity":{
+		"minimumTemperature":2.9815e2,
+		"maximumTemperature":3.0e3,
+		"unit":"K"
+	},
+	"modelValidity":{},
+	"systemScope":{
+		"pressure":"1 bar",
+		"basis":[
+			"constant",
+			"temperature",
+			"temperatureLogTemperature",
+			"temperaturePower"
+		]
+	},
+	"specialContributions":[
+		"Dinsdale Gpres pressure contribution"
+	],
+	"expectedStableTransitions":[
+		[
+			"hcp",
+			"bcc",
+			2.016e3
+		],
+		[
+			"bcc",
+			"liquid",
+			2.506e3
+		]
+	],
+	"recoveredStableSequence":[],
+	"recoveredStableTransitions":[],
+	"validationMetrics":{
+		"gates":{
+			"sourceExtractionCompleteness":false
+		}
+	},
+	"reasons":[
+		"SGTE v5 explicitly revises Hf HCP-A3, BCC-A2, and FCC-A1; a version-pinned Dinsdale-1991 transcription is required."
+	]
+}

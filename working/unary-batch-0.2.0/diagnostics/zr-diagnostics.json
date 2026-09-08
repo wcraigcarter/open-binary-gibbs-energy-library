@@ -1,0 +1,46 @@
+{
+	"elementSymbol":"Zr",
+	"elementName":"zirconium",
+	"classification":"REVIEW REQUIRED — Dinsdale includes OMEGA and explicit pressure terms, while the standard-function source route omits OMEGA; phase completeness and ambient-pressure reduction require audit.",
+	"phasesFound":[],
+	"sourceValidity":{
+		"minimumTemperature":2.9815e2,
+		"maximumTemperature":4.0e3,
+		"unit":"K"
+	},
+	"modelValidity":{},
+	"systemScope":{
+		"pressure":"1 bar",
+		"basis":[
+			"constant",
+			"temperature",
+			"temperatureLogTemperature",
+			"temperaturePower"
+		]
+	},
+	"specialContributions":[
+		"Dinsdale Gpres pressure contribution"
+	],
+	"expectedStableTransitions":[
+		[
+			"hcp",
+			"bcc",
+			1.13945e3
+		],
+		[
+			"bcc",
+			"liquid",
+			2.12785e3
+		]
+	],
+	"recoveredStableSequence":[],
+	"recoveredStableTransitions":[],
+	"validationMetrics":{
+		"gates":{
+			"sourceExtractionCompleteness":false
+		}
+	},
+	"reasons":[
+		"Dinsdale includes OMEGA and explicit pressure terms, while the standard-function source route omits OMEGA; phase completeness and ambient-pressure reduction require audit."
+	]
+}
