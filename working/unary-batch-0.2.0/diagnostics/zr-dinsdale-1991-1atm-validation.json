@@ -1,0 +1,87 @@
+{
+  "elementSymbol": "Zr",
+  "modelIdentifier": "zr-unary-dinsdale-1991-p101325-pa",
+  "candidatePath": "working/unary-batch-0.2.0/candidates/zr-dinsdale-1991-1atm-standard-reference-candidate.json",
+  "classification": "PASS - staged candidate pending independent unchanged-reader validation",
+  "validationGates": {
+    "jsonSyntax": true,
+    "schema020Structure": true,
+    "completeSourcePhaseSet": true,
+    "segmentEndpoints": true,
+    "sourceModelSystemValidityConsistency": true,
+    "basisSupportByUnchangedReader": true,
+    "baseFunctionDependencyResolution": true,
+    "finiteIndependentNumericalEvaluation": true,
+    "analyticEquivalenceToSourceReduction": true,
+    "c0Continuity": true,
+    "c1Continuity": true,
+    "lowerEnvelopeTopology": true,
+    "transitionComparisonToDinsdale1991": true,
+    "pairwiseCrossingsRestrictedToSystemValidity": true,
+    "rootResiduals": true,
+    "omegaExcludedFromLowerEnvelope": true,
+    "provenanceAndStatus": true
+  },
+  "analyticEquivalenceMaximumResidualsJPerMol": {
+    "hcp": 6.402842700481415e-10,
+    "omega": 7.566995918750763e-10,
+    "bcc": 6.402842700481415e-10,
+    "liquid": 6.402842700481415e-10,
+    "fcc": 6.984919309616089e-10
+  },
+  "pressureReductionComparisonToFullMurnaghan": {
+    "hcp": {"maximumAbsoluteResidualJPerMol": 0.021083141057491872, "maximumExactContributionJPerMol": 1.6726157939086215},
+    "omega": {"maximumAbsoluteResidualJPerMol": 0.010685980642664461, "maximumExactContributionJPerMol": 1.5688391668746147},
+    "bcc": {"maximumAbsoluteResidualJPerMol": 0.010688006938085914, "maximumExactContributionJPerMol": 1.5691366530602158},
+    "liquid": {"maximumAbsoluteResidualJPerMol": 0.011229729225561202, "maximumExactContributionJPerMol": 1.6486684406031211},
+    "fcc": {"maximumAbsoluteResidualJPerMol": 0.021083141057491872, "maximumExactContributionJPerMol": 1.6726157939086215}
+  },
+  "continuity": {
+    "hcp": [{"temperature": 2128.0, "c0Residual": 0.062157737876987085, "c1Residual": -0.000030850060284137726}],
+    "omega": [{"temperature": 2128.0, "c0Residual": -0.021447771141538396, "c1Residual": -0.00006507616490125656}],
+    "bcc": [{"temperature": 2128.0, "c0Residual": -0.03529285857803188, "c1Residual": -0.00007112976163625717}],
+    "liquid": [{"temperature": 2128.0, "c0Residual": 0.01827652836800553, "c1Residual": -0.00005293986760079861}],
+    "fcc": [{"temperature": 2128.0, "c0Residual": 0.06215772885479964, "c1Residual": -0.00003087916411459446}]
+  },
+  "stableSequence": ["hcp", "bcc", "liquid"],
+  "computedTransitions": [
+    {"lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc", "temperature": 1138.99415674871, "rootResidual": 0.0},
+    {"lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid", "temperature": 2127.8629387538026, "rootResidual": 0.0}
+  ],
+  "sourceTransitionTemperaturesK": [1139.45, 2127.85],
+  "pairwiseCrossingsWithinSystemValidity": [
+    {"phases": ["hcp", "bcc"], "temperature": 1138.99415674871, "rootResidual": 0.0, "classification": "equilibrium"},
+    {"phases": ["hcp", "bcc"], "temperature": 2956.3854803930526, "rootResidual": 0.0, "classification": "metastable"},
+    {"phases": ["hcp", "liquid"], "temperature": 2000.772175264655, "rootResidual": 0.0, "classification": "metastable"},
+    {"phases": ["omega", "bcc"], "temperature": 970.2811554315485, "rootResidual": 0.0, "classification": "metastable"},
+    {"phases": ["omega", "liquid"], "temperature": 1826.4609508469973, "rootResidual": 0.0, "classification": "metastable"},
+    {"phases": ["omega", "fcc"], "temperature": 3176.550594645054, "rootResidual": 5.820766091346741e-11, "classification": "metastable"},
+    {"phases": ["bcc", "liquid"], "temperature": 2127.8629387538026, "rootResidual": 0.0, "classification": "equilibrium"},
+    {"phases": ["liquid", "fcc"], "temperature": 1289.4462793128005, "rootResidual": 0.0, "classification": "metastable"}
+  ],
+  "omegaBehavior": {
+    "minimumOmegaMinusHcpJPerMol": 125.3747472697305,
+    "temperatureOfMinimumOmegaMinusHcpK": 298.15,
+    "omegaMinusHcpAtHcpBccTransitionJPerMol": 800.3376788685055,
+    "minimumOmegaMinusBccJPerMol": -4836.667994098254,
+    "temperatureOfMinimumOmegaMinusBccK": 298.15,
+    "omegaReachesLowerEnvelope": false
+  },
+  "tolerances": {
+    "transitionK": 1.0,
+    "rootResidualJPerMol": 1e-6,
+    "c0JPerMol": 2.0,
+    "c1JPerMolK": 0.01,
+    "analyticEquivalenceJPerMol": 1e-8
+  },
+  "validationImplementation": {
+    "language": "Wolfram Language",
+    "script": "working/unary-batch-0.2.0/zr-dinsdale-1991-1atm-validation.wl",
+    "readerFilesModified": false
+  },
+  "unchangedReaderValidation": {
+    "status": "pending-project-owner-independent-test",
+    "reader": "examples/mathematica/Unary-reference-reader.nb",
+    "readerModified": false
+  }
+}

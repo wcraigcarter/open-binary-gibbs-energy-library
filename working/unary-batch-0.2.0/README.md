@@ -7,16 +7,19 @@ generic Mathematica reader and promoted to `data/unary/`. The original Hf
 review flag was subsequently resolved by a separately version-pinned
 Dinsdale-1991 candidate. It passed the automated gates and the project owner's
 independent unchanged-reader validation, and was promoted without coefficient
-changes. Zr remains review-required and was not changed or promoted.
+changes. The Zr review flag has now been resolved into a complete,
+pressure-reduced Dinsdale-1991 staged candidate. It passed the automated gates
+and remains under `candidates/` pending the project owner's independent
+unchanged-reader validation; it has not been promoted.
 
 ## Layout
 
-- `candidates/` is empty after promotion so no promoted file can be mistaken
-  for an unreviewed candidate.
+- `candidates/` contains the unpromoted Zr candidate pending independent
+  unchanged-reader validation.
 - `promoted-candidates/` retains the exact pre-promotion candidate JSON files
   for coefficient and provenance comparison.
 - `diagnostics/` contains the initial machine-readable result per requested
-  element and `hf-dinsdale-1991-validation.json`, the later Hf resolution.
+  element plus the separate Hf and Zr resolution diagnostics.
 - `reports/batch-report.json` is the complete machine-readable batch report.
 - `reports/batch-summary.md` is the human-readable report.
 - `reports/unchanged-reader-validation.txt` preserves the first-batch user
@@ -26,6 +29,9 @@ changes. Zr remains review-required and was not changed or promoted.
   provenance, disposition, and artifact checks for every promoted file.
 - `source-extraction-and-model.md` records source selection, extraction,
   flattening, validity, and review policy.
+- `zr-dinsdale-1991-1atm-validation.wl` independently evaluates the staged Zr
+  object, including its fixed-pressure reduction, envelope, roots, continuity,
+  and source comparison.
 
 ## Reproduction
 

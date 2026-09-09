@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "0.2.0",
+  "objectType": "unaryStandardReference",
+  "status": "staged-candidate-source-audited-automated-gates-passed-pending-independent-reader-validation",
+  "modelIdentifier": "zr-unary-dinsdale-1991-p101325-pa",
+  "identity": {"elementName": "zirconium", "elementSymbol": "Zr"},
+  "dataRole": "staged fixed-pressure reduction of the complete Zr model printed by Dinsdale (1991)",
+  "referenceState": {
+    "name": "Standard Element Reference",
+    "abbreviation": "SER",
+    "phase": {"name": "HCP-A3", "role": "stable reference phase at 298.15 K"},
+    "referenceConditions": {
+      "temperature": {"value": 298.15, "unit": "K"},
+      "pressure": {"value": 101325, "unit": "Pa"}
+    },
+    "energyReference": "H_SER(Zr), the enthalpy of HCP_A3 Zr at 298.15 K and the standard reference pressure"
+  },
+  "systemConditions": {
+    "pressure": {
+      "value": 101325,
+      "unit": "Pa",
+      "treatment": "Dinsdale's low-pressure analytic Gpres expression is evaluated at 101325 Pa and folded into the encoded temperature-basis coefficients; it is not dropped."
+    }
+  },
+  "physicalContributions": [
+    {
+      "name": "Gpres",
+      "sourceModel": "Dinsdale Murnaghan pressure contribution",
+      "sourceReferencePressure": {"value": 0, "unit": "Pa"},
+      "canonicalReductionPressure": {"value": 101325, "unit": "Pa"},
+      "reduction": "For pressures of order 10^5 Pa or smaller, Dinsdale reduces the full Murnaghan expression to A P (1 + a0 T + a1 T^2/2 + a2 T^3/3 + a3 T^-1). Zr supplies only a0, and for HCP_A3/FCC_A1 also a1. Substitution of P=101325 Pa gives terms in the existing constant, temperature, and temperaturePower bases.",
+      "status": "source-authorized-low-pressure-reduction-retained-explicitly"
+    }
+  ],
+  "scope": {
+    "phases": ["hcp", "omega", "bcc", "liquid", "fcc"],
+    "sourceToRepositoryPhaseNames": [
+      {"sourceName": "HCP_A3", "phaseName": "hcp", "sourceDesignation": "HCP_A3"},
+      {"sourceName": "OMEGA", "phaseName": "omega", "sourceDesignation": "OMEGA"},
+      {"sourceName": "BCC_A2", "phaseName": "bcc", "sourceDesignation": "BCC_A2"},
+      {"sourceName": "LIQUID", "phaseName": "liquid", "sourceDesignation": "LIQUID"},
+      {"sourceName": "FCC_A1", "phaseName": "fcc", "sourceDesignation": "FCC_A1"}
+    ],
+    "sourceModelDesignations": {
+      "hcpOmegaBccLiquid": "A Fernandez Guillermet, High Temp. - High Press., 1987, 19, 119-60",
+      "fcc": "Saunders et al."
+    },
+    "phaseCompleteness": "Every phase printed in the audited Dinsdale Zr entry is retained."
+  },
+  "systemValidity": {
+    "minimumTemperature": 298.15,
+    "maximumTemperature": 4000.0,
+    "unit": "K",
+    "basis": "sourceLimited",
+    "rationale": "Closed OBGEL domain formed from the common finite endpoint limits of the complete Dinsdale Zr phase set. HCP_A3 is printed from 130 K, but BCC_A2, OMEGA, LIQUID, and FCC_A1 begin at 298.15 K; no extension or extrapolation is supplied."
+  },
+  "units": {"temperature": "K", "pressure": "Pa", "molarGibbsEnergy": "J/mol"},
+  "mathematicalConventions": {
+    "temperatureVariable": "T",
+    "logarithm": "natural",
+    "basisVocabulary": ["constant", "temperature", "temperatureLogTemperature", "temperaturePower"],
+    "termEvaluation": "coefficient * basis(T)",
+    "segmentIntervals": "lower-inclusive and upper-exclusive, except final segment upper-inclusive; endpoint values are finite limiting values of the source expressions",
+    "outsideValidity": "No candidate value or pairwise root is supplied outside systemValidity.",
+    "baseFunctionSemantics": "gHcp is the sole root. Other functions are exact analytic phase-minus-HCP differences obtained from the source-printed G-HSER functions after applying the same fixed-pressure reduction."
+  },
+  "functions": {
+    "hcp": {
+      "name": "gHcp",
+      "phase": "HCP-A3",
+      "sourcePhaseDesignation": "HCP_A3",
+      "thermodynamicRole": "standard-element-reference solid Gibbs-energy function",
+      "quantity": "G(HCP_A3,Zr,T,P=101325 Pa) - H_SER(Zr)",
+      "validity": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K", "basis": "Dinsdale 1991 source model fixed at 101325 Pa"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15, "maximumTemperature": 2128.0,
+          "minimumInclusive": true, "maximumInclusive": false,
+          "segmentRole": "Dinsdale-1991 G-HSER expression plus evaluated low-pressure Gpres",
+          "terms": [
+            {"basis": "constant", "coefficient": -7826.1808373725},
+            {"basis": "temperature", "coefficient": 125.64906759642557},
+            {"basis": "temperatureLogTemperature", "coefficient": -24.1618},
+            {"basis": "temperaturePower", "coefficient": -0.004377899563479809, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 34971.0, "exponent": -1}
+          ]
+        },
+        {
+          "minimumTemperature": 2128.0, "maximumTemperature": 4000.0,
+          "minimumInclusive": true, "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 G-HSER expression plus evaluated low-pressure Gpres",
+          "terms": [
+            {"basis": "constant", "coefficient": -26084.5068373725},
+            {"basis": "temperature", "coefficient": 262.72420059642556},
+            {"basis": "temperatureLogTemperature", "coefficient": -42.144},
+            {"basis": "temperaturePower", "coefficient": 1.043652019095e-8, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": -1.342895e31, "exponent": -9}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 423-424",
+        "sourceRepresentation": "G-HSER plus Gpres",
+        "pressureParameters": {"A": 1.39567e-5, "a0": 1.2443e-5, "a1": 1.476e-8, "K0": 1.0063e-11, "K1": 1.573e-15, "n": 3.006}
+      }
+    },
+    "omega": {
+      "name": "gOmega",
+      "baseFunction": "gHcp",
+      "phase": "OMEGA",
+      "sourcePhaseDesignation": "OMEGA",
+      "thermodynamicRole": "pressure-relevant metastable solid-phase Gibbs-energy candidate at 1 atm",
+      "quantity": "G(OMEGA,Zr,T,P=101325 Pa) - H_SER(Zr)",
+      "validity": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K", "basis": "Dinsdale 1991 source model fixed at 101325 Pa"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15, "maximumTemperature": 2128.0,
+          "minimumInclusive": true, "maximumInclusive": false,
+          "segmentRole": "analytic OMEGA-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": -1050.51184489},
+            {"basis": "temperature", "coefficient": 18.78320861243661},
+            {"basis": "temperatureLogTemperature", "coefficient": -2.6938},
+            {"basis": "temperaturePower", "coefficient": 0.001578454063479809, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 3405.0, "exponent": -1}
+          ]
+        },
+        {
+          "minimumTemperature": 2128.0, "maximumTemperature": 4000.0,
+          "minimumInclusive": true, "maximumInclusive": true,
+          "segmentRole": "analytic OMEGA-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": -3414.62784489},
+            {"basis": "temperature", "coefficient": 2.566699612436609},
+            {"basis": "temperaturePower", "coefficient": -1.043652019095e-8, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 8.51734482e31, "exponent": -9}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 424-425",
+        "sourceRepresentation": "G-HSER plus Gpres; candidate terms are the exact analytic difference from HCP_A3 under the selected reduction",
+        "pressureParameters": {"A": 1.37115e-5, "a0": 3.0381e-5, "K0": 1.0063e-11, "K1": 1.573e-15, "n": 3.006},
+        "printedRelativeTableDiscrepancy": "The printed relative table gives +3406 T^-1, whereas subtraction of the printed absolute coefficients gives 38376-34971=3405. The candidate uses the absolute-function identity and preserves this discrepancy explicitly."
+      }
+    },
+    "bcc": {
+      "name": "gBcc",
+      "baseFunction": "gHcp",
+      "phase": "BCC-A2",
+      "sourcePhaseDesignation": "BCC_A2",
+      "thermodynamicRole": "solid-phase Gibbs-energy candidate",
+      "quantity": "G(BCC_A2,Zr,T,P=101325 Pa) - H_SER(Zr)",
+      "validity": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K", "basis": "Dinsdale 1991 source model fixed at 101325 Pa"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15, "maximumTemperature": 2128.0,
+          "minimumInclusive": true, "maximumInclusive": false,
+          "segmentRole": "analytic BCC-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": 7302.031418555},
+            {"basis": "temperature", "coefficient": -0.7033253795596685},
+            {"basis": "temperatureLogTemperature", "coefficient": -1.445606},
+            {"basis": "temperaturePower", "coefficient": 0.004037815563479809, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": -9.7289735e-9, "exponent": 3},
+            {"basis": "temperaturePower", "coefficient": -7.6142894e-11, "exponent": 4},
+            {"basis": "temperaturePower", "coefficient": -9738.0, "exponent": -1}
+          ]
+        },
+        {
+          "minimumTemperature": 2128.0, "maximumTemperature": 4000.0,
+          "minimumInclusive": true, "maximumInclusive": true,
+          "segmentRole": "analytic BCC-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": -4620.058581445},
+            {"basis": "temperature", "coefficient": 1.5600046204403315},
+            {"basis": "temperaturePower", "coefficient": -1.043652019095e-8, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 1.4103475e32, "exponent": -9}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 423-424",
+        "sourceRepresentation": "G-HSER plus Gpres; candidate terms are the exact analytic difference from HCP_A3 under the selected reduction",
+        "pressureParameters": {"A": 1.37141e-5, "a0": 3.0381e-5, "K0": 1.0063e-11, "K1": 1.573e-15, "n": 3.006},
+        "printedRelativeTableDiscrepancy": "The printed relative table gives -9737 T^-1 and 1.41035e32 T^-9; subtraction of the printed absolute coefficients gives -9738 and 1.4103475e32. The candidate uses the absolute-function identity and preserves the discrepancy explicitly."
+      }
+    },
+    "liquid": {
+      "name": "gLiquid",
+      "baseFunction": "gHcp",
+      "phase": "LIQUID",
+      "sourcePhaseDesignation": "LIQUID",
+      "thermodynamicRole": "pure-liquid Gibbs-energy candidate",
+      "quantity": "G(LIQUID,Zr,T,P=101325 Pa) - H_SER(Zr)",
+      "validity": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K", "basis": "Dinsdale 1991 source model fixed at 101325 Pa"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15, "maximumTemperature": 2128.0,
+          "minimumInclusive": true, "maximumInclusive": false,
+          "segmentRole": "analytic LIQUID-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": 18147.7358495625},
+            {"basis": "temperature", "coefficient": -9.08078523979523},
+            {"basis": "temperaturePower", "coefficient": -1.043652019095e-8, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 1.6275e-22, "exponent": 7}
+          ]
+        },
+        {
+          "minimumTemperature": 2128.0, "maximumTemperature": 4000.0,
+          "minimumInclusive": true, "maximumInclusive": true,
+          "segmentRole": "analytic LIQUID-minus-HCP difference including differential Gpres at 101325 Pa",
+          "terms": [
+            {"basis": "constant", "coefficient": 17804.7068495625},
+            {"basis": "temperature", "coefficient": -8.91154723979523},
+            {"basis": "temperaturePower", "coefficient": -1.043652019095e-8, "exponent": 2},
+            {"basis": "temperaturePower", "coefficient": 1.342895e31, "exponent": -9}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 424-425",
+        "sourceRepresentation": "G-HSER plus Gpres; candidate terms are the exact analytic difference from HCP_A3 under the selected reduction",
+        "pressureParameters": {"A": 1.44092e-5, "a0": 3.0381e-5, "K0": 1.0063e-11, "K1": 1.573e-15, "n": 3.006}
+      }
+    },
+    "fcc": {
+      "name": "gFcc",
+      "baseFunction": "gHcp",
+      "phase": "FCC-A1",
+      "sourcePhaseDesignation": "FCC_A1",
+      "thermodynamicRole": "metastable solid-phase Gibbs-energy candidate",
+      "quantity": "G(FCC_A1,Zr,T,P=101325 Pa) - H_SER(Zr)",
+      "validity": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K", "basis": "Dinsdale 1991 source model fixed at 101325 Pa"},
+      "temperatureSegments": [
+        {
+          "minimumTemperature": 298.15, "maximumTemperature": 4000.0,
+          "minimumInclusive": true, "maximumInclusive": true,
+          "segmentRole": "Dinsdale-1991 FCC_A1-minus-HCP_A3 lattice stability; identical phase pressure parameters cancel exactly",
+          "terms": [
+            {"basis": "constant", "coefficient": 7600.0},
+            {"basis": "temperature", "coefficient": -0.9}
+          ]
+        }
+      ],
+      "metadata": {
+        "sourceReference": "Dinsdale 1991, pp. 424-425",
+        "sourceRepresentation": "G(FCC_A1)-G(HCP_A3)",
+        "pressureParameters": {"inheritance": "same as HCP_A3, established by the printed absolute functions and pressure-free 7600-0.9T relative function"}
+      }
+    }
+  },
+  "sourceProvenance": {
+    "primarySource": {
+      "authors": ["A. T. Dinsdale"],
+      "title": "SGTE data for pure elements",
+      "journal": "CALPHAD",
+      "volume": 15,
+      "year": 1991,
+      "pages": "317-425",
+      "elementDataPages": [325, 423, 424, 425],
+      "pressureModelPages": [319, 320],
+      "doi": "10.1016/0364-5916(91)90030-N"
+    },
+    "modelVersionPin": {"identifier": "zr-unary-dinsdale-1991-p101325-pa", "pressure": {"value": 101325, "unit": "Pa"}},
+    "sourceModelValidity": {
+      "hcp": {"minimumTemperature": 130.0, "maximumTemperature": 4000.0, "unit": "K"},
+      "omega": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K"},
+      "bcc": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K"},
+      "liquid": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K"},
+      "fcc": {"minimumTemperature": 298.15, "maximumTemperature": 4000.0, "unit": "K"}
+    },
+    "pressureModelProvenance": "Dinsdale pp. 319-320 defines the full Murnaghan Gpres at zero-pressure-referenced material parameters and separately gives the low-pressure expression used here. The full expression and approximation diagnostics are retained in the source/model record.",
+    "provenanceRule": "No SGTE v5 coefficient supplies or replaces a model-defining Zr coefficient in this object."
+  },
+  "verification": {
+    "dataRole": "derived-non-model-defining",
+    "overallStatus": "automated-validation-passed-pending-independent-unchanged-reader-test",
+    "sourceTransitionTemperatures": [
+      {"lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc", "temperature": 1139.45, "unit": "K", "reference": "Dinsdale 1991 transition table, p. 325"},
+      {"lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid", "temperature": 2127.85, "unit": "K", "reference": "Dinsdale 1991 transition table, p. 325"}
+    ],
+    "computedStableSequence": ["hcp", "bcc", "liquid"],
+    "computedPhaseTransitions": [
+      {"lowTemperaturePhase": "hcp", "highTemperaturePhase": "bcc", "temperature": 1138.9941567487083, "unit": "K", "rootResidual": 2.1827872842550278e-11},
+      {"lowTemperaturePhase": "bcc", "highTemperaturePhase": "liquid", "temperature": 2127.862938753807, "unit": "K", "rootResidual": 0.0}
+    ],
+    "omegaBehavior": "OMEGA remains above HCP_A3 throughout systemValidity and never reaches the 1-atm lower envelope. It lies below BCC_A2 from 298.15 K to their metastable crossing near 970.281 K, but HCP_A3 is lower throughout that interval."
+  }
+}

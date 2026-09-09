@@ -74,8 +74,17 @@ The batch is a fixed 1 bar, temperature-only reduction. For Mo, Dinsdale prints
 an additive `Gpres` contribution. The candidate records that contribution and
 its omission at ambient pressure under the same low/moderate-pressure
 reduction already audited for the Fe exemplar. The directly audited Dinsdale
-Hf entry prints no separate pressure contribution. Zr retains its pressure-term
-diagnostic and remains review-required.
+Hf entry prints no separate pressure contribution.
+
+Zr was subsequently resolved by auditing Dinsdale pp. 319-320 and 423-425.
+The complete five-phase set is retained, including OMEGA. Dinsdale's
+zero-pressure-referenced Murnaghan `Gpres` is not discarded: the
+source-authorized low-pressure expression is analytically evaluated at
+101325 Pa and folded into the existing constant, T, and T^2 basis terms. The
+resulting staged object and its full-pressure comparison are documented in
+`sources/unary/Zr_Dinsdale_1991_1atm_Standard_Reference.md` and
+`diagnostics/zr-dinsdale-1991-1atm-validation.json`. It awaits independent
+unchanged-reader validation and has not been promoted.
 
 None of the emitted first-batch candidates contains a magnetic term. If a
 future source function does, the pipeline must stop unless the contribution is
