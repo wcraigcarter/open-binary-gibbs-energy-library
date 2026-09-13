@@ -62,9 +62,18 @@
     "notes": {
       "type": "string",
       "description": "Short scientific or provenance note specific to this phase model."
+    },
+    "modelProvenance": {"type": "string", "enum": ["assessed", "constructed"]},
+    "intendedUse": {"type": "array", "uniqueItems": true, "items": {"type": "string", "enum": ["teaching", "diagnostic", "constrainedEquilibrium", "equilibrium"]}},
+    "unaryEndpointProvenance": {"$ref": "#/$defs/provenanceRecord"},
+    "binaryInteractionProvenance": {"$ref": "#/$defs/provenanceRecord"},
+    "verification": {
+      "type": "object",
+      "description": "Non-model-defining record of transcription and numerical checks."
     }
   },
   "$defs": {
+    "provenanceRecord": {"type":"object","required":["status","references","notes"],"properties":{"status":{"type":"string"},"references":{"type":"array","items":{"type":"string"}},"notes":{"type":"string"}},"additionalProperties":false},
     "phaseIdentity": {
       "type": "object",
       "required": ["identifier", "displayName", "displayNameStatus"],
@@ -158,7 +167,7 @@
         },
         "rangeBasis": {
           "type": "string",
-          "enum": ["assessment", "recommendedUse", "phaseStableRegion", "other"]
+          "enum": ["assessment", "modelValidity", "recommendedUse", "phaseStableRegion", "other"]
         },
         "notes": {
           "type": "string"
@@ -191,7 +200,29 @@
     "expressionModel": {
       "type": "object",
       "required": ["idealMixingTerm", "redlichKisterTerms"],
+      "anyOf": [
+        {"required": ["unaryEndmemberReferences"]},
+        {"required": ["referenceStateContributions"]}
+      ],
       "properties": {
+        "unaryEndmemberReferences": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/unaryEndmemberReference"
+          },
+          "description": "Preferred structural end-member mapping into the system-level canonical unary data sources."
+        },
+        "referenceStateContributions": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/referenceStateContribution"
+          },
+          "description": "Backward-compatible embedded unary expressions. Readers prefer unaryEndmemberReferences when both representations are present."
+        },
         "idealMixingTerm": {
           "type": "object",
           "required": ["included", "gasConstant"],
@@ -203,6 +234,7 @@
               "type": "object",
               "required": ["value", "units"],
               "properties": {
+                "parameterOrigin": {"type":"string","enum":["legacyTeachingValue","referenceConstant"]},
                 "value": {
                   "type": "number"
                 },
@@ -221,6 +253,59 @@
           "items": {
             "$ref": "#/$defs/redlichKisterTerm"
           }
+        },
+        "redlichKisterComponentOrder": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1},
+          "description": "Ordered component pair defining the sign of odd Redlich-Kister powers; independent of the chosen composition coordinate."
+        }
+      },
+      "additionalProperties": false
+    },
+    "unaryEndmemberReference": {
+      "type": "object",
+      "required": ["component", "function", "structuralPhase"],
+      "properties": {
+        "component": {"type": "string", "minLength": 1},
+        "function": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact function key in the canonical unary object; phase stability is not inferred."
+        },
+        "structuralPhase": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-auditable structural identity that the unary function must represent."
+        }
+      },
+      "additionalProperties": false
+    },
+    "referenceStateContribution": {
+      "type": "object",
+      "required": ["component", "standardStatePhase", "temperatureSegments"],
+      "properties": {
+        "component": {"type": "string", "minLength": 1},
+        "standardStatePhase": {"type": "string", "minLength": 1},
+        "temperatureSegments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/embeddedTemperatureSegment"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "embeddedTemperatureSegment": {
+      "type": "object",
+      "required": ["minimum", "maximum", "terms"],
+      "properties": {
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"},
+        "terms": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/temperatureBasisTerm"}
         }
       },
       "additionalProperties": false
@@ -229,6 +314,7 @@
       "type": "object",
       "required": ["order", "temperatureDependence"],
       "properties": {
+        "parameterOrigin": {"type":"string","enum":["assessedParameter","legacyTeachingAssumption","explicitModelAssumption"]},
         "order": {
           "type": "integer",
           "minimum": 0
@@ -248,12 +334,24 @@
       "properties": {
         "basis": {
           "type": "string",
-          "enum": ["constant", "temperature", "temperatureLogTemperature"]
+          "enum": ["constant", "temperature", "temperatureLogTemperature", "temperaturePower"]
         },
         "coefficient": {
           "type": "number"
+        },
+        "exponent": {
+          "type": "number"
         }
       },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"basis": {"const": "temperaturePower"}},
+            "required": ["basis"]
+          },
+          "then": {"required": ["exponent"]}
+        }
+      ],
       "additionalProperties": false
     },
     "reference": {
@@ -277,7 +375,7 @@
         },
         "role": {
           "type": "string",
-          "enum": ["originalAssessment", "secondarySource", "validationSource", "other"]
+          "enum": ["originalAssessment", "referenceData", "secondarySource", "validationSource", "other"]
         }
       },
       "additionalProperties": false
@@ -305,7 +403,7 @@
         },
         "generated": {
           "type": "boolean",
-          "const": true
+          "description": "Whether the declared representation has been generated and is presently available."
         },
         "sourceOfTruth": {
           "type": "string",

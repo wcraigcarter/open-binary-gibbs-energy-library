@@ -4,6 +4,24 @@ This history is independent of the repository release history in
 [`../CHANGELOG.md`](../CHANGELOG.md). Each entry names the affected schema
 family.
 
+## Binary system and phase-model schema 1.1 clarification — 2026-09-10
+
+The formal schemas now describe the already-used embedded
+`referenceStateContributions`, `temperatureValidity`, temperature-power basis,
+verification metadata, and the existing generated-artifact availability flag.
+The formal reference-role vocabulary now includes the already-used
+`referenceData` value, and the phase-range vocabulary includes the already-used
+`modelValidity` value. They also accept optional system-level
+`unaryDataSources`, phase-level `unaryEndmemberReferences`, and an explicit
+`redlichKisterComponentOrder` for backward-compatible canonical-unary
+integration.
+
+Existing embedded-only binary objects remain valid. When both endpoint
+representations are present, a canonical-aware reader prefers
+`unaryEndmemberReferences`; legacy readers may continue to use the embedded
+expressions. This is an additive clarification within the existing 1.1 binary
+family rather than a removal or reinterpretation of an existing field.
+
 ## Unary standard-reference schema 0.2.0 — 2026-09-05
 
 The unary family moves from the development label `0.1-development` to the
@@ -60,3 +78,7 @@ remain on their independent `1.1` schema family. The repository release remains
 Initial developmental unary exemplars. This label preceded an explicit
 schema-family versioning policy and is retained only on identified historical or
 superseded artifacts.
+
+## 2026-09-13 — optional binary candidate provenance
+
+Added typed optional phase/system provenance and RK/gas-constant parameter-origin annotations. Phase inventory and selection remain independent of assessment status; no numerical reader change. See README candidate-phase conventions.

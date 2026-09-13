@@ -22,6 +22,28 @@
     {
       "phaseIdentifier": "fcc-a1",
       "file": "phases/fcc-a1.json"
+    },
+    {
+      "phaseIdentifier": "bcc",
+      "file": "phases/bcc.json"
+    },
+    {
+      "phaseIdentifier": "hcp",
+      "file": "phases/hcp.json"
+    }
+  ],
+  "unaryDataSources": [
+    {
+      "component": "Cu",
+      "file": "../unary/cu-standard-reference.json",
+      "schemaVersion": "0.2.0",
+      "identitySymbol": "Cu"
+    },
+    {
+      "component": "Ag",
+      "file": "../unary/ag-standard-reference.json",
+      "schemaVersion": "0.2.0",
+      "identitySymbol": "Ag"
     }
   ],
   "references": [
@@ -30,13 +52,19 @@
     "dinsdale-1991",
     "nist-ag-cu"
   ],
-  "notes": "The Cu-Ag system is used as the first OBGEL exemplar because it demonstrates strong positive excess Gibbs energy, a eutectic, and limited mutual solid solubility. The phase models use the Ag-Cu binary interaction parameters reproduced by Kusoffsky (2002), with the composition convention transformed to x_Cu for OBGEL, and SGTE pure-element reference functions from Dinsdale (1991).",
+  "notes": "The Cu-Ag system is used as the first OBGEL exemplar because it demonstrates strong positive excess Gibbs energy, a eutectic, and limited mutual solid solubility. The phase models use the Ag-Cu binary interaction parameters reproduced by Kusoffsky (2002), with the composition convention transformed to x_Cu for OBGEL, and canonical schema-0.2.0 SGTE pure-element reference functions from Dinsdale (1991). Embedded reference-state contributions remain temporarily as a backward-compatible regression baseline. Assessment statements apply only to liquid/FCC. BCC/HCP are separately labeled constructed legacy teaching candidates with L0=30000 J/mol, not assessed interactions. Phase inventory does not imply assessment status.",
   "temperatureValidity": {
     "minimum": 298.15,
     "maximum": 3000.0,
     "units": "K",
     "basis": "intersectionOfPhaseValidityRanges",
     "status": "derived",
-    "notes": "Derived as the intersection of the declared temperature validity ranges of all phase models in this system. Both phase models are limited to 3000 K by the complete pure-element Gibbs-energy functions used here."
+    "notes": "Intersection of all four declared phase ranges and canonical unary coverage; candidate ranges do not assert assessed binary validity."
+  },
+  "phaseModelProvenance": {
+    "liquid": "assessed",
+    "fcc-a1": "assessed",
+    "bcc": "constructed",
+    "hcp": "constructed"
   }
 }

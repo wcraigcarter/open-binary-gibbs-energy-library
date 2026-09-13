@@ -35,11 +35,46 @@
     "rangeBasis": "recommendedUse",
     "notes": "The published interaction parameters are tabulated to 6000 K, but the pure-element SGTE functions used here are documented only to 3000 K. The complete phase Gibbs-energy model is therefore limited here to 3000 K."
   },
+  "modelProvenance": "assessed",
+  "intendedUse": [
+    "equilibrium",
+    "teaching",
+    "diagnostic",
+    "constrainedEquilibrium"
+  ],
+  "unaryEndpointProvenance": {
+    "status": "canonicalReferenceData",
+    "references": [
+      "dinsdale-1991"
+    ],
+    "notes": "Canonical Cu and Ag structural unary functions from system unaryDataSources; detailed provenance remains in those canonical files."
+  },
+  "binaryInteractionProvenance": {
+    "status": "assessedParameters",
+    "references": [
+      "kusoffsky-2002",
+      "hayes-1986",
+      "nist-ag-cu"
+    ],
+    "notes": "Interaction parameters reproduced by Kusoffsky (2002), attributed there to H. L. Lukas (1998 private communication), transformed from Ag-first to Cu-first RK order. Hayes et al. (1986) provides earlier assessment context; NIST provides an independent assessment and equilibrium check, not the direct source of these tabulated coefficients."
+  },
   "gibbsEnergyModel": {
     "quantity": "molarGibbsFreeEnergy",
     "modelType": "idealPlusRedlichKister",
     "units": "J/mol",
     "expression": {
+      "unaryEndmemberReferences": [
+        {
+          "component": "Cu",
+          "function": "fcc",
+          "structuralPhase": "FCC-A1"
+        },
+        {
+          "component": "Ag",
+          "function": "fcc",
+          "structuralPhase": "FCC-A1"
+        }
+      ],
       "referenceStateContributions": [
         {
           "component": "Cu",
@@ -176,6 +211,7 @@
       "redlichKisterTerms": [
         {
           "order": 0,
+          "parameterOrigin": "assessedParameter",
           "temperatureDependence": [
             {
               "basis": "constant",
@@ -189,6 +225,7 @@
         },
         {
           "order": 1,
+          "parameterOrigin": "assessedParameter",
           "temperatureDependence": [
             {
               "basis": "constant",
@@ -200,6 +237,10 @@
             }
           ]
         }
+      ],
+      "redlichKisterComponentOrder": [
+        "Cu",
+        "Ag"
       ]
     }
   },
@@ -239,6 +280,6 @@
     "independentlyCrossChecked": true,
     "renderedEquationChecked": true,
     "numericallyValidated": true,
-    "validationNotes": "The Cu-first Redlich-Kister coefficients are obtained by transforming the published Ag-first convention. A numerical common-tangent calculation using the full liquid and FCC models gives a eutectic temperature of approximately 1053.0 K (779.9 C), consistent with the NIST assessment value 779.1 C. The three coexistence compositions are also consistent with the NIST invariant-equilibrium composition to within the expected numerical/model-reference precision."
+    "validationNotes": "The Cu-first Redlich-Kister coefficients are obtained by transforming the published Ag-first convention. A numerical common-tangent calculation using the full liquid and FCC models gives a eutectic temperature of approximately 1053.0 K (779.9 C), consistent with the NIST assessment value 779.1 C. The three coexistence compositions are also consistent with the NIST invariant-equilibrium composition to within the expected numerical/model-reference precision. The canonical unary path maps both end members to their FCC-A1 functions, including the metastable structural branch where applicable; the embedded reference-state contributions remain unchanged as a legacy regression baseline."
   }
 }

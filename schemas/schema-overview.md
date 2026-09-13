@@ -22,7 +22,16 @@ A phase explicitly declares its independent composition variables. A simple subs
 
 ## Thermodynamic expression
 
-The initial model vocabulary includes an ideal mixing term plus structured Redlich-Kister terms with temperature bases `constant`, `temperature`, and `temperatureLogTemperature`. The schema is intentionally extensible through a versioned model design rather than by storing executable equation strings.
+The model vocabulary includes canonical unary end-member references, a
+backward-compatible embedded reference-state representation, an ideal mixing
+term, and structured Redlich-Kister terms. The common temperature bases are
+`constant`, `temperature`, `temperatureLogTemperature`, and
+`temperaturePower`.
+
+Binary phases select unary functions by explicit structural identity. The
+ordered component pair for Redlich-Kister powers is also explicit, so odd-order
+signs do not depend on the chosen composition coordinate. See
+[`../docs/binary-unary-integration.md`](../docs/binary-unary-integration.md).
 
 ## Human-readable representations
 

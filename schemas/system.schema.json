@@ -6,6 +6,7 @@
   "type": "object",
   "required": ["schemaVersion", "systemIdentifier", "systemName", "components", "phaseModels"],
   "properties": {
+    "phaseModelProvenance": {"type":"object","additionalProperties":{"type":"string","enum":["assessed","constructed"]},"description":"Status by phase identifier; independent of phaseModels availability. Must agree with phase-level modelProvenance when present."},
     "schemaVersion": {
       "type": "string"
     },
@@ -45,12 +46,48 @@
         "additionalProperties": false
       }
     },
+    "unaryDataSources": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/unaryDataSource"
+      }
+    },
     "references": {
       "type": "array",
       "items": {"type": "string", "minLength": 1}
     },
     "notes": {
       "type": "string"
+    },
+    "temperatureValidity": {
+      "$ref": "#/$defs/temperatureValidity"
+    }
+  },
+  "$defs": {
+    "unaryDataSource": {
+      "type": "object",
+      "required": ["component", "file", "schemaVersion", "identitySymbol"],
+      "properties": {
+        "component": {"type": "string", "minLength": 1},
+        "file": {"type": "string", "minLength": 1},
+        "schemaVersion": {"type": "string", "minLength": 1},
+        "identitySymbol": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "temperatureValidity": {
+      "type": "object",
+      "required": ["minimum", "maximum", "units", "basis", "status"],
+      "properties": {
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"},
+        "units": {"type": "string", "const": "K"},
+        "basis": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

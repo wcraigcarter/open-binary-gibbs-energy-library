@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.1",
+  "systemIdentifier": "cu-ag",
+  "components": [
+    {
+      "identifier": "Cu",
+      "formula": "Cu",
+      "name": "Copper"
+    },
+    {
+      "identifier": "Ag",
+      "formula": "Ag",
+      "name": "Silver"
+    }
+  ],
+  "compositionVariables": [
+    {
+      "name": "xCu",
+      "quantity": "moleFraction",
+      "component": "Cu",
+      "role": "independent",
+      "definition": "xCu = nCu/(nCu+nAg); xAg = 1 - xCu."
+    }
+  ],
+  "phase": {
+    "identifier": "bcc",
+    "displayName": "BCC (constructed)",
+    "displayNameStatus": "standard",
+    "description": "Constructed candidate phase for teaching, visualization, diagnostics, and constrained equilibrium; the binary interaction is not assessment-derived."
+  },
+  "temperatureRange": {
+    "minimum": 298.15,
+    "maximum": 3000,
+    "units": "K",
+    "rangeBasis": "recommendedUse",
+    "notes": "Canonical unary coverage; this is not an assessed binary validity claim."
+  },
+  "modelProvenance": "constructed",
+  "intendedUse": [
+    "teaching",
+    "diagnostic",
+    "constrainedEquilibrium"
+  ],
+  "unaryEndpointProvenance": {
+    "status": "canonicalReferenceData",
+    "references": [
+      "dinsdale-1991"
+    ],
+    "notes": "Structural functions from system unaryDataSources; their detailed provenance remains in the canonical Cu and Ag files. No endpoint compensation."
+  },
+  "binaryInteractionProvenance": {
+    "status": "undocumentedLegacyTeachingAssumption",
+    "references": [],
+    "notes": "L0=30000 J/mol copied from the CTT initial-example notebook. No supporting Cu-Ag BCC/HCP assessment citation was found; historical rationale is undocumented."
+  },
+  "gibbsEnergyModel": {
+    "quantity": "molarGibbsFreeEnergy",
+    "modelType": "idealPlusRedlichKister",
+    "units": "J/mol",
+    "expression": {
+      "unaryEndmemberReferences": [
+        {
+          "component": "Cu",
+          "function": "bcc",
+          "structuralPhase": "BCC-A2"
+        },
+        {
+          "component": "Ag",
+          "function": "bcc",
+          "structuralPhase": "BCC-A2"
+        }
+      ],
+      "idealMixingTerm": {
+        "included": true,
+        "gasConstant": {
+          "value": 8.314,
+          "units": "J/(mol K)",
+          "parameterOrigin": "legacyTeachingValue"
+        }
+      },
+      "redlichKisterTerms": [
+        {
+          "order": 0,
+          "parameterOrigin": "legacyTeachingAssumption",
+          "temperatureDependence": [
+            {
+              "basis": "constant",
+              "coefficient": 30000
+            }
+          ]
+        }
+      ],
+      "redlichKisterComponentOrder": [
+        "Cu",
+        "Ag"
+      ]
+    }
+  },
+  "references": [
+    {
+      "identifier": "dinsdale-1991",
+      "citation": "A. T. Dinsdale, \"SGTE data for pure elements,\" CALPHAD 15 (1991) 317-425. DOI: 10.1016/0364-5916(91)90030-N.",
+      "role": "referenceData"
+    }
+  ],
+  "representations": {
+    "tex": {
+      "path": "rendered/bcc.tex",
+      "generated": false,
+      "sourceOfTruth": "gibbsEnergyModel"
+    },
+    "pdf": {
+      "path": "rendered/bcc.pdf",
+      "generated": false,
+      "sourceOfTruth": "gibbsEnergyModel"
+    }
+  },
+  "notes": "Historical formulas: docs/audits/cu-ag-legacy-teaching-functions.wl. Canonical substitution preserves the construction, not every historical numerical value. Phase inclusion is independent of provenance."
+}

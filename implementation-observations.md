@@ -47,3 +47,8 @@ OBGEL phases must identify whether their composition is continuous or constraine
 **Observation 15**
 It will be useful to constuct a list of Unary phase reference free energies and then use those to enforce consistency between binary systems.
 
+**Observation 16**
+Binary solution phases should select canonical unary end members by explicit structural phase identity, including metastable branches, rather than by stable-phase lookup. The ordered component pair for Redlich-Kister powers is independent metadata and must not be inferred from the plotting coordinate. During migration, embedded unary expressions can remain as a regression baseline, but a canonical-aware reader should prefer the explicit unary references and compute effective validity from the binary and unary system domains.
+
+**Observation 17**
+Compatibility with the Common Tangents Tool requires more than curried numerical call syntax. The binary reader must return an actual symbolic object of the form `Function[{T}, Function[{X}, expression]]`; definitions guarded by `NumericQ` leave an unevaluated reader call in the function body and cannot be differentiated or inspected by CTT. Numeric evaluation should be derived from the same symbolic `Piecewise` expression.
