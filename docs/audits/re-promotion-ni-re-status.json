@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-14",
+  "re": {
+    "status": "canonical-user-validated-source-consistent",
+    "path": "data/unary/re-standard-reference.json",
+    "userReportedApproximateMeltingK": 3459,
+    "computedMeltingK": 3459.0007407644757,
+    "sourceAudit": "Direct visual reinspection of Dinsdale 1991 p.324 gives Re HCP_A3 melting at 3459.00 K, DeltaH 60428.00 J/mol, DeltaS 17.4698 J/(mol K), and DeltaCp 7.4703 J/(mol K). The earlier attribution of 3458.98 K, 60598.99 J/mol, 17.52 and 2.1477 to this row was an audit transcription error, not a source-internal inconsistency. The published Gibbs coefficients are unchanged. No source erratum or coefficient correction is needed for this issue.",
+    "promotionGates": {
+      "sixteenNumericalConventionChecks": true,
+      "schemaVersion020": true,
+      "candidateCanonicalFunctionIdentity": true,
+      "validityUnchanged": true,
+      "sourceHashPreserved": true,
+      "sourceSummaryCpAgreement": true
+    },
+    "formalUnarySchema": "No dedicated unary JSON Schema exists; current 0.2.0 convention checks pass"
+  },
+  "niRe": {
+    "status": "REVIEW REQUIRED / deferred",
+    "backlog": "docs/unfinished-cases-backlog.md",
+    "nextAction": "Define a transparent assessment-reference compatibility/correction mechanism and supported binary solution magnetism before attempting source-compatible validation; neither blocker is addressed in this bookkeeping task.",
+    "dependencies": [
+      "canonical Ni",
+      "canonical Re"
+    ],
+    "blockingIssues": [
+      "assessment Re unary version differs from canonical Dinsdale-1991: about 12.39 kJ/mol in liquid-HCP difference near the peritectic",
+      "solution magnetism unsupported by current binary expression schema"
+    ],
+    "audit": "docs/audits/ni-re-source-compatibility.md",
+    "binaryCandidateCreated": false,
+    "fullBinaryValidation": "not run: source/schema gate",
+    "sourceCompatibilityDiagnostic": "working/binary/ni-re/source-compatibility.json"
+  },
+  "operationScope": "The commitPerformed and pushPerformed fields describe the original Re promotion/source-audit operation. A subsequent documentation-only checkpoint records this status without publishing the uncommitted canonical data or local working evidence.",
+  "commitPerformed": false,
+  "pushPerformed": false
+}
