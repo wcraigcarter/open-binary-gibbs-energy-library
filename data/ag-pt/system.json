@@ -1,0 +1,39 @@
+{
+	"schemaVersion":"1.1",
+	"systemIdentifier":"ag-pt",
+	"systemName":"Ag-Pt (Karakaya-Thompson 1987 source model)",
+	"components":[
+		{
+			"identifier":"Ag",
+			"formula":"Ag",
+			"name":"Silver"
+		},
+		{
+			"identifier":"Pt",
+			"formula":"Pt",
+			"name":"Platinum"
+		}
+	],
+	"phaseModels":[
+		{
+			"phaseIdentifier":"liquid",
+			"file":"phases\/liquid.json"
+		},
+		{
+			"phaseIdentifier":"fcc-a1",
+			"file":"phases\/fcc-a1.json"
+		}
+	],
+	"references":[
+		"karakaya-thompson-1987"
+	],
+	"temperatureValidity":{
+		"minimum":1.23815e3,
+		"maximum":2.1e3,
+		"units":"K",
+		"basis":"recommendedUse",
+		"status":"derived",
+		"notes":"Source-specific 1987 liquid\/FCC assessment in its original pure-liquid reference convention, not SGTE canonical unary integration. Recommended high-temperature use 1238.15-2100 K: lower bound follows source discussion above 965 C; upper bound is an intentional teaching window, not a published validity limit. Low-temperature ordered\/intermediate phases and gas excluded. One FCC function represents both solid solutions. R=8.314 J\/(mol K) is an explicitly chosen rounded reference constant; its precision is not specified in Table 5."
+	},
+	"notes":"Source-specific 1987 liquid\/FCC assessment in its original pure-liquid reference convention, not SGTE canonical unary integration. Recommended high-temperature use 1238.15-2100 K: lower bound follows source discussion above 965 C; upper bound is an intentional teaching window, not a published validity limit. Low-temperature ordered\/intermediate phases and gas excluded. One FCC function represents both solid solutions. R=8.314 J\/(mol K) is an explicitly chosen rounded reference constant; its precision is not specified in Table 5."
+}
